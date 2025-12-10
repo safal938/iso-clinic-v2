@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import PatientInfo from './PatientInfo';
 import ChatInterface from './ChatInterface';
@@ -35,16 +35,15 @@ const NurseSimApp: React.FC = () => {
     const [checklist, setChecklist] = useState<ChecklistItem[]>(INITIAL_CHECKLIST);
     const [primaryDiagnosis, setPrimaryDiagnosis] = useState<DiagnosisOption>({ diagnosis: "Pending Assessment...", confidenceScore: 0, indicators: [] });
     const [secondaryDiagnosis, setSecondaryDiagnosis] = useState<DiagnosisOption>({ diagnosis: "Pending Assessment...", confidenceScore: 0, indicators: [] });
-    const [activeScenarioId, setActiveScenarioId] = useState<string | undefined>(undefined);
     const [diagnosticPivotOccurred, setDiagnosticPivotOccurred] = useState<boolean>(false);
     
     // UI State
     const [isSimulationActive, setIsSimulationActive] = useState(false);
-    const [isProcessing, setIsProcessing] = useState(false);
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const [isDashboardExpanded, setIsDashboardExpanded] = useState(false);
     const [connectionStatus, setConnectionStatus] = useState<ConnectionStatus>('disconnected');
     const [isDebugOpen, setIsDebugOpen] = useState(false);
+    const [isTogglingSimulation, setIsTogglingSimulation] = useState(false);
     
     const wsInitialized = useRef(false);
     
@@ -165,20 +164,33 @@ const NurseSimApp: React.FC = () => {
     }, []);
 
     const startWebSocketSimulation = async () => {
-        websocketService.resetAudioTiming();
-        const connected = await websocketService.connect();
-        if (connected) {
-            setIsSimulationActive(true);
-            setTimerStarted(true);
+        if (!patientData) return;
+        setIsTogglingSimulation(true);
+        try {
+            websocketService.resetAudioTiming();
+            const connected = await websocketService.connect(patientData.patient.identifiers.mrn, patientData.patient.sex);
+            if (connected) {
+                setIsSimulationActive(true);
+                setTimerStarted(true);
+            }
+        } finally {
+            setIsTogglingSimulation(false);
         }
     };
 
     const stopWebSocketSimulation = () => {
-        websocketService.disconnect();
-        setIsSimulationActive(false);
+        setIsTogglingSimulation(true);
+        try {
+            websocketService.disconnect();
+            setIsSimulationActive(false);
+        } finally {
+            setTimeout(() => setIsTogglingSimulation(false), 300);
+        }
     };
 
     const handleToggleSimulation = () => {
+        if (isTogglingSimulation) return;
+        
         if (isSimulationActive) {
             stopWebSocketSimulation();
         } else {
@@ -193,7 +205,6 @@ const NurseSimApp: React.FC = () => {
         setChecklist(INITIAL_CHECKLIST);
         setPrimaryDiagnosis({ diagnosis: "Pending Assessment...", confidenceScore: 0, indicators: [] });
         setSecondaryDiagnosis({ diagnosis: "Pending Assessment...", confidenceScore: 0, indicators: [] });
-        setActiveScenarioId(undefined);
         setDiagnosticPivotOccurred(false);
         setElapsedTime(0);
         setTimerStarted(false);
@@ -276,11 +287,12 @@ const NurseSimApp: React.FC = () => {
                             isSimulationActive={isSimulationActive}
                             onToggleSimulation={handleToggleSimulation}
                             onReset={handleReset}
-                            isProcessing={isProcessing}
+                            isProcessing={false}
                             elapsedTime={elapsedTime}
                             timerStarted={timerStarted}
                             isCompact={isDashboardExpanded}
                             connectionStatus={connectionStatus}
+                            isTogglingSimulation={isTogglingSimulation}
                         />
                     </div>
 

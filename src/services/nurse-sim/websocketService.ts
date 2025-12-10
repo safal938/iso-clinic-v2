@@ -44,7 +44,7 @@ export interface TranscriptHighlight {
 }
 
 export interface WebSocketMessage {
-    type: 'transcript' | 'audio' | 'system' | 'clinical' | 'diagnosis' | 'questions' | 'turn';
+    type: 'transcript' | 'audio' | 'system' | 'clinical' | 'diagnosis' | 'questions' | 'turn' | 'start';
     speaker?: 'NURSE' | 'PATIENT';
     text?: string;
     message?: string;
@@ -145,7 +145,7 @@ class WebSocketService {
     }
 
     // Connect to WebSocket server
-    async connect(): Promise<boolean> {
+    async connect(patientId: string, gender: string): Promise<boolean> {
         if (!this.backendUrl) {
             console.error("Backend URL not set");
             return false;
@@ -166,17 +166,22 @@ class WebSocketService {
                 this.socket.onopen = () => {
                     console.log("WebSocket connected");
                     this.callbacks?.onStatusChange('connected');
-                    // Send start command
-                    const startCmd = "start";
+                    // Send start command with patient info
+                    const startCmd = {
+                        type: "start",
+                        patient_id: patientId,
+                        gender: gender
+                    };
+                    const startCmdString = JSON.stringify(startCmd);
                     wsDebugLogs.push({
-                        id: Math.random().toString(36).substr(2, 9),
+                        id: Math.random().toString(36).substring(2, 11),
                         timestamp: new Date(),
                         direction: 'sent',
-                        raw: startCmd,
-                        parsed: null,
+                        raw: startCmdString,
+                        parsed: startCmd as any,
                         error: null
                     });
-                    this.socket?.send(startCmd);
+                    this.socket?.send(startCmdString);
                     this.callbacks?.onSystem("Initializing simulation...");
                     resolve(true);
                 };
@@ -184,7 +189,7 @@ class WebSocketService {
                 this.socket.onmessage = (event) => {
                     // Log raw message for debugging
                     const logEntry: WsDebugLogEntry = {
-                        id: Math.random().toString(36).substr(2, 9),
+                        id: Math.random().toString(36).substring(2, 11),
                         timestamp: new Date(),
                         direction: 'received',
                         raw: event.data,

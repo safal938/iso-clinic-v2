@@ -19,7 +19,11 @@ const END_HOUR = 18;
 const TOTAL_GAME_MINUTES = (END_HOUR - START_HOUR) * 60;
 
 const DOOR_ENTRY = { x: 55, y: 14 };
-const SE_GAP = { x: 80, y: 30 };
+// Waypoints to avoid hepatologist room (gridX: 77-110, gridY: 23-35)
+const CORRIDOR_NORTH = { x: 90, y: 8 };  // Go north around hepatologist
+const CORRIDOR_SOUTH = { x: 90, y: 48 }; // Go south around hepatologist
+const MONITORING_ENTRY_NORTH = { x: 110, y: 15 }; // Enter monitoring from north
+const MONITORING_ENTRY_SOUTH = { x: 110, y: 45 }; // Enter monitoring from south
 
 const IsometricMap: React.FC = () => {
   const navigate = useNavigate();
@@ -39,7 +43,6 @@ const IsometricMap: React.FC = () => {
 
   const tickRef = useRef(0);
   const patientsRef = useRef<Patient[]>([]);
-  const nurseAssignmentIndex = useRef(0);
 
   useEffect(() => {
     let frameId: number;
@@ -119,19 +122,44 @@ const IsometricMap: React.FC = () => {
         p.waitTimer--;
         if (p.waitTimer <= 0) {
           if (p.state === 'waiting') {
+            // Find available expert nurse room (only one patient per room)
             const nurses = ROOMS.filter(r => r.type === RoomType.NURSE && r.id.startsWith('nurse'));
             nurses.sort((a, b) => a.id.localeCompare(b.id));
-            const nurse = nurses[nurseAssignmentIndex.current % nurses.length];
-            nurseAssignmentIndex.current++;
-            p.state = 'to_nurse';
-            p.assignedStaffId = nurse.id;
-            p.path = [{ x: nurse.gridX + 2 + Math.random() * 2, y: nurse.gridY + 2 + Math.random() * 2 }];
+            
+            // Check which rooms are occupied
+            const occupiedRooms = new Set(
+              patientsRef.current
+                .filter(pt => (pt.state === 'at_nurse' || pt.state === 'to_nurse') && pt.assignedStaffId)
+                .map(pt => pt.assignedStaffId)
+            );
+            
+            // Find first available room
+            const availableNurse = nurses.find(n => !occupiedRooms.has(n.id));
+            
+            if (availableNurse) {
+              p.state = 'to_nurse';
+              p.assignedStaffId = availableNurse.id;
+              p.path = [{ x: availableNurse.gridX + 2 + Math.random() * 2, y: availableNurse.gridY + 2 + Math.random() * 2 }];
+            } else {
+              // No room available, keep waiting
+              p.waitTimer = 30; // Check again in 30 ticks
+            }
           } else if (p.state === 'at_nurse') {
             const isHepaCase = Math.random() < (1/9);
             if (isHepaCase) {
-              p.state = 'to_doc';
-              p.path = [{ x: HEPA_POINT.x + Math.random(), y: HEPA_POINT.y + Math.random() }];
-              setStats(s => ({ ...s, hepaCases: s.hepaCases + 1 }));
+              // Check if hepatologist room is available (only one patient at a time)
+              const hepaOccupied = patientsRef.current.some(pt => 
+                (pt.state === 'at_doc' || pt.state === 'to_doc') && pt.id !== p.id
+              );
+              
+              if (!hepaOccupied) {
+                p.state = 'to_doc';
+                p.path = [{ x: HEPA_POINT.x + Math.random(), y: HEPA_POINT.y + Math.random() }];
+                setStats(s => ({ ...s, hepaCases: s.hepaCases + 1 }));
+              } else {
+                // Hepatologist busy, wait a bit longer
+                p.waitTimer = 30;
+              }
             } else {
               p.state = 'to_monitoring';
               const monRoom = ROOMS.find(r => r.id === 'monitoring');
@@ -142,7 +170,13 @@ const IsometricMap: React.FC = () => {
               const monTarget = monRoom 
                 ? { x: monRoom.gridX + 15 + col * 2, y: monRoom.gridY + 12 + row * 2 }
                 : { x: 109 + col * 2, y: 24 + row * 2 };
-              p.path = [SE_GAP, monTarget];
+              // Route around hepatologist room - use north path for nurse1/nurse2, south for nurse3
+              const useNorthPath = p.assignedStaffId === 'nurse3' || p.gridY < 25;
+              if (useNorthPath) {
+                p.path = [CORRIDOR_NORTH, MONITORING_ENTRY_NORTH, monTarget];
+              } else {
+                p.path = [CORRIDOR_SOUTH, MONITORING_ENTRY_SOUTH, monTarget];
+              }
               setStats(s => ({ ...s, treated: s.treated + 1 }));
             }
           } else if (p.state === 'at_doc') {
@@ -155,7 +189,8 @@ const IsometricMap: React.FC = () => {
             const monTarget = monRoom 
               ? { x: monRoom.gridX + 15 + col * 2, y: monRoom.gridY + 12 + row * 2 }
               : { x: 109 + col * 2, y: 24 + row * 2 };
-            p.path = [SE_GAP, monTarget];
+            // From hepatologist, go south to avoid walking back through the room
+            p.path = [CORRIDOR_SOUTH, MONITORING_ENTRY_SOUTH, monTarget];
           }
         }
       }
@@ -350,20 +385,20 @@ const IsometricMap: React.FC = () => {
       style={{ cursor: isDragging.current ? 'grabbing' : 'grab' }}>
       
       {/* Title and Time Progress */}
-      <div className={`absolute top-8 z-20 transition-all duration-300 flex items-center gap-8 ${isSidebarOpen ? 'left-80 ml-8' : 'left-8'}`}>
+      <div className={`absolute top-4 lg:top-8 z-20 transition-all duration-300 flex flex-col lg:flex-row items-start lg:items-center gap-3 lg:gap-8 ${isSidebarOpen ? 'left-72 lg:left-80 ml-4 lg:ml-8' : 'left-4 lg:left-8'}`}>
         <div>
-          <h1 className="text-4xl font-extrabold text-slate-800 tracking-tight drop-shadow-sm">Medforce<span className="font-light text-slate-400">AI</span></h1>
-          <p className="text-slate-500 font-semibold text-sm tracking-widest uppercase mt-1">Hepatology Center</p>
+          <h1 className="text-2xl lg:text-4xl font-extrabold text-slate-800 tracking-tight drop-shadow-sm">Medforce<span className="font-light text-slate-400">AI</span></h1>
+          <p className="text-slate-500 font-semibold text-[10px] lg:text-sm tracking-widest uppercase mt-0.5 lg:mt-1">Hepatology Center</p>
         </div>
-        <div className="flex flex-col gap-1.5 min-w-[220px]">
+        <div className="flex flex-col gap-1.5 min-w-[180px] lg:min-w-[220px]">
           <div className="flex justify-between items-center">
-            <span className="text-[10px] text-slate-400 uppercase tracking-wide">Clinic Hours</span>
-            <span className="text-sm font-mono text-slate-600">{formatTime(gameTime)}</span>
+            <span className="text-[9px] lg:text-[10px] text-slate-400 uppercase tracking-wide">Clinic Hours</span>
+            <span className="text-xs lg:text-sm font-mono text-slate-600">{formatTime(gameTime)}</span>
           </div>
           <div className="w-full h-1 bg-slate-200 rounded-full overflow-hidden">
             <div className="h-full bg-indigo-500 rounded-full transition-all duration-300 ease-linear" style={{ width: `${progressPercent}%` }} />
           </div>
-          <div className="flex justify-between text-[9px] text-slate-400">
+          <div className="flex justify-between text-[8px] lg:text-[9px] text-slate-400">
             <span>09:00</span>
             <span>18:00</span>
           </div>
@@ -371,60 +406,93 @@ const IsometricMap: React.FC = () => {
       </div>
 
       {/* Sidebar */}
-      <div className={`absolute top-0 left-0 z-30 h-full bg-white border-r border-slate-200 shadow-2xl transition-all duration-300 ease-in-out transform flex flex-col ${isSidebarOpen ? 'translate-x-0 w-80' : '-translate-x-full w-80'}`}>
+      <div className={`absolute top-0 left-0 z-30 h-full bg-white border-r border-slate-200 shadow-2xl transition-all duration-300 ease-in-out transform flex flex-col ${isSidebarOpen ? 'translate-x-0 w-64 lg:w-72 xl:w-80' : '-translate-x-full w-64 lg:w-72 xl:w-80'}`}>
         <button onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="absolute top-1/2 -right-8 w-8 h-16 bg-white border border-l-0 border-slate-200 rounded-r-xl flex items-center justify-center shadow-md hover:bg-slate-50 focus:outline-none z-50 transform -translate-y-1/2">
-          <svg className={`w-4 h-4 text-slate-600 transition-transform duration-300 ${isSidebarOpen ? 'rotate-180' : 'rotate-0'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          className="absolute top-1/2 -right-6 lg:-right-8 w-6 lg:w-8 h-12 lg:h-16 bg-white border border-l-0 border-slate-200 rounded-r-xl flex items-center justify-center shadow-md hover:bg-slate-50 focus:outline-none z-50 transform -translate-y-1/2">
+          <svg className={`w-3 h-3 lg:w-4 lg:h-4 text-slate-600 transition-transform duration-300 ${isSidebarOpen ? 'rotate-180' : 'rotate-0'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
           </svg>
         </button>
 
-        <div className="p-6 flex flex-col h-full overflow-y-auto">
-          <div className="space-y-8 flex-1 mt-4">
-            <div className="space-y-4">
-              <h2 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-4">Simulation Metrics</h2>
+        <div className="p-3 lg:p-4 xl:p-6 flex flex-col h-full overflow-y-auto">
+          <div className="space-y-4 lg:space-y-6 xl:space-y-8 flex-1 mt-2 lg:mt-4">
+            {/* Benchmark Comparison */}
+           
+
+            <div className="space-y-2 lg:space-y-3">
+              <h2 className="text-[10px] lg:text-xs font-black text-slate-400 uppercase tracking-widest">Simulation Metrics</h2>
               {[
-                { label: 'Overall productivity gain', value: `${productivityGain}X`, color: 'text-emerald-500' },
-                { label: 'Total patient treated', value: treatedCount, color: 'text-slate-900' },
-                { label: 'Doctor patient ratio', value: `1 : ${totalSpawned}`, color: 'text-slate-900' },
-                { label: 'Expert Nurse patient ratio', value: `3 : ${totalSpawned}`, color: 'text-slate-900' },
-                { label: 'Arrival Rate (/h)', value: arrivalRate, color: 'text-slate-900' },
+                { label: 'Total patients treated', value: treatedCount, color: 'text-slate-900' },
+                { label: 'Doctor : Patient ratio', value: `1 : ${totalSpawned}`, color: 'text-slate-900' },
+                { label: 'Expert Nurse : Patient', value: `3 : ${totalSpawned}`, color: 'text-slate-900' },
+                { label: 'Arrival Rate', value: `${arrivalRate}/h`, color: 'text-slate-900' },
               ].map((item, idx) => (
-                <div key={idx} className="flex justify-between items-center border-b border-slate-100 pb-2">
-                  <span className="text-slate-600 font-medium text-sm">{item.label}</span>
-                  <span className={`font-bold text-lg ${item.color}`}>{item.value}</span>
+                <div key={idx} className="flex justify-between items-center border-b border-slate-100 pb-1.5 lg:pb-2">
+                  <span className="text-slate-600 font-medium text-[10px] lg:text-xs">{item.label}</span>
+                  <span className={`font-bold text-xs lg:text-sm ${item.color}`}>{item.value}</span>
                 </div>
               ))}
             </div>
 
+             <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-lg p-3 lg:p-4 border border-slate-200">
+              <h3 className="text-[9px] lg:text-[10px] font-bold text-slate-500 uppercase tracking-wide mb-2 lg:mb-3">Throughput Benchmark</h3>
+              <div className="space-y-2 lg:space-y-3">
+                <div>
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-[10px] lg:text-xs font-semibold text-indigo-700">Medforce Clinic</span>
+                    <span className="text-[10px] lg:text-xs font-bold text-indigo-700">{throughputPerHour.toFixed(1)}/h</span>
+                  </div>
+                  <div className="w-full h-2 lg:h-2.5 bg-slate-200 rounded-full overflow-hidden">
+                    <div className="h-full bg-gradient-to-r from-indigo-500 to-indigo-600 rounded-full transition-all duration-500" style={{ width: `${Math.min(100, (throughputPerHour / 10) * 100)}%` }} />
+                  </div>
+                </div>
+                <div>
+                  <div className="flex justify-between items-center mb-1">
+                    <span className="text-[10px] lg:text-xs font-medium text-slate-500">Standard Hepatologist</span>
+                    <span className="text-[10px] lg:text-xs font-bold text-slate-500">{STANDARD_THROUGHPUT}/h</span>
+                  </div>
+                  <div className="w-full h-2 lg:h-2.5 bg-slate-200 rounded-full overflow-hidden">
+                    <div className="h-full bg-slate-400 rounded-full" style={{ width: `${(STANDARD_THROUGHPUT / 10) * 100}%` }} />
+                  </div>
+                </div>
+              </div>
+              <div className="mt-2 lg:mt-3 pt-2 border-t border-slate-200 flex items-center justify-between">
+                <span className="text-[9px] lg:text-[18px] text-slate-500">Productivity </span>
+                <span className={`text-xs lg:text-sm font-bold ${parseFloat(productivityGain) >= 1 ? 'text-emerald-600' : 'text-amber-600'}`}>
+                  {parseFloat(productivityGain) >= 1 ? '↑' : '↓'} {productivityGain}X
+                </span>
+              </div>
+            </div>
+
+
             <div>
-              <h3 className="text-xs font-bold text-slate-500 uppercase mb-4">Real-time Patient Status</h3>
+              <h3 className="text-[9px] lg:text-[10px] font-bold text-slate-500 uppercase mb-2 lg:mb-3">Real-time Patient Status</h3>
               <div className="space-y-0.5">
                 {[
                   { label: 'Referred', count: listCounts.referred, color: 'text-slate-800' },
                   { label: 'Pre Consultation', count: listCounts.preConsult, color: 'text-slate-600' },
                   { label: 'Tele-pre Consultation', count: listCounts.telePre, color: 'text-slate-600' },
                   { label: 'Waiting Room', count: listCounts.waiting, color: 'text-amber-600' },
-                  { label: 'Consultation by expert nurse', count: listCounts.nurse, color: 'text-blue-600' },
-                  { label: 'Consultation by Hepatologist', count: listCounts.hepato, color: 'text-indigo-600' },
+                  { label: 'Expert Nurse Consult', count: listCounts.nurse, color: 'text-blue-600' },
+                  { label: 'Hepatologist Consult', count: listCounts.hepato, color: 'text-indigo-600' },
                   { label: 'Monitoring', count: listCounts.monitoring, color: 'text-rose-600' },
                 ].map((item, idx) => (
-                  <div key={idx} className="flex justify-between items-center py-2 px-3 bg-white hover:bg-slate-50 rounded border border-slate-100 transition-colors">
-                    <span className="text-sm font-medium text-slate-600">{item.label}</span>
-                    <span className={`font-bold ${item.color}`}>{item.count}</span>
+                  <div key={idx} className="flex justify-between items-center py-1 lg:py-1.5 px-2 bg-white hover:bg-slate-50 rounded border border-slate-100 transition-colors">
+                    <span className="text-[10px] lg:text-xs font-medium text-slate-600">{item.label}</span>
+                    <span className={`font-bold text-xs lg:text-sm ${item.color}`}>{item.count}</span>
                   </div>
                 ))}
               </div>
             </div>
           </div>
 
-          <div className="mt-auto pt-6 border-t border-slate-100">
+          <div className="mt-auto pt-3 lg:pt-4 border-t border-slate-100">
             <button onClick={simActive ? handleStopSim : handleStartSim}
-              className={`w-full py-3 rounded-lg font-bold text-sm transition-all transform active:scale-95 duration-200 border shadow-sm flex items-center justify-center gap-2 ${simActive ? 'bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100' : 'bg-slate-900 text-white border-transparent hover:bg-slate-800'}`}>
+              className={`w-full py-2 lg:py-2.5 rounded-lg font-bold text-[10px] lg:text-xs transition-all transform active:scale-95 duration-200 border shadow-sm flex items-center justify-center gap-1.5 lg:gap-2 ${simActive ? 'bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100' : 'bg-slate-900 text-white border-transparent hover:bg-slate-800'}`}>
               {simActive ? (
-                <><span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>Pause Simulation</>
+                <><span className="w-1.5 h-1.5 lg:w-2 lg:h-2 rounded-full bg-amber-500 animate-pulse"></span>Pause Simulation</>
               ) : (
-                <><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>Start Simulation</>
+                <><svg className="w-3 h-3 lg:w-3.5 lg:h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>Start Simulation</>
               )}
             </button>
           </div>
