@@ -304,7 +304,7 @@ const IsometricMap: React.FC = () => {
   };
 
   const progressPercent = (gameTime / TOTAL_GAME_MINUTES) * 100;
-  const treatedCount = stats.treated + stats.hepaCases;
+  const treatedCount = stats.cumMonitoring; // Patients who completed full treatment (arrived at monitoring)
   const throughputPerHour = gameTime > 0 ? (treatedCount / (gameTime / 60)) : 0;
   const STANDARD_THROUGHPUT = 2.5;
   const productivityGain = throughputPerHour > 0 ? (throughputPerHour / STANDARD_THROUGHPUT).toFixed(1) : "0.0";
@@ -440,7 +440,7 @@ const IsometricMap: React.FC = () => {
               ].map((item, idx) => (
                 <div key={idx} className="flex justify-between items-center border-b border-slate-100 pb-1.5 lg:pb-2">
                   <span className="text-slate-600 font-medium text-[10px] lg:text-xs">{item.label}</span>
-                  <span className={`font-bold text-xs lg:text-sm ${item.color}`}>{item.value}</span>
+                  <span className={`font-bold text-xs lg:text-sm ${item.color} text-right min-w-[60px]`}>{item.value}</span>
                 </div>
               ))}
             </div>
@@ -490,7 +490,7 @@ const IsometricMap: React.FC = () => {
                 ].map((item, idx) => (
                   <div key={idx} className="flex justify-between items-center py-1 lg:py-1.5 px-2 bg-white hover:bg-slate-50 rounded border border-slate-100 transition-colors">
                     <span className="text-[10px] lg:text-xs font-medium text-slate-600">{item.label}</span>
-                    <span className={`font-bold text-xs lg:text-sm ${item.color}`}>{item.count}</span>
+                    <span className={`font-bold text-xs lg:text-sm ${item.color} text-right min-w-[40px]`}>{item.count}</span>
                   </div>
                 ))}
               </div>
