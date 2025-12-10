@@ -2,14 +2,14 @@
   "addOns": {
     "common": {
       "name": "MedForce_DILI_L1_v2.8",
-      "logoUrl": "https://boardv29.vercel.app/logo.png"
+      "logoUrl": "https://iso-clinic.vercel.app/logo.png"
     },
     "meet": {
       "web": {
         "supportsScreenSharing": true,
-        "logoUrl": "https://boardv29.vercel.app/logo.png",
-        "addOnOrigins": ["https://boardv29.vercel.app"],
-        "sidePanelUrl": "https://boardv29.vercel.app/meet/Sidepanel"
+        "logoUrl": "https://iso-clinic.vercel.app/logo.png",
+        "addOnOrigins": ["https://iso-clinic.vercel.app"],
+        "sidePanelUrl": "https://iso-clinic.vercel.app/meet/Sidepanel"
       }
     },
     "httpOptions": {

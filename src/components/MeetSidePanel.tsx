@@ -227,7 +227,7 @@ const MeetSidePanel: React.FC = () => {
 
     try {
       await client.startActivity({
-        mainStageUrl: `https://boardv29.vercel.app/meet/Mainstage`
+        mainStageUrl: `https://iso-clinic.vercel.app/meet/Mainstage`
       });
     } catch (err) {
       console.error('Failed to launch activity:', err);
