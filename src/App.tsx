@@ -9,6 +9,8 @@ import MeetSidePanel from "./components/MeetSidePanel";
 import MeetMainStage from "./components/MeetMainStage";
 import IsometricMap from "./components/isoclinic/IsometricMap";
 import NurseSimApp from "./components/nurse-sim/NurseSimApp";
+import NurseSimStatic from "./components/nurse-sim/NurseSimStatic";
+import CompletedAssessment from "./components/nurse-sim/CompletedAssessment";
 import boardItemsData from "./data/boardItems.json";
 
 const AppContainer = styled.div`
@@ -31,6 +33,8 @@ function App() {
         <Route path="/invisible-connector" element={<InvisibleConnectorExample />} />
         <Route path="/board" element={<BoardApp />} />
         <Route path="/nurse-sim" element={<NurseSimApp />} />
+        <Route path="/nurse-sim-1" element={<NurseSimStatic />} />
+        <Route path="/assessment-review" element={<CompletedAssessment />} />
         <Route path="/" element={<IsometricMap />} />
       </Routes>
     </Router>

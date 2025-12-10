@@ -22,6 +22,8 @@ import RadiologyImage from "./encounters/RadiologyImage";
 import ICELabData from "./encounters/ICELabData";
 import DoctorNote from "./DoctorNote";
 import AlertModal from "./AlertModal";
+import NurseAssessmentCard from "./board/NurseAssessmentCard";
+import NurseNotesCard from "./board/NurseNotesCard";
 import { Dashboard as Chronomed2Dashboard } from "./chronomed-2/Dashboard";
 import { Sidebar } from "./chronomed/Sidebar";
 import { 
@@ -949,6 +951,12 @@ const BoardItem = ({ item, isSelected, onUpdate, onDelete, onSelect, zoom = 1 })
 
           case "ICELabData":
             return <ICELabData encounters={componentProps.encounters} />;
+
+          case "NurseAssessmentCard":
+            return <NurseAssessmentCard width={item.width} height={item.height} />;
+
+          case "NurseNotesCard":
+            return <NurseNotesCard width={item.width} height={item.height} />;
 
           case "Chronomed2Dashboard":
             return <Chronomed2Dashboard />;

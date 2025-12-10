@@ -1,0 +1,24 @@
+{
+    "lab": [
+        {
+            "file" : "lab1.png",
+            "content" : "#### **HEMATOLOGY (CBC)**\n\n| TEST | RESULT | REF RANGE | UNITS | FLAG |\n| :--- | :--- | :--- | :--- | :--- |\n| **WBC** | **11.2** | 4.5-11.0 | K/uL | **HIGH** |\n| **Hgb** | 14.2 | 13.5-17.5 | g/dL | |\n| **Plt** | 210 | 150-450 | K/uL | |\n| **Neutrophils %** | 60 | 40-70 | % | |\n| **Lymphocytes %** | 30 | 20-40 | % | |\n| **Eosinophils %** | **8.5** | 0.0-6.0 | % | **HIGH** |\n| **Eosinophils Abs** | **0.95** | 0.0-0.5 | K/uL | **HIGH** |\n\n#### **COAGULATION**\n| TEST | RESULT | REF RANGE | UNITS | FLAG |\n| :--- | :--- | :--- | :--- | :--- |\n| **PT** | 13.8 | 11-13.5 | sec | HIGH |\n| **INR** | **1.2** | 0.8-1.1 | ratio | HIGH |\n\n#### **TOXICOLOGY SCREEN**\n| TEST | RESULT | CUTOFF |\n| :--- | :--- | :--- |\n| **Acetaminophen** | < 10 ug/mL | (Therapeutic: 10-30) |\n| **Ethanol** | Negative | |\n| **Salicylates** | Negative | |\n"
+        },
+        {
+            "file" : "lab2.png",
+            "content" : "#### **CHEMISTRY / METABOLIC PANEL**\n\n| TEST | RESULT | REF RANGE | UNITS | FLAG |\n| :--- | :--- | :--- | :--- | :--- |\n| **Sodium** | 137 | 135-145 | mmol/L | |\n| **Potassium** | 3.9 | 3.5-5.2 | mmol/L | |\n| **Creatinine** | 0.9 | 0.7-1.3 | mg/dL | |\n| **Glucose (Random)** | 108 | 70-140 | mg/dL | |\n| **AST (SGOT)** | **450** | 10-40 | U/L | **HIGH** |\n| **ALT (SGPT)** | **620** | 7-56 | U/L | **HIGH** |\n| **Alk Phos** | **188** | 44-147 | U/L | **HIGH** |\n| **Total Bilirubin** | **5.2** | 0.1-1.2 | mg/dL | **HIGH** |\n| **Direct Bilirubin** | **3.8** | 0.0-0.3 | mg/dL | **HIGH** |\n| **Albumin** | 3.6 | 3.4-5.4 | g/dL | |\n| **Total Protein** | 7.1 | 6.0-8.3 | g/dL | |\n"
+        }
+    ],
+    "nhs_ss" : [
+        {
+            "file" : "nhs_screenshot.png",
+            "content" : "\n**NHS**\n**Your Appointment**\n\n---\n\n### **Hepatology Clinic**\n\n**Appointment Type:** Follow-up / Liver evaluation\n**Date:** Wednesday, 10 December 2025\n**Time:** 09:30 AM\n**Location:** Royal London Hospital – Hepatology Department, Whitechapel\n**Status:** **Confirmed**\n\n---\n\n### **Additional Information**\n\n**Clinician:** Dr. A. Gupta\n\n• Arrive 10 minutes early.\n• Bring photo ID.\n• Fast for 8 hours if blood work is planned.\n\n---\n\n**Add to Calendar**\n**Cancel Appointment**\n\n**View Directions**\n"
+        }
+    ],
+    "radiology" : [
+        {
+            "file" : "radiology.png",
+            "content" : "### **DOCUMENT TYPE: RADIOLOGY REPORT**\n**Exam:** US ABDOMEN COMPLETE (Ultrasound)\n**Date:** Today 08:15\n**Ordering Physician:** Dr. A. Gupta (Hepatology Intake)\n**Indication:** Jaundice, elevated LFTs, RUQ pain.\n\n**FINDINGS:**\n**Liver:** The liver is slightly enlarged (hepatomegaly), measuring 17.2 cm in craniocaudal dimension. Parenchymal echotexture is diffusely increased, consistent with **moderate hepatic steatosis (fatty liver)**. No focal hepatic masses or fluid collections seen. The portal vein is patent with hepatopetal flow.\n\n**Gallbladder:** The gallbladder is distended but thin-walled (wall thickness <3mm). No pericholecystic fluid. **No shadowing calculi (gallstones) identified.** Positive sonographic Murphy's sign is ABSENT.\n\n**Biliary Tree:** The Common Bile Duct (CBD) measures 4 mm (Normal). No intrahepatic or extrahepatic biliary ductal dilatation.\n\n**Pancreas:** The pancreas is obscured by bowel gas but the visualized portions appear unremarkable.\n\n**Spleen:** Normal in size and echotexture. Spleen length 10.5 cm.\n\n**IMPRESSION:**\n1. Moderate hepatic steatosis (Fatty Liver) and mild hepatomegaly.\n2. No evidence of cholelithiasis (gallstones) or biliary obstruction.\n3. Patent hepatic vasculature.\n4. *Radiologist Note:* Findings do not explain the degree of cholestasis/bilirubin elevation. Medical/Hepatocellular etiology favored over surgical/obstructive etiology.\n"
+        }
+    ]
+}

@@ -1,0 +1,317 @@
+[
+    {
+        "timestamp": "16:05:15",
+        "speaker": "NURSE",
+        "text": "Hello, I'm Nurse Sarah. I see we have some initial information about you, but I'll need to ask a few more questions to get a clearer picture of your condition. What brings you in today?"
+    },
+    {
+        "timestamp": "16:05:36",
+        "speaker": "PATIENT",
+        "text": "My sister said I was turnin' yellow. My eyes look like piss. And this damn itching. It feels like ants are crawl-in' under my skin. Can you give me something for that itch? It's drivin' me nuts.",
+        "highlight": [
+            {
+                "level": "warning",
+                "text": "turnin' yellow"
+            },
+            {
+                "level": "warning",
+                "text": "eyes look like piss"
+            },
+            {
+                "level": "warning",
+                "text": "damn itching"
+            },
+            {
+                "level": "warning",
+                "text": "ants are crawl-in' under my skin"
+            },
+            {
+                "level": "warning",
+                "text": "drivin' me nuts"
+            }
+        ]
+    },
+    {
+        "timestamp": "16:05:55",
+        "speaker": "NURSE",
+        "text": "That sounds very uncomfortable, I'm sorry you're experiencing that. Have you noticed any changes in your urine or stool color?"
+    },
+    {
+        "timestamp": "16:06:06",
+        "speaker": "PATIENT",
+        "text": "Yeah, the urine's dark, like Coke. And the stool this mornin' was like... pale. Like clay.",
+        "highlight": [
+            {
+                "level": "warning",
+                "text": "urine's dark, like Coke"
+            },
+            {
+                "level": "warning",
+                "text": "stool this mornin' was like... pale"
+            },
+            {
+                "level": "warning",
+                "text": "Like clay"
+            }
+        ]
+    },
+    {
+        "timestamp": "16:06:17",
+        "speaker": "NURSE",
+        "text": "Thank you for telling me that. Can you describe the itching more? Is it worse at certain times of day, or on certain parts of your body?"
+    },
+    {
+        "timestamp": "16:06:33",
+        "speaker": "PATIENT",
+        "text": "It's just... everywhere. All the time. Sometimes it's on my arms, other times my chest. It was really bad last night, made it hard to sleep. Feels like my skin is raw underneath.",
+        "highlight": [
+            {
+                "level": "warning",
+                "text": "itching"
+            },
+            {
+                "level": "warning",
+                "text": "intense itching described as 'ants under skin'"
+            }
+        ]
+    },
+    {
+        "timestamp": "16:06:43",
+        "speaker": "NURSE",
+        "text": "I understand. Have you experienced any abdominal pain, especially in the upper right side?"
+    },
+    {
+        "timestamp": "16:06:56",
+        "speaker": "PATIENT",
+        "text": "Yeah, kinda. It's not really sharp or anything, just a dull heavy feelin' under my ribs down there on the right side. Been there a little while.",
+        "highlight": [
+            {
+                "level": "warning",
+                "text": "dull heavy feelin' under my ribs down there on the right side"
+            },
+            {
+                "level": "warning",
+                "text": "Been there a little while"
+            }
+        ]
+    },
+    {
+        "timestamp": "16:07:05",
+        "speaker": "NURSE",
+        "text": "Okay. Have you experienced any nausea, vomiting, or loss of appetite?"
+    },
+    {
+        "timestamp": "16:07:14",
+        "speaker": "PATIENT",
+        "text": "Yeah, I haven't been feelin' real hungry lately. Had a little nausea now and then, but haven't thrown up.",
+        "highlight": [
+            {
+                "level": "warning",
+                "text": "haven't been feelin' real hungry lately"
+            },
+            {
+                "level": "warning",
+                "text": "Had a little nausea now and then"
+            }
+        ]
+    },
+    {
+        "timestamp": "16:07:20",
+        "speaker": "NURSE",
+        "text": "Thank you. Are you currently taking any medications?"
+    },
+    {
+        "timestamp": "16:07:31",
+        "speaker": "PATIENT",
+        "text": "Yeah, just that lisinopril for my blood pressure. I was takin' some Tylenol for a toothache, but I stopped that yesterday.",
+        "highlight": [
+            {
+                "level": "warning",
+                "text": "Tylenol"
+            },
+            {
+                "level": "warning",
+                "text": "yesterday"
+            }
+        ]
+    },
+    {
+        "timestamp": "16:07:38",
+        "speaker": "NURSE",
+        "text": "Alright. Have you had any fevers or chills?"
+    },
+    {
+        "timestamp": "16:07:44",
+        "speaker": "PATIENT",
+        "text": "Nah, don't think so. No fevers I noticed.",
+        "highlight": [
+            {
+                "level": "warning",
+                "text": "No fevers"
+            }
+        ]
+    },
+    {
+        "timestamp": "16:07:53",
+        "speaker": "NURSE",
+        "text": "Okay. Can you describe the Tylenol use more specifically? How much and how often were you taking it?"
+    },
+    {
+        "timestamp": "16:08:06",
+        "speaker": "PATIENT",
+        "text": "Well, my tooth was really killin' me. I was takin' like, six to eight pills a day, for about the last three weeks. Just tryin' to deal with the pain.",
+        "highlight": [
+            {
+                "level": "warning",
+                "text": "my tooth was really killin' me"
+            },
+            {
+                "level": "warning",
+                "text": "six to eight pills a day"
+            },
+            {
+                "level": "warning",
+                "text": "about the last three weeks"
+            },
+            {
+                "level": "warning",
+                "text": "deal with the pain"
+            }
+        ]
+    },
+    {
+        "timestamp": "16:08:17",
+        "speaker": "NURSE",
+        "text": "I understand the pain must have been really bad. Have you experienced any unintentional weight loss recently?"
+    },
+    {
+        "timestamp": "16:08:28",
+        "speaker": "PATIENT",
+        "text": "Nah, haven't really weighed myself, but my clothes feel a little loose. Must be from not eatin' as much with the nausea.",
+        "highlight": [
+            {
+                "level": "warning",
+                "text": "clothes feel a little loose"
+            },
+            {
+                "level": "warning",
+                "text": "nausea"
+            }
+        ]
+    },
+    {
+        "timestamp": "16:08:37",
+        "speaker": "NURSE",
+        "text": "Okay. Have you traveled recently or been exposed to anyone with similar symptoms?"
+    },
+    {
+        "timestamp": "16:08:46",
+        "speaker": "PATIENT",
+        "text": "Nah, been stayin' close to home. And nope, no one else is sick around me. Just me.",
+        "highlight": []
+    },
+    {
+        "timestamp": "16:09:11",
+        "speaker": "NURSE",
+        "text": "Okay. Have you noticed any changes in your bowel habits besides the color, such as diarrhea or constipation?"
+    },
+    {
+        "timestamp": "16:09:20",
+        "speaker": "PATIENT",
+        "text": "Nah, just the color of the stool. No real diarrhea or gettin' stopped up.",
+        "highlight": [
+            {
+                "level": "warning",
+                "text": "just the color of the stool"
+            }
+        ]
+    },
+    {
+        "timestamp": "16:09:29",
+        "speaker": "NURSE",
+        "text": "Understood. Can you describe the intensity of the itching on a scale of 1 to 10?"
+    },
+    {
+        "timestamp": "16:09:41",
+        "speaker": "PATIENT",
+        "text": "It's bad. Like, a good eight or nine most of the time. Sometimes worse if I think about it. Makes it hard to focus or even sleep.",
+        "highlight": [
+            {
+                "level": "danger",
+                "text": "a good eight or nine"
+            },
+            {
+                "level": "danger",
+                "text": "Sometimes worse"
+            }
+        ]
+    },
+    {
+        "timestamp": "16:09:49",
+        "speaker": "NURSE",
+        "text": "That does sound very intense. Do you have any drug allergies?"
+    },
+    {
+        "timestamp": "16:09:53",
+        "speaker": "PATIENT",
+        "text": "Nah, no allergies to meds that I know of.",
+        "highlight": []
+    },
+    {
+        "timestamp": "16:10:02",
+        "speaker": "NURSE",
+        "text": "Okay. Have you had any fevers or chills, especially with the itching or abdominal discomfort?"
+    },
+    {
+        "timestamp": "16:10:13",
+        "speaker": "PATIENT",
+        "text": "Nah, don't think so. Haven't felt feverish or had any chills. Just this itch and the yellow.",
+        "highlight": [
+            {
+                "level": "warning",
+                "text": "itch"
+            },
+            {
+                "level": "warning",
+                "text": "yellow"
+            }
+        ]
+    },
+    {
+        "timestamp": "16:10:22",
+        "speaker": "NURSE",
+        "text": "Understood. Have you consumed alcohol recently, and if so, how much?"
+    },
+    {
+        "timestamp": "16:10:28",
+        "speaker": "PATIENT",
+        "text": "I have a few beers with the guys, nothin' crazy.",
+        "highlight": [
+            {
+                "level": "warning",
+                "text": "a few beers with the guys"
+            }
+        ]
+    },
+    
+    {
+        "timestamp": "16:10:57",
+        "speaker": "NURSE",
+        "text": "Thank you. Based on what you've told me, we need to do some further tests to better understand your condition. The doctor will be seeing you shortly."
+    },
+    {
+        "timestamp": "16:11:06",
+        "speaker": "PATIENT",
+        "text": "Alright. Can you at least give me somethin' for this itch though? It's drivin' me crazy.",
+        "highlight": [
+            {
+                "level": "warning",
+                "text": "this itch"
+            },
+            {
+                "level": "warning",
+                "text": "It's drivin' me crazy"
+            }
+        ]
+    }
+]

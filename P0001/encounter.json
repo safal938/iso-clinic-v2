@@ -1,0 +1,84 @@
+[
+{
+    "id": "dashboard-item-single-encounter-1",
+    "type": "component",
+    "x": -3300,
+    "y": 800,
+    "width": 400,
+    "height": 500,
+    "componentType": "SingleEncounterDocument",
+    "color": "#ffffff",
+    "description": "#first encounter #first encounter.\n This is the first encounter in the patient's timeline. It is an Outpatient Visit recorded on March 5, 2024, with Dr. P. Stevens (General Practice). The patient, Sarah Miller (43, Female), presented with a chief complaint of increased fatigue over the past 4-5 months. The assessment revealed suboptimal control of Type 2 Diabetes Mellitus (HbA1c 58 mmol/mol) and Hypertension, alongside Chronic Fatigue Syndrome possibly related to Metabolic Dysfunction-associated Steatotic Liver Disease (MASLD). Physical exam noted a BMI of 32.0 (Class I obesity), BP 146/92 mmHg, and mild effusion in the right wrist due to Rheumatoid Arthritis. The plan involved ordering complete LFTs and HbA1c, with a follow-up scheduled in 4 weeks to evaluate eligibility for Methotrexate (MTX) therapy.",
+    "content": {
+        "title": "Encounter #1 - Outpatient Visit",
+        "component": "SingleEncounterDocument",
+        "props": {
+            "encounter": {
+                "encounter_no": 1,
+                "meta": {
+                    "visit_type": "Urgent Primary Care Visit / Referral",
+                    "date_time": "2025-11-20T09:30:00Z",
+                    "provider": {
+                        "name": "Dr. Richard Jenkins",
+                        "specialty": "General Practitioner"
+                    },
+                    "ui_risk_color": "yellow"
+                },
+                "assessment": {
+                    "impression": "Severe Acute Hepatitis / Acute Liver Injury of Unknown Etiology. Rapid onset jaundice with severe transaminitis and cholestasis.",
+                    "differential": [
+                        "Viral Hepatitis (A, B, C)",
+                        "Biliary Pathology/Obstruction (Choledocholithiasis)",
+                        "Metabolic/Fatty Liver Disease",
+                        "Autoimmune Hepatitis"
+                    ]
+                },
+                "chief_complaint": "New-onset overt jaundice, severe pruritus, and markedly elevated liver enzymes.",
+                "hpi": "Mr. Thorne, a 46-year-old male, presented following a visit to Urgent Care. He reports new-onset jaundice (noticed by wife 2 days ago) and intense generalized pruritus disrupting sleep. He denies abdominal pain, nausea, vomiting, or fever. \n\nRecent History: Treated for dental abscess 3 weeks ago with Amoxicillin-Clavulanate (completed). Has been managing lingering jaw pain with Tylenol PM and Extra Strength Tylenol frequently. \n\nSocial: Works in construction. Reports social alcohol use, denies heavy/binge drinking.",
+                "medications_prior": [
+                    {
+                        "name": "Amoxicillin-Clavulanate",
+                        "route": "Oral, completed 10-day course ~1 week ago",
+                        "indication": "Dental Abscess"
+                    },
+                    {
+                        "name": "Acetaminophen (Tylenol PM / Extra Strength)",
+                        "route": "Oral, frequent recent use",
+                        "indication": "Jaw Pain"
+                    }
+                ],
+                "physical_exam": {
+                    "general": "Patient is alert but clearly jaundiced (sclera and skin). Vitals stable and afebrile.",
+                    "msk": "Excoriations present on arms and legs (secondary to pruritus).",
+                    "other_systems": "Abdomen: Soft, non-tender. Liver span appears slightly enlarged on percussion (mild hepatomegaly) but is not tender to palpation. No ascites."
+                },
+                "plan": {
+                    "investigations": {
+                        "labs": [
+                            "Review of Urgent Care Labs: ALT 620 U/L, AST 450 U/L, Total Bilirubin 5.2 mg/dL, Alk Phos 188 U/L.",
+                            "CBC shows Leukocytosis (11.2 K/uL) and Eosinophilia (8.5% / 0.95 abs).",
+                            "INR 1.2 (Borderline).",
+                            "Acetaminophen levels therapeutic (<10 ug/mL)."
+                        ]
+                    },
+                    "management": {
+                        "follow_up": "Urgent Referral to Hepatology (Dr. Gupta) for immediate evaluation.",
+                        "instructions": "Patient advised to stop taking all pain medications and avoid alcohol immediately as a precaution.",
+                        "medications_started": []
+                    }
+                },
+                "reason_for_visit": "Urgent evaluation of jaundice and abnormal liver enzymes."
+            },
+            "patient": {
+                "name": "Marcus 'Mark' Elias Thorne",
+                "sex": "Male",
+                "age_at_first_encounter": 46
+            },
+            "encounterIndex": 1,
+            "dataSource": "Electronic Health Record"
+        }
+    },
+    "createdAt": "2025-10-14T16:55:00.003Z",
+    "updatedAt": "2025-10-14T16:55:00.003Z"
+}
+]

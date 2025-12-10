@@ -1,0 +1,614 @@
+{
+  "patient": {
+    "id": "P0001",
+    "name": "Marcus 'Mark' Elias Thorne",
+    "date_of_birth": "1978-08-14",
+    "age": 47,
+    "sex": "Male",
+    "mrn": "MT78081499"
+  },
+  "assessment": {
+    "completedAt": "2025-11-21T16:11:06Z",
+    "duration": "5:51",
+    "nurseId": "RN-2847",
+    "nurseName": "Sarah Mitchell, RN"
+  },
+  "differentialDiagnoses": [
+    {
+      "did": "B3456",
+      "diagnosis": "Biliary Obstruction",
+      "indicators_point": [
+        "Jaundice (eyes are yellow)",
+        "Pruritus (itching)",
+        "Patient reports intense itching described as 'ants under skin'",
+        "Dark urine ('like Coke')",
+        "Dull heavy feeling under right ribs",
+        "Nausea",
+        "Loss of appetite",
+        "Pale, clay-colored stool",
+        "Patient reports wife noticed yellow eyes",
+        "Elevated Bilirubin",
+        "Elevated Alk Phos"
+      ],
+      "indicators_count": 11,
+      "probability": "High",
+      "rank": 1
+    },
+    {
+      "did": "CGL77",
+      "diagnosis": "Cholangitis",
+      "indicators_point": [
+        "Right upper quadrant pain",
+        "Fever",
+        "Jaundice",
+        "Elevated Alk Phos",
+        "Elevated Bilirubin",
+        "Pale stool",
+        "Dark urine",
+        "Dull heavy feeling under right ribs",
+        "Loss of appetite",
+        "Nausea",
+        "Pruritus (itching)"
+      ],
+      "indicators_count": 11,
+      "probability": "High",
+      "rank": 2
+    },
+    {
+      "did": "K7890",
+      "diagnosis": "Choledocholithiasis",
+      "indicators_point": [
+        "History of dental abscess treated with Augmentin",
+        "Dull heavy feeling under right ribs",
+        "Pale, clay-colored stool",
+        "Loss of appetite",
+        "Elevated Bilirubin",
+        "Nausea",
+        "Jaundice",
+        "Elevated Alk Phos",
+        "Pruritus (itching)",
+        "Dark urine ('like Coke')"
+      ],
+      "indicators_count": 10,
+      "probability": "High",
+      "rank": 3
+    },
+    {
+      "did": "H1234",
+      "diagnosis": "Hepatitis (Viral)",
+      "indicators_point": [
+        "Elevated LFTs (AST, ALT, Alk Phos)",
+        "Nausea",
+        "Jaundice (eyes are yellow)",
+        "Pale, clay-colored stool",
+        "Pruritus (itching)",
+        "Patient reports intense itching described as 'ants under skin'",
+        "Loss of appetite",
+        "Patient reports wife noticed yellow eyes",
+        "Dark urine ('like Coke')"
+      ],
+      "indicators_count": 9,
+      "probability": "High",
+      "rank": 4
+    },
+    {
+      "did": "C5678",
+      "diagnosis": "Cholestasis",
+      "indicators_point": [
+        "Nausea",
+        "Jaundice (eyes are yellow)",
+        "Pale, clay-colored stool",
+        "Elevated Alk Phos",
+        "Pruritus (itching)",
+        "Patient reports intense itching described as 'ants under skin'",
+        "Loss of appetite",
+        "Patient reports wife noticed yellow eyes",
+        "Dark urine ('like Coke')"
+      ],
+      "indicators_count": 9,
+      "probability": "High",
+      "rank": 5
+    },
+    {
+      "did": "D9012",
+      "diagnosis": "Drug-Induced Liver Injury",
+      "indicators_point": [
+        "Elevated LFTs (AST, ALT, Alk Phos)",
+        "Frequent Tylenol use",
+        "Nausea",
+        "Pale, clay-colored stool",
+        "Patient reports intense itching described as 'ants under skin'",
+        "Loss of appetite",
+        "Patient reports wife noticed yellow eyes",
+        "Recent antibiotic use (Augmentin)",
+        "Dark urine ('like Coke')"
+      ],
+      "indicators_count": 9,
+      "probability": "High",
+      "rank": 6
+    },
+    {
+      "did": "CCA91",
+      "diagnosis": "Cholangiocarcinoma",
+      "indicators_point": [
+        "Pale stool",
+        "Dark urine",
+        "Dull heavy feeling under right ribs",
+        "Jaundice",
+        "Elevated Alk Phos",
+        "Loss of appetite",
+        "Elevated Bilirubin",
+        "Nausea",
+        "Pruritus (itching)"
+      ],
+      "indicators_count": 9,
+      "probability": "High",
+      "rank": 7
+    },
+    {
+      "did": "CHL01",
+      "diagnosis": "Cholecystitis",
+      "indicators_point": [
+        "Pale stool",
+        "Dark urine",
+        "Dull heavy feeling under right ribs",
+        "Jaundice",
+        "Pruritus (itching)",
+        "Elevated LFTs",
+        "Nausea",
+        "Loss of appetite"
+      ],
+      "indicators_count": 8,
+      "probability": "High",
+      "rank": 8
+    },
+    {
+      "did": "HAP72",
+      "diagnosis": "Hepatitis A",
+      "indicators_point": [
+        "Pale stool",
+        "Dark urine",
+        "Jaundice",
+        "Pruritus (itching)",
+        "Elevated LFTs",
+        "Nausea",
+        "Loss of appetite"
+      ],
+      "indicators_count": 7,
+      "probability": "High",
+      "rank": 9
+    },
+    {
+      "did": "CLTHS",
+      "diagnosis": "Cholelithiasis",
+      "indicators_point": [
+        "Nausea",
+        "Dull heavy feeling under right ribs",
+        "Jaundice",
+        "Pale, clay-colored stool",
+        "Loss of appetite",
+        "Dark urine ('like Coke')",
+        "Pruritus (itching)"
+      ],
+      "indicators_count": 7,
+      "probability": "High",
+      "rank": 10
+    },
+    {
+      "did": "ALC99",
+      "diagnosis": "Alcoholic Hepatitis",
+      "indicators_point": [
+        "Pale stool",
+        "Dark urine",
+        "Jaundice",
+        "Pruritus (itching)",
+        "Elevated AST and ALT",
+        "Nausea",
+        "Loss of appetite"
+      ],
+      "indicators_count": 7,
+      "probability": "High",
+      "rank": 11
+    },
+    {
+      "did": "P7890",
+      "diagnosis": "Pancreatitis",
+      "indicators_point": [
+        "Pale stool",
+        "Dark urine",
+        "Jaundice",
+        "Elevated LFTs",
+        "Nausea",
+        "Loss of appetite"
+      ],
+      "indicators_count": 6,
+      "probability": "High",
+      "rank": 12
+    },
+    {
+      "did": "HDIL1",
+      "diagnosis": "Hepatitis (Drug-Induced)",
+      "indicators_point": [
+        "Frequent Tylenol use",
+        "Elevated AST",
+        "Elevated ALT",
+        "Elevated Alk Phos",
+        "Recent antibiotic use (Augmentin)"
+      ],
+      "indicators_count": 5,
+      "probability": "Medium",
+      "rank": 13
+    }
+  ],
+  "checklist": [
+    {
+      "id": "00004",
+      "text": "Current Medications",
+      "isCompleted": true,
+      "category": "fixed",
+      "answer": "Yeah, just that lisinopril for my blood pressure. I was takin' some Tylenol for a toothache, but I stopped that yesterday."
+    },
+    {
+      "id": "00005",
+      "text": "Drug Allergies",
+      "isCompleted": true,
+      "category": "fixed",
+      "answer": "Nah, no allergies to meds that I know of."
+    },
+    {
+      "id": "51c2beb4",
+      "text": "Have you traveled recently or been exposed to anyone with similar symptoms?",
+      "isCompleted": true,
+      "category": "dynamic",
+      "answer": "Nah, been stayin' close to home. And nope, no one else is sick around me. Just me."
+    },
+    {
+      "id": "93aec75c",
+      "text": "Have you had any changes in your urine or stool color?",
+      "isCompleted": true,
+      "category": "dynamic",
+      "answer": "Yeah, the urine's dark, like Coke. And the stool this mornin' was like... pale. Like clay."
+    },
+    {
+      "id": "4847c5ca",
+      "text": "Can you describe the itching more? Is it worse at certain times of day or on certain parts of your body?",
+      "isCompleted": true,
+      "category": "dynamic",
+      "answer": "It's just... everywhere. All the time. Sometimes it's on my arms, other times my chest. It was really bad last night, made it hard to sleep. Feels like my skin is raw underneath."
+    },
+    {
+      "id": "1217cca7",
+      "text": "Have you experienced any abdominal pain, especially in the upper right side?",
+      "isCompleted": true,
+      "category": "dynamic",
+      "answer": "Yeah, kinda. It's not really sharp or anything, just a dull heavy feelin' under my ribs down there on the right side. Been there a little while."
+    },
+    {
+      "id": "e3759b27",
+      "text": "Can you describe the intensity of the itching on a scale of 1 to 10?",
+      "isCompleted": true,
+      "category": "dynamic",
+      "answer": "It's bad. Like, a good eight or nine most of the time. Sometimes worse if I think about it. Makes it hard to focus or even sleep."
+    },
+    {
+      "id": "1b902d11",
+      "text": "Have you experienced any nausea, vomiting, or loss of appetite?",
+      "isCompleted": true,
+      "category": "dynamic",
+      "answer": "Yeah, I haven't been feelin' real hungry lately. Had a little nausea now and then, but haven't thrown up."
+    },
+    {
+      "id": "2322fe62",
+      "text": "Have you had any fevers or chills?",
+      "isCompleted": true,
+      "category": "dynamic",
+      "answer": "Nah, don't think so. No fevers I noticed."
+    },
+    {
+      "id": "679d9322",
+      "text": "Can you describe the pain in your right side more? Is it constant or does it come and go?",
+      "isCompleted": true,
+      "category": "dynamic",
+      "answer": "Well, my tooth was really killin' me. I was takin' like, six to eight pills a day, for about the last three weeks. Just tryin' to deal with the pain."
+    },
+    {
+      "id": "c0637081",
+      "text": "Have you experienced any unintentional weight loss recently?",
+      "isCompleted": true,
+      "category": "dynamic",
+      "answer": "Nah, haven't really weighed myself, but my clothes feel a little loose. Must be from not eatin' as much with the nausea."
+    },
+    {
+      "id": "e5e85abc",
+      "text": "Have you had any recent travel or exposure to anyone with similar symptoms?",
+      "isCompleted": true,
+      "category": "dynamic",
+      "answer": "Nope, haven't traveled, and no one else seems to be havin' these problems."
+    },
+    {
+      "id": "7277b444",
+      "text": "Have you had any fevers or chills, especially with the itching or abdominal discomfort?",
+      "isCompleted": true,
+      "category": "dynamic",
+      "answer": "Nah, don't think so. Haven't felt feverish or had any chills. Just this itch and the yellow."
+    },
+    {
+      "id": "c60ad62f",
+      "text": "Have you noticed any changes in your bowel habits besides the color, such as diarrhea or constipation?",
+      "isCompleted": true,
+      "category": "dynamic",
+      "answer": "Nah, just the color of the stool. No real diarrhea or gettin' stopped up."
+    },
+    {
+      "id": "398fbb90",
+      "text": "Have you consumed alcohol recently, and if so, how much?",
+      "isCompleted": true,
+      "category": "dynamic",
+      "answer": "I have a few beers with the guys, nothin' crazy."
+    }
+  ],
+  "conversation": [
+    {
+      "id": "m1",
+      "role": "nurse",
+      "text": "Hello, I'm Nurse Sarah. I see we have some initial information about you, but I'll need to ask a few more questions to get a clearer picture of your condition. What brings you in today?",
+      "timestamp": "2025-11-21T16:05:15Z"
+    },
+    {
+      "id": "m2",
+      "role": "patient",
+      "text": "My sister said I was turnin' yellow. My eyes look like piss. And this damn itching. It feels like ants are crawl-in' under my skin. Can you give me something for that itch? It's drivin' me nuts.",
+      "timestamp": "2025-11-21T16:05:36Z",
+      "highlights": [
+        { "level": "warning", "text": "turnin' yellow" },
+        { "level": "warning", "text": "eyes look like piss" },
+        { "level": "warning", "text": "damn itching" },
+        { "level": "warning", "text": "ants are crawl-in' under my skin" },
+        { "level": "warning", "text": "drivin' me nuts" }
+      ]
+    },
+    {
+      "id": "m3",
+      "role": "nurse",
+      "text": "That sounds very uncomfortable, I'm sorry you're experiencing that. Have you noticed any changes in your urine or stool color?",
+      "timestamp": "2025-11-21T16:05:55Z"
+    },
+    {
+      "id": "m4",
+      "role": "patient",
+      "text": "Yeah, the urine's dark, like Coke. And the stool this mornin' was like... pale. Like clay.",
+      "timestamp": "2025-11-21T16:06:06Z",
+      "highlights": [
+        { "level": "warning", "text": "urine's dark, like Coke" },
+        { "level": "warning", "text": "stool this mornin' was like... pale" },
+        { "level": "warning", "text": "Like clay" }
+      ]
+    },
+    {
+      "id": "m5",
+      "role": "nurse",
+      "text": "Thank you for telling me that. Can you describe the itching more? Is it worse at certain times of day, or on certain parts of your body?",
+      "timestamp": "2025-11-21T16:06:17Z"
+    },
+    {
+      "id": "m6",
+      "role": "patient",
+      "text": "It's just... everywhere. All the time. Sometimes it's on my arms, other times my chest. It was really bad last night, made it hard to sleep. Feels like my skin is raw underneath.",
+      "timestamp": "2025-11-21T16:06:33Z",
+      "highlights": [
+        { "level": "warning", "text": "itching" },
+        { "level": "warning", "text": "intense itching described as 'ants under skin'" }
+      ]
+    },
+    {
+      "id": "m7",
+      "role": "nurse",
+      "text": "I understand. Have you experienced any abdominal pain, especially in the upper right side?",
+      "timestamp": "2025-11-21T16:06:43Z"
+    },
+    {
+      "id": "m8",
+      "role": "patient",
+      "text": "Yeah, kinda. It's not really sharp or anything, just a dull heavy feelin' under my ribs down there on the right side. Been there a little while.",
+      "timestamp": "2025-11-21T16:06:56Z",
+      "highlights": [
+        { "level": "warning", "text": "dull heavy feelin' under my ribs down there on the right side" },
+        { "level": "warning", "text": "Been there a little while" }
+      ]
+    },
+    {
+      "id": "m9",
+      "role": "nurse",
+      "text": "Okay. Have you experienced any nausea, vomiting, or loss of appetite?",
+      "timestamp": "2025-11-21T16:07:05Z"
+    },
+    {
+      "id": "m10",
+      "role": "patient",
+      "text": "Yeah, I haven't been feelin' real hungry lately. Had a little nausea now and then, but haven't thrown up.",
+      "timestamp": "2025-11-21T16:07:14Z",
+      "highlights": [
+        { "level": "warning", "text": "haven't been feelin' real hungry lately" },
+        { "level": "warning", "text": "Had a little nausea now and then" }
+      ]
+    },
+    {
+      "id": "m11",
+      "role": "nurse",
+      "text": "Thank you. Are you currently taking any medications?",
+      "timestamp": "2025-11-21T16:07:20Z"
+    },
+    {
+      "id": "m12",
+      "role": "patient",
+      "text": "Yeah, just that lisinopril for my blood pressure. I was takin' some Tylenol for a toothache, but I stopped that yesterday.",
+      "timestamp": "2025-11-21T16:07:31Z",
+      "highlights": [
+        { "level": "warning", "text": "Tylenol" },
+        { "level": "warning", "text": "yesterday" }
+      ]
+    },
+    {
+      "id": "m13",
+      "role": "nurse",
+      "text": "Alright. Have you had any fevers or chills?",
+      "timestamp": "2025-11-21T16:07:38Z"
+    },
+    {
+      "id": "m14",
+      "role": "patient",
+      "text": "Nah, don't think so. No fevers I noticed.",
+      "timestamp": "2025-11-21T16:07:44Z",
+      "highlights": [
+        { "level": "warning", "text": "No fevers" }
+      ]
+    },
+    {
+      "id": "m15",
+      "role": "nurse",
+      "text": "Okay. Can you describe the Tylenol use more specifically? How much and how often were you taking it?",
+      "timestamp": "2025-11-21T16:07:53Z"
+    },
+    {
+      "id": "m16",
+      "role": "patient",
+      "text": "Well, my tooth was really killin' me. I was takin' like, six to eight pills a day, for about the last three weeks. Just tryin' to deal with the pain.",
+      "timestamp": "2025-11-21T16:08:06Z",
+      "highlights": [
+        { "level": "danger", "text": "six to eight pills a day" },
+        { "level": "danger", "text": "about the last three weeks" },
+        { "level": "warning", "text": "my tooth was really killin' me" }
+      ]
+    },
+    {
+      "id": "m17",
+      "role": "nurse",
+      "text": "I understand the pain must have been really bad. Have you experienced any unintentional weight loss recently?",
+      "timestamp": "2025-11-21T16:08:17Z"
+    },
+    {
+      "id": "m18",
+      "role": "patient",
+      "text": "Nah, haven't really weighed myself, but my clothes feel a little loose. Must be from not eatin' as much with the nausea.",
+      "timestamp": "2025-11-21T16:08:28Z",
+      "highlights": [
+        { "level": "warning", "text": "clothes feel a little loose" },
+        { "level": "warning", "text": "nausea" }
+      ]
+    },
+    {
+      "id": "m19",
+      "role": "nurse",
+      "text": "Okay. Have you traveled recently or been exposed to anyone with similar symptoms?",
+      "timestamp": "2025-11-21T16:08:37Z"
+    },
+    {
+      "id": "m20",
+      "role": "patient",
+      "text": "Nah, been stayin' close to home. And nope, no one else is sick around me. Just me.",
+      "timestamp": "2025-11-21T16:08:46Z",
+      "highlights": []
+    },
+    {
+      "id": "m21",
+      "role": "nurse",
+      "text": "Okay. Have you noticed any changes in your bowel habits besides the color, such as diarrhea or constipation?",
+      "timestamp": "2025-11-21T16:09:11Z"
+    },
+    {
+      "id": "m22",
+      "role": "patient",
+      "text": "Nah, just the color of the stool. No real diarrhea or gettin' stopped up.",
+      "timestamp": "2025-11-21T16:09:20Z",
+      "highlights": [
+        { "level": "warning", "text": "just the color of the stool" }
+      ]
+    },
+    {
+      "id": "m23",
+      "role": "nurse",
+      "text": "Understood. Can you describe the intensity of the itching on a scale of 1 to 10?",
+      "timestamp": "2025-11-21T16:09:29Z"
+    },
+    {
+      "id": "m24",
+      "role": "patient",
+      "text": "It's bad. Like, a good eight or nine most of the time. Sometimes worse if I think about it. Makes it hard to focus or even sleep.",
+      "timestamp": "2025-11-21T16:09:41Z",
+      "highlights": [
+        { "level": "danger", "text": "a good eight or nine" },
+        { "level": "danger", "text": "Sometimes worse" }
+      ]
+    },
+    {
+      "id": "m25",
+      "role": "nurse",
+      "text": "That does sound very intense. Do you have any drug allergies?",
+      "timestamp": "2025-11-21T16:09:49Z"
+    },
+    {
+      "id": "m26",
+      "role": "patient",
+      "text": "Nah, no allergies to meds that I know of.",
+      "timestamp": "2025-11-21T16:09:53Z",
+      "highlights": []
+    },
+    {
+      "id": "m27",
+      "role": "nurse",
+      "text": "Okay. Have you had any fevers or chills, especially with the itching or abdominal discomfort?",
+      "timestamp": "2025-11-21T16:10:02Z"
+    },
+    {
+      "id": "m28",
+      "role": "patient",
+      "text": "Nah, don't think so. Haven't felt feverish or had any chills. Just this itch and the yellow.",
+      "timestamp": "2025-11-21T16:10:13Z",
+      "highlights": [
+        { "level": "warning", "text": "itch" },
+        { "level": "warning", "text": "yellow" }
+      ]
+    },
+    {
+      "id": "m29",
+      "role": "nurse",
+      "text": "Understood. Have you consumed alcohol recently, and if so, how much?",
+      "timestamp": "2025-11-21T16:10:22Z"
+    },
+    {
+      "id": "m30",
+      "role": "patient",
+      "text": "I have a few beers with the guys, nothin' crazy.",
+      "timestamp": "2025-11-21T16:10:28Z",
+      "highlights": [
+        { "level": "warning", "text": "a few beers with the guys" }
+      ]
+    },
+    {
+      "id": "m31",
+      "role": "nurse",
+      "text": "Thank you. Based on what you've told me, we need to do some further tests to better understand your condition. The doctor will be seeing you shortly.",
+      "timestamp": "2025-11-21T16:10:57Z"
+    },
+    {
+      "id": "m32",
+      "role": "patient",
+      "text": "Alright. Can you at least give me somethin' for this itch though? It's drivin' me crazy.",
+      "timestamp": "2025-11-21T16:11:06Z",
+      "highlights": [
+        { "level": "warning", "text": "this itch" },
+        { "level": "warning", "text": "It's drivin' me crazy" }
+      ]
+    }
+  ],
+  "recommendations": [
+    "Urgent hepatology consultation for suspected acute liver injury",
+    "Comprehensive liver panel (AST, ALT, ALP, GGT, Bilirubin)",
+    "Coagulation studies (PT/INR)",
+    "Abdominal ultrasound with Doppler to evaluate biliary tree",
+    "Viral hepatitis panel (HAV, HBV, HCV)",
+    "Review acetaminophen toxicity risk given high-dose Tylenol use",
+    "Consider N-acetylcysteine if acetaminophen toxicity suspected",
+    "Antihistamines or cholestyramine for pruritus management"
+  ]
+}

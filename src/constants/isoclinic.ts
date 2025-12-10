@@ -23,7 +23,7 @@ const COL_MONITORING = '#fca5a5';
 export const MAIN_ROOM = { x: 24, y: 24, w: 45, h: 45 };
 
 export const SPAWN_POINT = { x: 30, y: 19 };
-export const WAITING_POINT = { x: 70, y: 25 };
+export const WAITING_POINT = { x: 70, y: 22 };
 export const HEPA_POINT = { x: 93, y: 29 };
 export const EXIT_DOOR_POS = { x: 55, y: 10 };
 
@@ -95,7 +95,6 @@ export const ROOMS: ExtendedRoomDef[] = [
 
 export const STAFF: Staff[] = [
   { id: 'tele_doc', type: 'doctor', roomId: 'tele_pre', gridX: 11.5, gridY: 11.5, facing: 'right', name: 'Tele Doc', isSeated: true },
-  { id: 'receptionist', type: 'admin', roomId: 'waiting', gridX: 17, gridY: 5, facing: 'left', name: 'Receptionist', isSeated: true },
   { id: 'nurse_1', type: 'nurse', roomId: 'nurse1', gridX: 6, gridY: 6, facing: 'left', name: 'Nurse 1', isSeated: true },
   { id: 'nurse_2', type: 'nurse', roomId: 'nurse2', gridX: 6.5, gridY: 6, facing: 'left', name: 'Nurse 2', isSeated: true },
   { id: 'nurse_3', type: 'nurse', roomId: 'nurse3', gridX: 6.5, gridY: 5.5, facing: 'left', name: 'Nurse 3', isSeated: true },

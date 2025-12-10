@@ -1,0 +1,82 @@
+{
+  "messages": [
+    {
+      "id": "1",
+      "role": "nurse",
+      "text": "Hello, I'm your nurse today. Can you tell me what brings you in?",
+      "timestamp": "2024-01-15T10:00:00Z",
+      "highlights": []
+    },
+    {
+      "id": "2",
+      "role": "patient",
+      "text": "I've been having severe chest pain for the past two hours.",
+      "timestamp": "2024-01-15T10:00:30Z",
+      "highlights": [
+        { "level": "warning", "text": "severe chest pain" }
+      ]
+    },
+    {
+      "id": "3",
+      "role": "nurse",
+      "text": "I understand. Can you describe the pain? Is it sharp, dull, or pressure-like?",
+      "timestamp": "2024-01-15T10:01:00Z",
+      "highlights": []
+    },
+    {
+      "id": "4",
+      "role": "patient",
+      "text": "It feels like pressure, like someone is sitting on my chest.",
+      "timestamp": "2024-01-15T10:01:30Z",
+      "highlights": [
+        { "level": "warning", "text": "pressure" }
+      ]
+    }
+  ],
+  "checklist": [
+    {
+      "id": "q1",
+      "text": "Chief complaint identified",
+      "isCompleted": true,
+      "category": "fixed",
+      "answer": "Chest pain for 2 hours"
+    },
+    {
+      "id": "q2",
+      "text": "Pain characteristics assessed",
+      "isCompleted": true,
+      "category": "fixed",
+      "answer": "Pressure-like sensation"
+    },
+    {
+      "id": "q3",
+      "text": "Vital signs taken",
+      "isCompleted": false,
+      "category": "fixed"
+    },
+    {
+      "id": "q4",
+      "text": "Cardiac history reviewed",
+      "isCompleted": false,
+      "category": "dynamic"
+    }
+  ],
+  "primaryDiagnosis": {
+    "diagnosis": "Acute Coronary Syndrome",
+    "confidenceScore": 72,
+    "indicators": [
+      {
+        "finding": "Chest pressure",
+        "source": "Patient reported",
+        "significance": "high",
+        "patientQuote": "It feels like pressure, like someone is sitting on my chest."
+      }
+    ]
+  },
+  "secondaryDiagnosis": {
+    "diagnosis": "Musculoskeletal Pain",
+    "confidenceScore": 28,
+    "indicators": []
+  },
+  "elapsedTime": 180
+}

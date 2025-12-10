@@ -1,0 +1,91 @@
+[
+    {
+        "id": "dashboard-item-patient-context",
+        "type": "component",
+        "x": -4029,
+        "y": 3700,
+        "width": 1600,
+        "height": "auto",
+        "componentType": "PatientContext",
+        "color": "#ffffff",
+        "description": "Marcus 'Mark' Elias Thorne is a 47-year-old male patient currently classified as high-risk, presenting with a primary diagnosis of Severe Acute Hepatitis or Acute Liver Injury of unknown etiology. His active problem list is dominated by signs of significant hepatic dysfunction, including acute jaundice, severe pruritus, and mild hepatomegaly, alongside a background comorbidity of obesity (BMI 31.5). His recent medical history highlights a dental abscess which was treated with a ten-day course of Amoxicillin-Clavulanate (Augmentin) from October 30 to November 9, 2025. Overlapping with and following this antibiotic course, he utilized Acetaminophen (both Tylenol PM and Extra Strength) frequently for pain relief until November 20, 2025. Given this temporal association, Suspected Drug-Induced Liver Injury (DILI) is currently being investigated as a primary differential. Consequently, safety alerts have been documented listing Amoxicillin-Clavulanate as the suspected causative agent for severe DILI (pending confirmation) and placing a restriction on Acetaminophen use due to its potential hepatotoxicity in his current state.",
+        "content": {
+            "title": "Patient Context",
+            "component": "PatientContext",
+            "props": {
+                "patientData": {
+                    "patient": {
+                        "name": "Marcus 'Mark' Elias Thorne",
+                        "date_of_birth": "1978-08-14",
+                        "age": 47,
+                        "sex": "Male",
+                        "age_at_first_encounter": 47,
+                        "identifiers": {
+                            "mrn": "MT78081499"
+                        }
+                    },
+                    "riskLevel": "high",
+                    "primaryDiagnosis": "Severe Acute Hepatitis / Acute Liver Injury of Unknown Etiology",
+                    "problem_list": [
+                        {
+                            "name": "Acute Jaundice",
+                            "status": "active"
+                        },
+                        {
+                            "name": "Severe Pruritus",
+                            "status": "active"
+                        },
+                        {
+                            "name": "Hepatomegaly (Mild)",
+                            "status": "active"
+                        },
+                        {
+                            "name": "Obesity (BMI 31.5)",
+                            "status": "active"
+                        },
+                        {
+                            "name": "Dental Abscess",
+                            "status": "resolved"
+                        },
+                        {
+                            "name": "Suspected Drug-Induced Liver Injury (DILI)",
+                            "status": "investigating"
+                        }
+                    ],
+                    "medication_timeline": [
+                        {
+                            "name": "Amoxicillin-Clavulanate (Augmentin)",
+                            "dose": "875 mg",
+                            "route": "PO",
+                            "frequency": "BID",
+                            "start": "2025-10-30",
+                            "end": "2025-11-09"
+                        },
+                        {
+                            "name": "Acetaminophen (Tylenol PM)",
+                            "dose": "500 mg",
+                            "route": "PO",
+                            "frequency": "PRN (Nightly)",
+                            "start": "2025-11-01",
+                            "end": "2025-11-20"
+                        },
+                        {
+                            "name": "Acetaminophen (Extra Strength)",
+                            "dose": "1000 mg",
+                            "route": "PO",
+                            "frequency": "PRN (Frequent use)",
+                            "start": "2025-11-01",
+                            "end": "2025-11-20"
+                        }
+                    ],
+                    "allergies": [
+                        "Amoxicillin-Clavulanate (Suspected severe DILI - pending confirmation)",
+                        "Acetaminophen (Potential Hepatotoxicity - restricted)"
+                    ]
+                }
+            }
+        },
+        "createdAt": "2025-10-14T16:16:23.245Z",
+        "updatedAt": "2025-11-21T08:36:27.123Z"
+    }
+]

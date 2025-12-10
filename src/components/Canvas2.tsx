@@ -1820,11 +1820,11 @@ function Canvas2() {
           };
         });
 
-        // Create consolidator node between raw-ehr-data-zone and data-zone
-        // Raw EHR zone: y: -5600 to -1400 (bottom at -1400)
+        // Create consolidator node between nurse-assessment-zone and data-zone
+        // Nurse assessment zone: y: -3000 to -1500 (bottom at -1500)
         // Data zone: y: 500 to 2000 (top at 500)
-        // Middle point: (-1400 + 500) / 2 = -450
-        // Adjust for node height (approx 400px): -450 - 200 = -650
+        // Middle point: (-1500 + 500) / 2 = -500
+        // Adjust for node height (approx 400px): -500 - 200 = -700
         const dataConsolidatorNode: Node = {
           id: 'data-consolidator',
           type: 'custom',
@@ -2009,10 +2009,20 @@ function Canvas2() {
         
         // Create edges for zone consolidator connections
         const consolidatorEdges: Edge[] = [
-          // Raw EHR Data → Data Consolidator → Data Zone
+          // Raw EHR Data → Nurse Assessment Zone → Data Consolidator → Data Zone
           {
-            id: 'edge-raw-ehr-to-consolidator',
+            id: 'edge-raw-ehr-to-nurse-assessment',
             source: 'zone-raw-ehr-data-zone',
+            sourceHandle: 'bottom',
+            target: 'zone-nurse-assessment-zone',
+            targetHandle: 'top',
+            type: 'default',
+            animated: true,
+            style: { stroke: '#2196F3', strokeWidth: 6 },
+          },
+          {
+            id: 'edge-nurse-assessment-to-consolidator',
+            source: 'zone-nurse-assessment-zone',
             sourceHandle: 'bottom',
             target: 'data-consolidator',
             type: 'default',

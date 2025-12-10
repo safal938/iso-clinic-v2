@@ -18,12 +18,15 @@ const START_HOUR = 9;
 const END_HOUR = 18;
 const TOTAL_GAME_MINUTES = (END_HOUR - START_HOUR) * 60;
 
-const DOOR_ENTRY = { x: 55, y: 14 };
-// Waypoints to avoid hepatologist room (gridX: 77-110, gridY: 23-35)
-const CORRIDOR_NORTH = { x: 90, y: 8 };  // Go north around hepatologist
-const CORRIDOR_SOUTH = { x: 90, y: 48 }; // Go south around hepatologist
-const MONITORING_ENTRY_NORTH = { x: 110, y: 15 }; // Enter monitoring from north
-const MONITORING_ENTRY_SOUTH = { x: 110, y: 45 }; // Enter monitoring from south
+// Waypoints to avoid ALL rooms:
+// - nurse3: x: 74-87, y: 10-21
+// - nurse2: x: 76-89, y: 22-34  
+// - nurse1: x: 77-89, y: 33.5-45.5
+// - hepatologist: x: 77-110, y: 23-35
+const CORRIDOR_NORTH = { x: 72, y: 10 };   // Go north (above nurse3)
+const CORRIDOR_SOUTH = { x: 72, y: 45 };  // Go south (below nurse1)
+const MONITORING_ENTRY_NORTH = { x: 120, y: 12 };  // Enter monitoring from north
+const MONITORING_ENTRY_SOUTH = { x: 120, y: 50 }; // Enter monitoring from south
 
 const IsometricMap: React.FC = () => {
   const navigate = useNavigate();
@@ -60,7 +63,7 @@ const IsometricMap: React.FC = () => {
         type: 'patient',
         gridX: SPAWN_POINT.x,
         gridY: SPAWN_POINT.y,
-        path: [DOOR_ENTRY, WAITING_POINT],
+        path: [WAITING_POINT],
         state: 'entering',
         waitTimer: 0,
         color: getRandomColor(),
@@ -170,8 +173,8 @@ const IsometricMap: React.FC = () => {
               const monTarget = monRoom 
                 ? { x: monRoom.gridX + 15 + col * 2, y: monRoom.gridY + 12 + row * 2 }
                 : { x: 109 + col * 2, y: 24 + row * 2 };
-              // Route around hepatologist room - use north path for nurse1/nurse2, south for nurse3
-              const useNorthPath = p.assignedStaffId === 'nurse3' || p.gridY < 25;
+              // Route around ALL rooms - nurse3 uses north, nurse1/nurse2 use south
+              const useNorthPath = p.assignedStaffId === 'nurse3';
               if (useNorthPath) {
                 p.path = [CORRIDOR_NORTH, MONITORING_ENTRY_NORTH, monTarget];
               } else {
@@ -189,8 +192,8 @@ const IsometricMap: React.FC = () => {
             const monTarget = monRoom 
               ? { x: monRoom.gridX + 15 + col * 2, y: monRoom.gridY + 12 + row * 2 }
               : { x: 109 + col * 2, y: 24 + row * 2 };
-            // From hepatologist, go south to avoid walking back through the room
-            p.path = [CORRIDOR_SOUTH, MONITORING_ENTRY_SOUTH, monTarget];
+            // From hepatologist, go directly to monitoring (already adjacent)
+            p.path = [monTarget];
           }
         }
       }
@@ -281,8 +284,14 @@ const IsometricMap: React.FC = () => {
       navigate('/board');
     } else if (room.type === RoomType.NURSE && room.id.startsWith('nurse')) {
       // Only navigate for expert nurse rooms (nurse1, nurse2, nurse3), not tele nurse
-      console.log('Navigating to /nurse-sim with room:', room.id);
-      navigate('/nurse-sim', { state: { triageRoom: room.id } });
+      if (room.id === 'nurse1') {
+        // Expert Nurse 1 goes to static version
+        console.log('Navigating to /nurse-sim-1');
+        navigate('/nurse-sim-1');
+      } else {
+        console.log('Navigating to /nurse-sim with room:', room.id);
+        navigate('/nurse-sim', { state: { triageRoom: room.id } });
+      }
     }
   };
 
@@ -312,7 +321,9 @@ const IsometricMap: React.FC = () => {
     monitoring: stats.cumMonitoring
   };
 
-  const DOOR_ZONE = { minX: 48, maxX: 62, minY: 10, maxY: 18 };
+  // Zone where characters should render behind the door/wall
+  // Expanded to cover the entire path from pre-tele to waiting room
+  const DOOR_ZONE = { minX: 30, maxX: 55, minY: 10, maxY: 25 };
   const isInDoorZone = (gridX: number, gridY: number) => {
     return gridX >= DOOR_ZONE.minX && gridX <= DOOR_ZONE.maxX && gridY >= DOOR_ZONE.minY && gridY <= DOOR_ZONE.maxY;
   };

@@ -1,0 +1,227 @@
+[
+    {
+        "did": "B3456",
+        "diagnosis": "Biliary Obstruction",
+        "indicators_point": [
+            "Jaundice (eyes are yellow)",
+            "Pruritus (itching)",
+            "Patient reports intense itching described as 'ants under skin'",
+            "Dark urine ('like Coke')",
+            "Dull heavy feeling under right ribs",
+            "Nausea",
+            "Loss of appetite",
+            "Pale, clay-colored stool",
+            "Patient reports wife noticed yellow eyes",
+            "Elevated Bilirubin",
+            "Elevated Alk Phos"
+        ],
+        "indicators_count": 11,
+        "probability": "High",
+        "rank": 1
+    },
+    {
+        "did": "CGL77",
+        "diagnosis": "Cholangitis",
+        "indicators_point": [
+            "Right upper quadrant pain",
+            "Fever",
+            "Jaundice",
+            "Elevated Alk Phos",
+            "Elevated Bilirubin",
+            "Pale stool",
+            "Dark urine",
+            "Dull heavy feeling under right ribs",
+            "Loss of appetite",
+            "Nausea",
+            "Pruritus (itching)"
+        ],
+        "indicators_count": 11,
+        "probability": "High",
+        "rank": 2
+    },
+    {
+        "did": "K7890",
+        "diagnosis": "Choledocholithiasis",
+        "indicators_point": [
+            "History of dental abscess treated with Augmentin",
+            "Dull heavy feeling under right ribs",
+            "Pale, clay-colored stool",
+            "Loss of appetite",
+            "Elevated Bilirubin",
+            "Nausea",
+            "Jaundice",
+            "Elevated Alk Phos",
+            "Pruritus (itching)",
+            "Dark urine ('like Coke')"
+        ],
+        "indicators_count": 10,
+        "probability": "High",
+        "rank": 3
+    },
+    {
+        "did": "H1234",
+        "diagnosis": "Hepatitis (Viral)",
+        "indicators_point": [
+            "Elevated LFTs (AST, ALT, Alk Phos)",
+            "Nausea",
+            "Jaundice (eyes are yellow)",
+            "Pale, clay-colored stool",
+            "Pruritus (itching)",
+            "Patient reports intense itching described as 'ants under skin'",
+            "Loss of appetite",
+            "Patient reports wife noticed yellow eyes",
+            "Dark urine ('like Coke')"
+        ],
+        "indicators_count": 9,
+        "probability": "High",
+        "rank": 4
+    },
+    {
+        "did": "C5678",
+        "diagnosis": "Cholestasis",
+        "indicators_point": [
+            "Nausea",
+            "Jaundice (eyes are yellow)",
+            "Pale, clay-colored stool",
+            "Elevated Alk Phos",
+            "Pruritus (itching)",
+            "Patient reports intense itching described as 'ants under skin'",
+            "Loss of appetite",
+            "Patient reports wife noticed yellow eyes",
+            "Dark urine ('like Coke')"
+        ],
+        "indicators_count": 9,
+        "probability": "High",
+        "rank": 5
+    },
+    {
+        "did": "D9012",
+        "diagnosis": "Drug-Induced Liver Injury",
+        "indicators_point": [
+            "Elevated LFTs (AST, ALT, Alk Phos)",
+            "Frequent Tylenol use",
+            "Nausea",
+            "Pale, clay-colored stool",
+            "Patient reports intense itching described as 'ants under skin'",
+            "Loss of appetite",
+            "Patient reports wife noticed yellow eyes",
+            "Recent antibiotic use (Augmentin)",
+            "Dark urine ('like Coke')"
+        ],
+        "indicators_count": 9,
+        "probability": "High",
+        "rank": 6
+    },
+    {
+        "did": "CCA91",
+        "diagnosis": "Cholangiocarcinoma",
+        "indicators_point": [
+            "Pale stool",
+            "Dark urine",
+            "Dull heavy feeling under right ribs",
+            "Jaundice",
+            "Elevated Alk Phos",
+            "Loss of appetite",
+            "Elevated Bilirubin",
+            "Nausea",
+            "Pruritus (itching)"
+        ],
+        "indicators_count": 9,
+        "probability": "High",
+        "rank": 7
+    },
+    {
+        "did": "CHL01",
+        "diagnosis": "Cholecystitis",
+        "indicators_point": [
+            "Pale stool",
+            "Dark urine",
+            "Dull heavy feeling under right ribs",
+            "Jaundice",
+            "Pruritus (itching)",
+            "Elevated LFTs",
+            "Nausea",
+            "Loss of appetite"
+        ],
+        "indicators_count": 8,
+        "probability": "High",
+        "rank": 8
+    },
+    {
+        "did": "HAP72",
+        "diagnosis": "Hepatitis A",
+        "indicators_point": [
+            "Pale stool",
+            "Dark urine",
+            "Jaundice",
+            "Pruritus (itching)",
+            "Elevated LFTs",
+            "Nausea",
+            "Loss of appetite"
+        ],
+        "indicators_count": 7,
+        "probability": "High",
+        "rank": 9
+    },
+    {
+        "did": "CLTHS",
+        "diagnosis": "Cholelithiasis",
+        "indicators_point": [
+            "Nausea",
+            "Dull heavy feeling under right ribs",
+            "Jaundice",
+            "Pale, clay-colored stool",
+            "Loss of appetite",
+            "Dark urine ('like Coke')",
+            "Pruritus (itching)"
+        ],
+        "indicators_count": 7,
+        "probability": "High",
+        "rank": 10
+    },
+    {
+        "did": "ALC99",
+        "diagnosis": "Alcoholic Hepatitis",
+        "indicators_point": [
+            "Pale stool",
+            "Dark urine",
+            "Jaundice",
+            "Pruritus (itching)",
+            "Elevated AST and ALT",
+            "Nausea",
+            "Loss of appetite"
+        ],
+        "indicators_count": 7,
+        "probability": "High",
+        "rank": 11
+    },
+    {
+        "did": "P7890",
+        "diagnosis": "Pancreatitis",
+        "indicators_point": [
+            "Pale stool",
+            "Dark urine",
+            "Jaundice",
+            "Elevated LFTs",
+            "Nausea",
+            "Loss of appetite"
+        ],
+        "indicators_count": 6,
+        "probability": "High",
+        "rank": 12
+    },
+    {
+        "did": "HDIL1",
+        "diagnosis": "Hepatitis (Drug-Induced)",
+        "indicators_point": [
+            "Frequent Tylenol use",
+            "Elevated AST",
+            "Elevated ALT",
+            "Elevated Alk Phos",
+            "Recent antibiotic use (Augmentin)"
+        ],
+        "indicators_count": 5,
+        "probability": "Medium",
+        "rank": 13
+    }
+]
