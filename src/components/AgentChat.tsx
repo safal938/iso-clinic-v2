@@ -328,7 +328,7 @@ const AgentChat: React.FC<AgentChatProps> = ({ isOpen, onClose }) => {
     setIsLoading(true);
 
     try {
-      const response = await fetch('https://api2.medforce-ai.com/send-chat', {
+      const response = await fetch('https://api.medforce-ai.com/send-chat', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
