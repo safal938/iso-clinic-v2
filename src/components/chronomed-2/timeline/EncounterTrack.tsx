@@ -21,8 +21,8 @@ export const EncounterTrack: React.FC<EncounterTrackProps> = ({ encounters, scal
         maxH = Math.max(maxH, card.offsetHeight);
       }
     });
-    // Compact buffer: top(8) + card + bottom(16)
-    const calculatedHeight = maxH > 0 ? maxH + 24 : 350;
+    // Buffer: top padding(16) + card + bottom(24)
+    const calculatedHeight = maxH > 0 ? maxH + 40 : 350;
     
     if (Math.abs(calculatedHeight - trackHeight) > 2) {
       setTrackHeight(calculatedHeight);
@@ -84,7 +84,7 @@ export const EncounterTrack: React.FC<EncounterTrackProps> = ({ encounters, scal
             <div 
                 key={enc.encounter_no} 
                 ref={(el) => { cardsRef.current[i] = el; }}
-                className="absolute top-1 w-[260px] bg-white rounded-xl shadow-sm hover:shadow-lg transition-all border border-slate-200 hover:border-blue-300 cursor-pointer group/card overflow-visible z-20"
+                className="absolute top-4 w-[260px] bg-white rounded-xl shadow-sm hover:shadow-lg transition-all border border-slate-200 hover:border-blue-300 cursor-pointer group/card overflow-visible z-20"
                 style={{ left: x, transform: 'translateX(-50%)' }}
             >
                 {/* Color Bar */}

@@ -613,7 +613,7 @@ export const RiskTrack: React.FC<RiskTrackProps> = ({ data, scale }) => {
             {/* Header */}
             <div className="absolute left-4 top-1 z-10">
                  <div className="px-2 py-0.5 bg-white  border border-slate-200 text-black rounded text-[10px] font-bold uppercase tracking-wider shadow-md">
-                    Acute Liver Injury Risk
+                     Risk
                  </div>
             </div>
 

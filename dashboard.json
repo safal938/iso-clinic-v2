@@ -1,0 +1,711 @@
+[
+    {
+        "id": "dashboard-item-patient-context",
+        "type": "component",
+        "x": -4029,
+        "y": 3700,
+        "width": 1600,
+        "height": "auto",
+        "componentType": "PatientContext",
+        "color": "#ffffff",
+        "description": "Marcus 'Mark' Elias Thorne is a 47-year-old male patient currently classified as high-risk, presenting with a primary diagnosis of Severe Acute Hepatitis or Acute Liver Injury of unknown etiology. His active problem list is dominated by signs of significant hepatic dysfunction, including acute jaundice, severe pruritus, and mild hepatomegaly, alongside a background comorbidity of obesity (BMI 31.5). His recent medical history highlights a dental abscess which was treated with a ten-day course of Amoxicillin-Clavulanate (Augmentin) from October 30 to November 9, 2025. Overlapping with and following this antibiotic course, he utilized Acetaminophen (both Tylenol PM and Extra Strength) frequently for pain relief until November 20, 2025. Given this temporal association, Suspected Drug-Induced Liver Injury (DILI) is currently being investigated as a primary differential. Consequently, safety alerts have been documented listing Amoxicillin-Clavulanate as the suspected causative agent for severe DILI (pending confirmation) and placing a restriction on Acetaminophen use due to its potential hepatotoxicity in his current state.",
+        "content": {
+            "title": "Patient Context",
+            "component": "PatientContext",
+            "props": {
+                "patientData": {
+                    "patient": {
+                        "name": "Marcus 'Mark' Elias Thorne",
+                        "date_of_birth": "1978-08-14",
+                        "age": 47,
+                        "sex": "Male",
+                        "age_at_first_encounter": 47,
+                        "identifiers": {
+                            "mrn": "MT78081499"
+                        }
+                    },
+                    "riskLevel": "high",
+                    "primaryDiagnosis": "Severe Acute Hepatitis / Acute Liver Injury of Unknown Etiology",
+                    "problem_list": [
+                        {
+                            "name": "Acute Jaundice",
+                            "status": "active"
+                        },
+                        {
+                            "name": "Severe Pruritus",
+                            "status": "active"
+                        },
+                        {
+                            "name": "Hepatomegaly (Mild)",
+                            "status": "active"
+                        },
+                        {
+                            "name": "Obesity (BMI 31.5)",
+                            "status": "active"
+                        },
+                        {
+                            "name": "Dental Abscess",
+                            "status": "resolved"
+                        },
+                        {
+                            "name": "Suspected Drug-Induced Liver Injury (DILI)",
+                            "status": "investigating"
+                        }
+                    ],
+                    "medication_timeline": [
+                        {
+                            "name": "Amoxicillin-Clavulanate (Augmentin)",
+                            "dose": "875 mg",
+                            "route": "PO",
+                            "frequency": "BID",
+                            "start": "2025-10-30",
+                            "end": "2025-11-09"
+                        },
+                        {
+                            "name": "Acetaminophen (Tylenol PM)",
+                            "dose": "500 mg",
+                            "route": "PO",
+                            "frequency": "PRN (Nightly)",
+                            "start": "2025-11-01",
+                            "end": "2025-11-20"
+                        },
+                        {
+                            "name": "Acetaminophen (Extra Strength)",
+                            "dose": "1000 mg",
+                            "route": "PO",
+                            "frequency": "PRN (Frequent use)",
+                            "start": "2025-11-01",
+                            "end": "2025-11-20"
+                        }
+                    ],
+                    "allergies": [
+                        "Amoxicillin-Clavulanate (Suspected severe DILI - pending confirmation)",
+                        "Acetaminophen (Potential Hepatotoxicity - restricted)"
+                    ]
+                }
+            }
+        },
+        "createdAt": "2025-10-14T16:16:23.245Z",
+        "updatedAt": "2025-11-21T08:36:27.123Z"
+    },
+    {
+        "id": "dashboard-item-lab-table",
+        "type": "component",
+        "x": 619,
+        "y": 3701,
+        "width": 520,
+        "height": 500,
+        "componentType": "LabTable",
+        "color": "#ffffff",
+        "description": "",
+        "content": {
+            "title": "Lab Findings",
+            "component": "LabTable",
+            "props": {
+                "encounters": [],
+                "labResults": [
+                    {
+                        "name": "ALT",
+                        "value": 620,
+                        "unit": "U/L",
+                        "normalRange": "7-56",
+                        "status": "critical",
+                        "previousValue": null,
+                        "date": "2025-11-19"
+                    },
+                    {
+                        "name": "AST",
+                        "value": 450,
+                        "unit": "U/L",
+                        "normalRange": "10-40",
+                        "status": "critical",
+                        "previousValue": null,
+                        "date": "2025-11-19"
+                    },
+                    {
+                        "name": "Total Bilirubin",
+                        "value": 5.2,
+                        "unit": "mg/dL",
+                        "normalRange": "0.1-1.2",
+                        "status": "critical",
+                        "previousValue": null,
+                        "date": "2025-11-19"
+                    },
+                    {
+                        "name": "Alk Phos",
+                        "value": 188,
+                        "unit": "U/L",
+                        "normalRange": "44-147",
+                        "status": "high",
+                        "previousValue": null,
+                        "date": "2025-11-19"
+                    },
+                    {
+                        "name": "INR",
+                        "value": 1.2,
+                        "unit": "ratio",
+                        "normalRange": "0.8-1.1",
+                        "status": "high",
+                        "previousValue": null,
+                        "date": "2025-11-19"
+                    },
+                    {
+                        "name": "WBC",
+                        "value": 11.2,
+                        "unit": "K/uL",
+                        "normalRange": "4.5-11.0",
+                        "status": "high",
+                        "previousValue": null,
+                        "date": "2025-11-19"
+                    },
+                    {
+                        "name": "Eosinophils",
+                        "value": 8.5,
+                        "unit": "%",
+                        "normalRange": "0.0-6.0",
+                        "status": "high",
+                        "previousValue": null,
+                        "date": "2025-11-19"
+                    }
+                ]
+            }
+        },
+        "createdAt": "2025-10-14T16:50:46.155Z",
+        "updatedAt": "2025-11-21T08:36:42.289Z"
+    },
+    {
+        "id": "encounter-track-1",
+        "type": "component",
+        "x": -1866,
+        "y": 3698,
+        "width": 2400,
+        "height": 400,
+        "componentType": "EncounterTrack",
+        "draggable": false,
+        "content": {
+            "props": {
+                "encounters": [
+                    {
+                        "encounter_no": 1,
+                        "date": "2025-10-30",
+                        "type": "Walk-In Clinic Visit",
+                        "provider": "Dr. Emily Chen",
+                        "chief_complaint": "Severe throbbing jaw pain and facial swelling for 2 days.",
+                        "medications": [
+                            "Amoxicillin-Clavulanate (Started)",
+                            "Acetaminophen (PRN)"
+                        ],
+                        "impression": "Acute Dental Abscess (Right Mandibular Molar). Localized cellulitis.",
+                        "differential_diagnosis": [
+                            "Periapical Abscess",
+                            "Severe Dental Caries",
+                            "Sialadenitis"
+                        ],
+                        "notes": "Diagnosed with dental abscess. Prescribed 10-day course of Augmentin and advised OTC pain relief.",
+                        "casual_reason": "Initial presentation of bacterial infection necessitating antibiotic therapy (Augmentin), setting the stage for potential subsequent adverse drug reaction."
+                    },
+                    {
+                        "encounter_no": 2,
+                        "date": "2025-11-10",
+                        "type": "Telehealth / Virtual Consultation",
+                        "provider": "Sarah Bones, NP",
+                        "chief_complaint": "Nausea, fatigue, and trouble sleeping.",
+                        "medications": [
+                            "Amoxicillin-Clavulanate (Completed)",
+                            "Acetaminophen (Increased use)"
+                        ],
+                        "impression": "Antibiotic-associated Gastritis / Dyspepsia. Fatigue likely viral or post-infection.",
+                        "differential_diagnosis": [
+                            "Viral Gastroenteritis",
+                            "Antibiotic side effects",
+                            "Dehydration"
+                        ],
+                        "notes": "Patient reported 'washed out' feeling and nausea after finishing antibiotics. Advised rest and Tylenol PM for sleep, missing early signs of liver toxicity.",
+                        "casual_reason": "Prodromal symptoms of liver injury (nausea, fatigue) misattributed to antibiotic side effects or viral illness; continued analgesic use reinforced."
+                    },
+                    {
+                        "encounter_no": 3,
+                        "date": "2025-11-20",
+                        "type": "Urgent Primary Care",
+                        "provider": "Dr. Richard Jenkins",
+                        "chief_complaint": "New-onset overt jaundice and severe generalized pruritus.",
+                        "medications": [
+                            "Amoxicillin-Clavulanate (Recently completed)",
+                            "Acetaminophen (Frequent recent use)"
+                        ],
+                        "impression": "Severe Acute Hepatitis / Acute Liver Injury of Unknown Etiology. Rapid progression of jaundice and transaminitis.",
+                        "differential_diagnosis": [
+                            "Acute Viral Hepatitis (A, B, C)",
+                            "Biliary Obstruction / Choledocholithiasis",
+                            "Autoimmune Hepatitis",
+                            "Metabolic/Toxic Liver Injury"
+                        ],
+                        "notes": "Urgent referral to Hepatology initiated. Labs reveal ALT 620 U/L, Total Bilirubin 5.2 mg/dL, and significant Eosinophilia (8.5%). Patient strictly advised to cease all pain medications and alcohol immediately.",
+                        "casual_reason": "Acute liver injury characterized by rapid onset jaundice, severe transaminitis (ALT 620), and Eosinophilia, occurring shortly after a dental infection, requiring urgent exclusion of viral, obstructive, or autoimmune causes."
+                    }
+                ],
+                "showHandles": true
+            }
+        },
+        "updatedAt": "2025-11-24T15:02:58.989Z"
+    },
+    {
+        "id": "medication-track-1",
+        "type": "component",
+        "x": -1846,
+        "y": 4173,
+        "width": 2380,
+        "height": 170,
+        "componentType": "MedicationTrack",
+        "draggable": false,
+        "content": {
+            "props": {
+                "encounters": [
+                    {
+                        "encounter_no": 1,
+                        "date": "2025-11-20"
+                    }
+                ],
+                "medications": [
+                    {
+                        "name": "Amoxicillin-Clavulanate",
+                        "startDate": "2025-10-30",
+                        "endDate": "2025-11-09",
+                        "dose": "875mg BID",
+                        "indication": "Dental Abscess"
+                    },
+                    {
+                        "name": "Acetaminophen (Tylenol PM)",
+                        "startDate": "2025-11-01",
+                        "endDate": "2025-11-20",
+                        "dose": "500mg Nightly",
+                        "indication": "Pain / Insomnia"
+                    },
+                    {
+                        "name": "Acetaminophen (Extra Strength)",
+                        "startDate": "2025-11-01",
+                        "endDate": "2025-11-20",
+                        "dose": "1000mg PRN",
+                        "indication": "Dental Pain"
+                    }
+                ],
+                "showHandles": true
+            }
+        },
+        "updatedAt": "2025-11-24T15:03:39.262Z"
+    },
+    {
+        "id": "lab-track-1",
+        "type": "component",
+        "x": -1846,
+        "y": 4359,
+        "width": 2380,
+        "height": 850,
+        "componentType": "LabTrack",
+        "draggable": false,
+        "description": "This Lab Track component captures critical laboratory data from the patient's Urgent Care visit on November 19, 2025, revealing a profile of severe acute hepatocellular injury characterized by a critical elevation in ALT to 620 U/L and AST to 450 U/L. This profound enzyme elevation is accompanied by significant cholestasis, evidenced by a Total Bilirubin of 5.2 mg/dL and elevated Alkaline Phosphatase at 188 U/L, confirming the clinical presentation of overt jaundice. While synthetic liver function remains largely preserved with a borderline INR of 1.2, the hematological panel highlights a mild leukocytosis of 11.2 K/uL and a distinct eosinophilia of 8.5%, a specific finding suggesting a potential systemic hypersensitivity or allergic component to the acute liver dysfunction that requires immediate diagnostic evaluation to rule out toxic, viral, or autoimmune causes.",
+        "content": {
+            "props": {
+                "encounters": [
+                    {
+                        "encounter_no": 1,
+                        "date": "2025-10-30"
+                    },
+                    {
+                        "encounter_no": 2,
+                        "date": "2025-11-10"
+                    },
+                    {
+                        "encounter_no": 3,
+                        "date": "2025-11-20"
+                    }
+                ],
+                "medications": [
+                   
+                    {
+                        "name": "Amoxicillin-Clavulanate",
+                        "startDate": "2025-10-30",
+                        "endDate": "2025-11-09",
+                        "dose": "875mg BID",
+                        "indication": "Dental Abscess"
+                    },
+                    {
+                        "name": "Acetaminophen (Extra Strength)",
+                        "startDate": "2025-10-30",
+                        "endDate": "2025-11-20",
+                        "dose": "1000mg PRN",
+                        "indication": "Dental Pain"
+                    },
+                    {
+                        "name": "Acetaminophen (Tylenol PM)",
+                        "startDate": "2025-11-10",
+                        "endDate": "2025-11-20",
+                        "dose": "500mg Nightly",
+                        "indication": "Insomnia / Residual Pain"
+                    }
+                ],
+                "showHandles": true
+            }
+        },
+        "updatedAt": "2025-11-24T15:03:50.962Z"
+    },
+    {
+        "id": "sidebar-1",
+        "type": "component",
+        "x": -2191,
+        "y": 3697,
+        "width": 320,
+        "height": 2390,
+        "componentType": "Sidebar",
+        "draggable": false,
+        "content": {
+            "props": {
+                "patientData": {
+                    "patient": {
+                        "name": "Marcus 'Mark' Elias Thorne",
+                        "date_of_birth": "1978-08-14",
+                        "age": 47,
+                        "sex": "Male",
+                        "age_at_first_encounter": 47,
+                        "identifiers": {
+                            "mrn": "MT78081499"
+                        }
+                    },
+                    "riskLevel": "high",
+                    "primaryDiagnosis": "Severe Acute Hepatitis of Unknown Etiology",
+                    "problem_list": [
+                        {
+                            "name": "Acute Jaundice (Bilirubin 5.2 mg/dL)",
+                            "status": "active"
+                        },
+                        {
+                            "name": "Severe Generalized Pruritus",
+                            "status": "active"
+                        },
+                        {
+                            "name": "Marked Transaminitis (ALT > 600 U/L)",
+                            "status": "active"
+                        },
+                        {
+                            "name": "Leukocytosis with Eosinophilia",
+                            "status": "active"
+                        },
+                        {
+                            "name": "Hepatomegaly (Mild)",
+                            "status": "active"
+                        },
+                        {
+                            "name": "Obesity (BMI 31.5)",
+                            "status": "active"
+                        },
+                        {
+                            "name": "Dental Abscess",
+                            "status": "resolved"
+                        }
+                    ]
+                }
+            }
+        },
+        "updatedAt": "2025-11-24T15:05:15.307Z"
+    },
+    {
+        "id": "dashboard-item-1759906219477-adverse-event-analytics",
+        "type": "component",
+        "x": -4031,
+        "y": 4444,
+        "width": 1600,
+        "height": "auto",
+        "componentType": "AdverseEventAnalytics",
+        "color": "#ffffff",
+        "description": "",
+        "content": {
+            "title": "Adverse Event Analytics",
+            "component": "AdverseEventAnalytics",
+            "props": {
+                "patientData": {
+                    "adverseEvents": [
+                        {
+                            "event": "Severe Acute Hepatocellular Hepatitis",
+                            "severity": "Severe",
+                            "description": "Marked elevation of transaminases with ALT 620 U/L (>11x ULN) and AST 450 U/L, indicating rapid hepatocellular necrosis."
+                        },
+                        {
+                            "event": "Overt Hyperbilirubinemia",
+                            "severity": "Severe",
+                            "description": "Total Bilirubin elevated to 5.2 mg/dL with clinical jaundice and severe generalized pruritus; biochemical pattern suggests mixed hepatocellular-cholestatic injury."
+                        },
+                        {
+                            "event": "Systemic Hypersensitivity Response",
+                            "severity": "Moderate",
+                            "description": "Peripheral blood Eosinophilia of 8.5% (Absolute 0.95 K/uL) coincident with liver dysfunction, suggesting an immuno-allergic mechanism."
+                        },
+                        {
+                            "event": "Hepatic Steatosis",
+                            "severity": "Moderate",
+                            "description": "Ultrasound evidence of diffuse fatty infiltration and hepatomegaly, indicating underlying metabolic susceptibility."
+                        }
+                    ],
+                    "rucam_ctcae_analysis": {
+                        "rucam": {
+                            "title": "Causality Assessment Scoring (Hepatocellular Pattern)",
+                            "columns": [
+                                "#",
+                                "Parameter",
+                                "Key findings from this case",
+                                "Score",
+                                "Explanation"
+                            ],
+                            "rows": [
+                                [
+                                    "1",
+                                    "Time to onset (from exposure to injury)",
+                                    "Exposure start ~3 weeks ago; Onset of jaundice ~2 days ago",
+                                    "+2",
+                                    "Onset falls within the suggestive 5–90 day latency period for idiosyncratic reaction."
+                                ],
+                                [
+                                    "2",
+                                    "Course after cessation",
+                                    "Agents stopped <24 hours ago; trajectory pending",
+                                    "0",
+                                    "Insufficient time to evaluate enzyme de-challenge response."
+                                ],
+                                [
+                                    "3",
+                                    "Risk factors",
+                                    "Age 47 (+0), Alcohol use (+1)",
+                                    "+1",
+                                    "Alcohol use is a potential risk factor for enhanced susceptibility."
+                                ],
+                                [
+                                    "4",
+                                    "Concomitant substances",
+                                    "Acetaminophen (Tylenol) frequent use",
+                                    "0",
+                                    "Concomitant agent has hepatotoxic potential, complicating causality."
+                                ],
+                                [
+                                    "5",
+                                    "Exclusion of non-exposure causes",
+                                    "Ultrasound negative for obstruction; Viral/Autoimmune pending",
+                                    "0",
+                                    "Mechanical obstruction excluded; serological exclusion required for higher score."
+                                ],
+                                [
+                                    "6",
+                                    "Previous information on agent",
+                                    "Suspected agent is a known hepatotoxin",
+                                    "+2",
+                                    "Class labeled as hepatotoxic in medical literature."
+                                ],
+                                [
+                                    "7",
+                                    "Response to re-exposure",
+                                    "Not applicable",
+                                    "0",
+                                    "---"
+                                ]
+                            ],
+                            "total_score": 5,
+                            "causality_category": "Possible (Pending Viral Exclusion)"
+                        },
+                        "ctcae": {
+                            "title": "CTCAE Hepatic Toxicity Scoring",
+                            "columns": [
+                                "Criterion",
+                                "Observed / Inferred",
+                                "CTCAE Grade",
+                                "Explanation"
+                            ],
+                            "rows": [
+                                [
+                                    "ALT (SGPT)",
+                                    "ALT 620 U/L (>11x ULN)",
+                                    "Grade 3",
+                                    ">5.0 - 20.0 x ULN indicates Grade 3 severity."
+                                ],
+                                [
+                                    "AST (SGOT)",
+                                    "AST 450 U/L (>11x ULN)",
+                                    "Grade 3",
+                                    ">5.0 - 20.0 x ULN indicates Grade 3 severity."
+                                ],
+                                [
+                                    "Total Bilirubin",
+                                    "Bilirubin 5.2 mg/dL (>3x ULN)",
+                                    "Grade 3",
+                                    ">3.0 x ULN indicates Grade 3 severity."
+                                ],
+                                [
+                                    "INR / Coagulopathy",
+                                    "INR 1.2 (Borderline elevated)",
+                                    "Grade 1",
+                                    ">1 - 1.5 x ULN; no bleeding symptoms reported."
+                                ]
+                            ],
+                            "overall_grade": "CTCAE Grade 3 — Severe adverse event requiring hospitalization"
+                        },
+                        "reasoning": "The patient presents with severe acute hepatocellular injury (ALT >10x ULN) accompanied by Grade 3 hyperbilirubinemia and clinical jaundice. The injury demonstrates a strong temporal correlation with a recent course of antibiotics (completed 1 week prior) and concurrent analgesic use. The presence of significant eosinophilia (8.5%) points towards a systemic hypersensitivity mechanism rather than a purely viral or ischemic etiology. Imaging has ruled out biliary obstruction. While synthetic function remains preserved (INR 1.2, Grade 1), the severity of the transaminitis warrants immediate cessation of all suspected agents and urgent monitoring for progression."
+                    }
+                }
+            }
+        },
+        "createdAt": "2025-10-14T16:50:19.477Z",
+        "updatedAt": "2025-11-21T08:36:24.123Z"
+    },
+    {
+        "id": "dashboard-item-1759906246157-differential-diagnosis",
+        "type": "component",
+        "x": 620,
+        "y": 4911,
+        "width": 520,
+        "height": 500,
+        "componentType": "DifferentialDiagnosis",
+        "color": "#ffffff",
+        "description": "",
+        "content": {
+            "title": "Differential Diagnosis",
+            "component": "DifferentialDiagnosis",
+            "props": {
+                "patientData": {
+                    "encounters": [
+                        {
+                            "encounter_no": 1,
+                            "assessment": {
+                                "impression": "Severe Acute Hepatocellular Hepatitis with cholestasis and systemic eosinophilia, temporally associated with recent antimicrobial and analgesic exposure.",
+                                "differential": [
+                                    "Acute Viral Hepatitis (A, B, C, E - pending serology)",
+                                    "Autoimmune Hepatitis (consider given severity and eosinophilia)",
+                                    "Mechanical Biliary Obstruction (effectively excluded by ultrasound but clinically suggested)",
+                                    "Cholangitis (less likely given afebrile status)",
+                                    "Acetaminophen-associated hepatic injury"
+                                ]
+                            },
+                            "rucam_ctcae_analysis": {}
+                        }
+                    ]
+                }
+            }
+        },
+        "createdAt": "2025-10-14T16:50:46.157Z",
+        "updatedAt": "2025-11-24T15:05:21.702Z"
+    },
+    {
+        "id": "risk-track-1",
+        "type": "component",
+        "x": -1846,
+        "y": 5215,
+        "width": 2380,
+        "height": 170,
+        "componentType": "RiskTrack",
+        "draggable": false,
+        "content": {
+            "props": {
+                "encounters": [
+                    {
+                        "encounter_no": 1,
+                        "date": "2025-10-30"
+                    },
+                    {
+                        "encounter_no": 2,
+                        "date": "2025-11-10"
+                    },
+                    {
+                        "encounter_no": 3,
+                        "date": "2025-11-20"
+                    }
+                ],
+                "risks": [
+                    {
+                        "t": "2025-10-30T14:15:00",
+                        "riskScore": 1.5,
+                        "factors": [
+                            "Active Dental Infection",
+                            "New Antibiotic Start",
+                            "BMI 31.5 (Obesity)"
+                        ]
+                    },
+                    {
+                        "t": "2025-11-10T10:00:00",
+                        "riskScore": 3.0,
+                        "factors": [
+                            "New Nausea/Fatigue",
+                            "Recent Amox-Clav Completion",
+                            "Increased Acetaminophen Load"
+                        ]
+                    },
+                    {
+                        "t": "2025-11-20T09:30:00",
+                        "riskScore": 9.2,
+                        "factors": [
+                            "ALT 620 (>10x ULN)",
+                            "Bilirubin 5.2 (Overt Jaundice)",
+                            "Eosinophilia 8.5% (Hypersensitivity)",
+                            "Recent Amox-Clav exposure"
+                        ]
+                    }
+                ],
+                "showHandles": true
+            }
+        },
+        "updatedAt": "2025-11-24T15:04:09.830Z"
+    },
+    {
+        "id": "key-events-track-1",
+        "type": "component",
+        "x": -1846,
+        "y": 5451,
+        "width": 2380,
+        "height": 300,
+        "componentType": "KeyEventsTrack",
+        "draggable": false,
+        "description": "",
+        "content": {
+            "props": {
+                "encounters": [
+                    {
+                        "encounter_no": 1,
+                        "date": "2025-10-30"
+                    },
+                    {
+                        "encounter_no": 2,
+                        "date": "2025-11-10"
+                    },
+                    {
+                        "encounter_no": 3,
+                        "date": "2025-11-20"
+                    }
+                ],
+                "events": [
+                    {
+                        "event": "Antimicrobial Initiation",
+                        "t": "2025-10-30T14:15:00",
+                        "note": "Diagnosed with dental abscess. Started 10-day Amoxicillin-Clavulanate."
+                    },
+                    {
+                        "event": "Prodromal Phase",
+                        "t": "2025-11-10T10:00:00",
+                        "note": "Reported nausea/fatigue. Misdiagnosed as viral/gastritis. Analgesic use continued."
+                    },
+                    {
+                        "event": "Clinical Decompensation",
+                        "t": "2025-11-18T08:00:00",
+                        "note": "Onset of overt jaundice and severe pruritus."
+                    },
+                    {
+                        "event": "Urgent Care Crisis",
+                        "t": "2025-11-19T16:30:00",
+                        "note": "Labs reveal critical transaminitis (ALT 620), hyperbilirubinemia (5.2), and eosinophilia."
+                    },
+                    {
+                        "event": "Specialist Referral",
+                        "t": "2025-11-20T09:30:00",
+                        "note": "Referred to Hepatology. All hepatotoxic agents (analgesics) suspended immediately."
+                    }
+                ],
+                "showHandles": true
+            }
+        },
+        "updatedAt": "2025-11-24T15:04:53.593Z"
+    }
+]

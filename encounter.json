@@ -1,0 +1,258 @@
+[
+    {
+        "id": "dashboard-item-single-encounter-1",
+        "type": "component",
+        "x": -3300,
+        "y": 800,
+        "width": 400,
+        "height": 500,
+        "componentType": "SingleEncounterDocument",
+        "color": "#ffffff",
+        "description": "",
+        "content": {
+            "title": "Encounter #1 - Walk-In Clinic Visit",
+            "component": "SingleEncounterDocument",
+            "props": {
+                "encounter": {
+                    "encounter_no": 1,
+                    "meta": {
+                        "visit_type": "Walk-In Clinic Visit",
+                        "date_time": "2025-10-30T14:15:00Z",
+                        "provider": {
+                            "name": "Dr. Emily Chen",
+                            "specialty": "Urgent Care Physician"
+                        },
+                        "ui_risk_color": "green"
+                    },
+                    "assessment": {
+                        "impression": "Acute Dental Abscess (Right Mandibular Molar). Localized cellulitis.",
+                        "differential": [
+                            "Periapical Abscess",
+                            "Severe Dental Caries",
+                            "Sialadenitis (Salivary gland infection)"
+                        ]
+                    },
+                    "chief_complaint": "Severe throbbing jaw pain and facial swelling for 2 days.",
+                    "hpi": "Mr. Thorne presents with a 48-hour history of worsening pain in the right lower jaw. He describes the pain as throbbing and radiating to the ear. He reports difficulty chewing and 'swollen gums'. He denies difficulty breathing or swallowing. He has been taking OTC Ibuprofen with partial relief.",
+                    "medications_prior": [
+                        {
+                            "name": "Lisinopril",
+                            "route": "Oral, 10mg daily",
+                            "indication": "Hypertension"
+                        }
+                    ],
+                    "physical_exam": {
+                        "general": "Patient appears uncomfortable but in no acute respiratory distress. Low-grade fever (37.8°C).",
+                        "head_neck": "Right-sided facial swelling noted along the mandible. Right submandibular lymphadenopathy (tender). Intra-oral exam reveals erythema and fluctuance at the gum line of tooth #30.",
+                        "other_systems": "Cardiopulmonary exams unremarkable. HR 88, BP 135/85."
+                    },
+                    "plan": {
+                        "investigations": {
+                            "labs": [
+                                "None required for uncomplicated dental abscess."
+                            ]
+                        },
+                        "management": {
+                            "follow_up": "Advised to follow up with a Dentist for root canal or extraction once infection subsides.",
+                            "instructions": "Warm compresses. Return immediately if swelling spreads to neck or affects breathing.",
+                            "medications_started": [
+                                {
+                                    "name": "Amoxicillin-Clavulanate (Augmentin)",
+                                    "dose": "875/125 mg",
+                                    "route": "Oral",
+                                    "frequency": "Twice daily x 10 days",
+                                    "indication": "Bacterial Infection"
+                                },
+                                {
+                                    "name": "Acetaminophen (Tylenol)",
+                                    "dose": "500-1000 mg",
+                                    "route": "Oral",
+                                    "frequency": "As needed for pain",
+                                    "indication": "Analgesia"
+                                }
+                            ]
+                        }
+                    },
+                    "reason_for_visit": "Acute jaw pain and swelling."
+                },
+                "patient": {
+                    "name": "Marcus 'Mark' Elias Thorne",
+                    "sex": "Male",
+                    "age_at_first_encounter": 46
+                },
+                "encounterIndex": 0,
+                "dataSource": "Walk-In Clinic Records"
+            }
+        },
+        "createdAt": "2025-10-14T16:55:00.003Z",
+        "updatedAt": "2025-10-14T16:55:00.003Z"
+    },
+    {
+        "id": "dashboard-item-single-encounter-2",
+        "type": "component",
+        "x": -3300,
+        "y": 800,
+        "width": 400,
+        "height": 500,
+        "componentType": "SingleEncounterDocument",
+        "color": "#ffffff",
+        "description": "",
+        "content": {
+            "title": "Encounter #2 - Consultation",
+            "component": "SingleEncounterDocument",
+            "props": {
+                "encounter": {
+                    "encounter_no": 2,
+                    "meta": {
+                        "visit_type": "Telehealth / Virtual Consultation",
+                        "date_time": "2025-11-10T10:00:00Z",
+                        "provider": {
+                            "name": "Sarah Bones, NP",
+                            "specialty": "Family Medicine"
+                        },
+                        "ui_risk_color": "green"
+                    },
+                    "assessment": {
+                        "impression": "1. Antibiotic-associated Gastritis / Dyspepsia. \n2. Fatigue/Malaise (likely viral or post-infection).",
+                        "differential": [
+                            "Viral Gastroenteritis",
+                            "Antibiotic side effects",
+                            "Dehydration"
+                        ]
+                    },
+                    "chief_complaint": "Nausea, fatigue, and trouble sleeping.",
+                    "hpi": "Patient connects via video call. He finished his course of Augmentin yesterday for the dental abscess. Reports the tooth pain is 'mostly gone but throbs at night'. \n\nNew Symptoms: Over the last 2 days, he has felt extremely tired ('washed out') with mild nausea and loss of appetite. He attributes this to 'the strong antibiotics messing up my stomach'. He denies vomiting, fever, or diarrhea. He reports trouble sleeping due to the residual jaw ache.",
+                    "medications_prior": [
+                        {
+                            "name": "Amoxicillin-Clavulanate",
+                            "route": "Oral",
+                            "indication": "Completed yesterday"
+                        },
+                        {
+                            "name": "Lisinopril",
+                            "route": "Oral",
+                            "indication": "Hypertension"
+                        }
+                    ],
+                    "physical_exam": {
+                        "general": "Patient appears fatigued but alert on video. No respiratory distress.",
+                        "heent": "No obvious facial swelling visible on camera. Patient states jaw opening is improved.",
+                        "other_systems": "Not assessed (Telehealth)."
+                    },
+                    "plan": {
+                        "investigations": {
+                            "labs": [
+                                "None ordered (Low acuity presentation)."
+                            ]
+                        },
+                        "management": {
+                            "follow_up": "Return to clinic if unable to keep fluids down or if pain worsens.",
+                            "instructions": "Stick to a bland diet (BRAT diet) for the stomach. Stay hydrated.",
+                            "medications_started": [
+                                {
+                                    "name": "Acetaminophen (Tylenol PM)",
+                                    "dose": "500 mg",
+                                    "route": "Oral",
+                                    "frequency": "2 tablets at bedtime",
+                                    "indication": "Insomnia / Residual Pain"
+                                }
+                            ]
+                        }
+                    },
+                    "reason_for_visit": "Follow-up question regarding nausea and fatigue."
+                },
+                "patient": {
+                    "name": "Marcus 'Mark' Elias Thorne",
+                    "sex": "Male",
+                    "age_at_first_encounter": 46
+                },
+                "encounterIndex": 2,
+                "dataSource": "Telehealth Portal"
+            }
+        },
+        "createdAt": "2025-10-14T16:55:00.003Z",
+        "updatedAt": "2025-10-14T16:55:00.003Z"
+    },
+    {
+        "id": "dashboard-item-single-encounter-3",
+        "type": "component",
+        "x": -3300,
+        "y": 800,
+        "width": 400,
+        "height": 500,
+        "componentType": "SingleEncounterDocument",
+        "color": "#ffffff",
+        "description": "",
+        "content": {
+            "title": "Encounter #3 - Outpatient Visit",
+            "component": "SingleEncounterDocument",
+            "props": {
+                "encounter": {
+                    "encounter_no": 3,
+                    "meta": {
+                        "visit_type": "Urgent Primary Care Visit / Referral",
+                        "date_time": "2025-11-20T09:30:00Z",
+                        "provider": {
+                            "name": "Dr. Richard Jenkins",
+                            "specialty": "General Practitioner"
+                        },
+                        "ui_risk_color": "yellow"
+                    },
+                    "assessment": {
+                        "impression": "Severe Acute Hepatitis / Acute Liver Injury of Unknown Etiology. Rapid onset jaundice with severe transaminitis and cholestasis.",
+                        "differential": [
+                            "Viral Hepatitis (A, B, C)",
+                            "Biliary Pathology/Obstruction (Choledocholithiasis)",
+                            "Metabolic/Fatty Liver Disease",
+                            "Autoimmune Hepatitis"
+                        ]
+                    },
+                    "chief_complaint": "New-onset overt jaundice, severe pruritus, and markedly elevated liver enzymes.",
+                    "hpi": "Mr. Thorne, a 46-year-old male, presented following a visit to Urgent Care. He reports new-onset jaundice (noticed by wife 2 days ago) and intense generalized pruritus disrupting sleep. He denies abdominal pain, nausea, vomiting, or fever. \n\nRecent History: Treated for dental abscess 3 weeks ago with Amoxicillin-Clavulanate (completed). Has been managing lingering jaw pain with Tylenol PM and Extra Strength Tylenol frequently. \n\nSocial: Works in construction. Reports social alcohol use, denies heavy/binge drinking.",
+                    "medications_prior": [
+                        {
+                            "name": "Amoxicillin-Clavulanate",
+                            "route": "Oral, completed 10-day course ~1 week ago",
+                            "indication": "Dental Abscess"
+                        },
+                        {
+                            "name": "Acetaminophen (Tylenol PM / Extra Strength)",
+                            "route": "Oral, frequent recent use",
+                            "indication": "Jaw Pain"
+                        }
+                    ],
+                    "physical_exam": {
+                        "general": "Patient is alert but clearly jaundiced (sclera and skin). Vitals stable and afebrile.",
+                        "msk": "Excoriations present on arms and legs (secondary to pruritus).",
+                        "other_systems": "Abdomen: Soft, non-tender. Liver span appears slightly enlarged on percussion (mild hepatomegaly) but is not tender to palpation. No ascites."
+                    },
+                    "plan": {
+                        "investigations": {
+                            "labs": [
+                                "Review of Urgent Care Labs: ALT 620 U/L, AST 450 U/L, Total Bilirubin 5.2 mg/dL, Alk Phos 188 U/L.",
+                                "CBC shows Leukocytosis (11.2 K/uL) and Eosinophilia (8.5% / 0.95 abs).",
+                                "INR 1.2 (Borderline).",
+                                "Acetaminophen levels therapeutic (<10 ug/mL)."
+                            ]
+                        },
+                        "management": {
+                            "follow_up": "Urgent Referral to Hepatology (Dr. Gupta) for immediate evaluation.",
+                            "instructions": "Patient advised to stop taking all pain medications and avoid alcohol immediately as a precaution.",
+                            "medications_started": []
+                        }
+                    },
+                    "reason_for_visit": "Urgent evaluation of jaundice and abnormal liver enzymes."
+                },
+                "patient": {
+                    "name": "Marcus 'Mark' Elias Thorne",
+                    "sex": "Male",
+                    "age_at_first_encounter": 46
+                },
+                "encounterIndex": 23,
+                "dataSource": "Electronic Health Record"
+            }
+        },
+        "createdAt": "2025-10-14T16:55:00.003Z",
+        "updatedAt": "2025-10-14T16:55:00.003Z"
+    }
+]

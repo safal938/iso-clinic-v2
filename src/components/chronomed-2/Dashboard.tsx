@@ -1,45 +1,85 @@
-import React, { useState, useRef, useEffect } from 'react';
-import  INITIAL_DATA  from '../../data/new_medtimeline_updated.json';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
+import BOARD_ITEMS from '../../data/boardItems.json';
 import { TimelineAxis, EncounterTrack, MedicationTrack, LabTrack, KeyEventsTrack, RiskTrack, useTimelineScale, MasterGrid } from './timeline';
 import { Sidebar } from './Sidebar';
-import { MedicalData, PatientData } from './types';
+import { MedicalData, PatientData, Encounter, Medication, LabMetric, KeyEvent, RiskPoint } from './types';
+
+// Helper function to extract data from boardItems.json
+const extractTimelineData = (boardItems: any[]) => {
+  // Find the sidebar component for patient data
+  const sidebarItem = boardItems.find(item => item.componentType === 'Sidebar');
+  const patientData: PatientData | undefined = sidebarItem?.content?.props?.patientData;
+
+  // Find encounter track
+  const encounterTrack = boardItems.find(item => item.componentType === 'EncounterTrack');
+  const encounters: Encounter[] = encounterTrack?.content?.props?.encounters || [];
+
+  // Find medication track
+  const medicationTrack = boardItems.find(item => item.componentType === 'MedicationTrack');
+  const medications: Medication[] = (medicationTrack?.content?.props?.medications || []).map((med: any) => ({
+    name: med.name,
+    startDate: med.startDate,
+    endDate: med.endDate,
+    dose: med.dose,
+    indication: med.indication
+  }));
+
+  // Find lab table for lab data
+  const labTable = boardItems.find(item => item.componentType === 'LabTable');
+  
+  // Build lab timeline from LabTable data
+  const labTimeline: LabMetric[] = [];
+  if (labTable?.content?.props?.labResults) {
+    labTable.content.props.labResults.forEach((lab: any) => {
+      const rangeMatch = lab.normalRange?.match(/([0-9.]+)-([0-9.]+)/);
+      labTimeline.push({
+        biomarker: lab.name,
+        unit: lab.unit,
+        referenceRange: rangeMatch ? {
+          min: parseFloat(rangeMatch[1]),
+          max: parseFloat(rangeMatch[2])
+        } : undefined,
+        values: [{
+          t: `${lab.date}T09:00:00`,
+          value: lab.value
+        }]
+      });
+    });
+  }
+
+  // Find key events track
+  const keyEventsTrack = boardItems.find(item => item.componentType === 'KeyEventsTrack');
+  const keyEvents: KeyEvent[] = keyEventsTrack?.content?.props?.events || [];
+
+  // Find risk track
+  const riskTrack = boardItems.find(item => item.componentType === 'RiskTrack');
+  const riskTimeline: RiskPoint[] = riskTrack?.content?.props?.risks || [];
+
+  return {
+    patientData,
+    props: {
+      encounters,
+      medicationTimeline: medications,
+      labTimeline,
+      keyEvents,
+      riskTimeline
+    }
+  };
+};
 
 export const Dashboard: React.FC = () => {
-  // Use imported data directly - no need to fetch
-  const [timelineProps] = useState<MedicalData['props']>(INITIAL_DATA.content.props);
-  const [patientData] = useState<PatientData | undefined>(INITIAL_DATA.content.patientData);
+  // Extract data from boardItems.json
+  const timelineData = useMemo(() => extractTimelineData(BOARD_ITEMS as any[]), []);
+  
+  const [timelineProps] = useState<MedicalData['props']>(timelineData.props);
+  const [patientData] = useState<PatientData | undefined>(timelineData.patientData);
   const [loading] = useState(false);
   const [error] = useState<string | null>(null);
 
   const containerRef = useRef<HTMLDivElement>(null);
   
-  // Define past medications to inject
-  const pastMeds = [
-    {
-        "name": "Ramipril",
-        "startDate": "2020-01-01",
-        "dose": "5mg OD",
-        "endDate": "2025-02-15",
-        "indication": "Hypertension"
-    },
-    {
-        "name": "Metformin",
-        "startDate": "2019-01-01",
-        "dose": "1000mg BD",
-        "endDate": "2025-02-15",
-        "indication": "T2DM"
-    }
-  ];
-
-  // Merge past meds into the medication timeline
-  const allMedications = [...pastMeds, ...timelineProps.medicationTimeline];
-  
-  // Extract dates for the scale
-  const pastMedDates = pastMeds.map(m => new Date(m.startDate));
-
-  // Configuration for the encounter-based layout
-  const SLOT_WIDTH = 300; // Fixed width per encounter - reduced by 20%
-  const PADDING = 20;    // Start/End padding - reduced to move start dates left
+  // Use medications directly from the data
+  const allMedications = timelineProps.medicationTimeline;
 
   // Debug: Log the imported data to verify chief_complaint is present
   useEffect(() => {
@@ -50,9 +90,10 @@ export const Dashboard: React.FC = () => {
     })));
   }, [timelineProps]);
 
-  // Use the polylinear scale based on encounters + past med dates
+  // Use the polylinear scale based on encounters
   // The hook now returns the calculated width based on variable spacing
-  const { scale, width } = useTimelineScale(timelineProps.encounters, 20, 160, pastMedDates);
+  // paddingLeft needs to be at least half the card width (130px) + buffer to prevent sidebar overlap
+  const { scale, width } = useTimelineScale(timelineProps.encounters, 150, 160);
 
   if (loading) {
       return (
@@ -95,18 +136,17 @@ export const Dashboard: React.FC = () => {
                 <h1 className="font-bold text-slate-800 text-lg tracking-tight">Master Timeline</h1>
             </div>
             <div className="flex items-center gap-4 text-sm text-slate-500">
-                <span>View Range: Aug 2015 - Jul 2025</span>
-              
+                <span>Patient Timeline</span>
             </div>
         </header>
 
         {/* Timeline Area */}
         <main className="bg-slate-50/50 relative" ref={containerRef} style={{ width: width }}>
             <div style={{ width: width }} className="bg-white shadow-sm relative">
-                <MasterGrid encounters={timelineProps.encounters} scale={scale} height="100%" additionalDates={pastMedDates} />
+                <MasterGrid encounters={timelineProps.encounters} scale={scale} height="100%" />
                 
                 <div className="sticky top-0 z-30 bg-white/95 backdrop-blur-sm border-b border-gray-200">
-                    <TimelineAxis encounters={timelineProps.encounters} scale={scale} additionalDates={pastMedDates} />
+                    <TimelineAxis encounters={timelineProps.encounters} scale={scale} />
                 </div>
                 
                 {/* Reduced gap for compact view */}
