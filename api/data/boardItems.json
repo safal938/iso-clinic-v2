@@ -372,289 +372,97 @@
         "createdAt": "2025-10-14T16:50:46.155Z",
         "updatedAt": "2025-11-21T08:36:42.289Z"
     },
-  {
-    "id": "dashboard-item-1759906246156-lab-chart",
-    "type": "component",
-    "x": 620,
-    "y": 4304,
-    "width": 520,
-    "height": 500,
-    "componentType": "LabChart",
-    "color": "#ffffff",
-    "description": "",
-    "content": {
-      "title": "Lab Trends",
-      "component": "LabChart",
-      "props": {
-        "encounters": [
-          {
-            "encounter_no": 1,
-            "date": "2024-03-05",
-            "meta": {
-              "ui_risk_color": "amber",
-              "event_tags": [
-                "ALT 78 U/L",
-                "Mild hepatocellular elevation"
-              ]
+ {
+        "id": "dashboard-item-lab-chart",
+        "type": "component",
+        "x": 620,
+        "y": 4304,
+        "width": 520,
+        "height": 500,
+        "componentType": "LabChart",
+        "color": "#ffffff",
+        "description": "",
+        "content": {
+            "title": "Lab Trends",
+            "component": "LabChart",
+            "props": {
+                "encounters": [],
+                "medicationTimeline": [],
+                "chartData": {
+                    "ALT": [
+                        {
+                            "date": "2025-10-30",
+                            "value": 42,
+                            "encounter": 1
+                        },
+                        {
+                            "date": "2025-11-10",
+                            "value": 155,
+                            "encounter": 2
+                        },
+                        {
+                            "date": "2025-11-20",
+                            "value": 620,
+                            "encounter": 3
+                        }
+                    ],
+                    "AST": [
+                        {
+                            "date": "2025-10-30",
+                            "value": 38,
+                            "encounter": 1
+                        },
+                        {
+                            "date": "2025-11-10",
+                            "value": 120,
+                            "encounter": 2
+                        },
+                        {
+                            "date": "2025-11-20",
+                            "value": 450,
+                            "encounter": 3
+                        }
+                    ],
+                    "Total Bilirubin": [
+                        {
+                            "date": "2025-10-30",
+                            "value": 0.8,
+                            "encounter": 1
+                        },
+                        {
+                            "date": "2025-11-10",
+                            "value": 1.4,
+                            "encounter": 2
+                        },
+                        {
+                            "date": "2025-11-20",
+                            "value": 5.2,
+                            "encounter": 3
+                        }
+                    ],
+                    "INR": [
+                        {
+                            "date": "2025-10-30",
+                            "value": 1.0,
+                            "encounter": 1
+                        },
+                        {
+                            "date": "2025-11-10",
+                            "value": 1.0,
+                            "encounter": 2
+                        },
+                        {
+                            "date": "2025-11-20",
+                            "value": 1.2,
+                            "encounter": 3
+                        }
+                    ]
+                }
             }
-          },
-          {
-            "encounter_no": 2,
-            "date": "2024-04-01",
-            "meta": {
-              "ui_risk_color": "amber",
-              "event_tags": [
-                "Persistently abnormal LFTs",
-                "MASLD risk"
-              ]
-            }
-          },
-          {
-            "encounter_no": 3,
-            "date": "2024-05-06",
-            "meta": {
-              "ui_risk_color": "green",
-              "event_tags": [
-                "ALT normalized (35 U/L)",
-                "Workup negative"
-              ]
-            }
-          },
-          {
-            "encounter_no": 4,
-            "date": "2024-06-03",
-            "meta": {
-              "ui_risk_color": "green",
-              "event_tags": [
-                "Stable labs",
-                "MTX initiation"
-              ]
-            }
-          },
-          {
-            "encounter_no": 5,
-            "date": "2024-07-15",
-            "meta": {
-              "ui_risk_color": "red",
-              "event_tags": [
-                "ALT 185 U/L (4.6× ULN)",
-                "Severe MTX toxicity warning"
-              ]
-            }
-          },
-          {
-            "encounter_no": 6,
-            "date": "2024-08-12",
-            "meta": {
-              "ui_risk_color": "red",
-              "event_tags": [
-                "ALT 490 U/L (12× ULN)",
-                "Bilirubin 110 μmol/L",
-                "Severe DILI"
-              ]
-            }
-          },
-          {
-            "encounter_no": 7,
-            "date": "2024-08-15",
-            "meta": {
-              "ui_risk_color": "red",
-              "event_tags": [
-                "Bilirubin 190 μmol/L (peak)",
-                "Ongoing severe DILI"
-              ]
-            }
-          }
-        ],
-        "medicationTimeline": [
-          {
-            "name": "Metformin",
-            "start": "2019-01-01",
-            "dose": "1000mg BD"
-          },
-          {
-            "name": "Ramipril",
-            "start": "2020-01-01",
-            "dose": "5mg daily"
-          },
-          {
-            "name": "Methotrexate",
-            "start": "2024-06-03",
-            "end": "2024-08-12",
-            "dose": "7.5mg weekly initially; reduced to 5mg weekly on 2024-07-15"
-          },
-          {
-            "name": "Folic Acid",
-            "start": "2024-06-03",
-            "dose": "5mg weekly"
-          },
-          {
-            "name": "N-Acetylcysteine (IV)",
-            "start": "2024-08-12",
-            "end": "2024-08-17",
-            "dose": "3-bag protocol"
-          },
-          {
-            "name": "Ursodeoxycholic Acid",
-            "start": "2024-08-15",
-            "dose": "500mg BID"
-          }
-        ],
-        "chartData": {
-          "ALT": [
-            {
-              "date": "2024-03-05",
-              "value": 78,
-              "encounter": 1
-            },
-            {
-              "date": "2024-04-01",
-              "value": 82,
-              "encounter": 2
-            },
-            {
-              "date": "2024-05-06",
-              "value": 35,
-              "encounter": 3
-            },
-            {
-              "date": "2024-06-03",
-              "value": 32,
-              "encounter": 4
-            },
-            {
-              "date": "2024-07-15",
-              "value": 185,
-              "encounter": 5
-            },
-            {
-              "date": "2024-08-12",
-              "value": 490,
-              "encounter": 6
-            },
-            {
-              "date": "2024-08-15",
-              "value": 420,
-              "encounter": 7
-            }
-          ],
-          "AST": [
-            {
-              "date": "2024-03-05",
-              "value": 45,
-              "encounter": 1
-            },
-            {
-              "date": "2024-04-01",
-              "value": 48,
-              "encounter": 2
-            },
-            {
-              "date": "2024-05-06",
-              "value": 28,
-              "encounter": 3
-            },
-            {
-              "date": "2024-06-03",
-              "value": 25,
-              "encounter": 4
-            },
-            {
-              "date": "2024-07-15",
-              "value": 130,
-              "encounter": 5
-            },
-            {
-              "date": "2024-08-12",
-              "value": 350,
-              "encounter": 6
-            },
-            {
-              "date": "2024-08-15",
-              "value": 290,
-              "encounter": 7
-            }
-          ],
-          "Total Bilirubin": [
-            {
-              "date": "2024-03-05",
-              "value": 0.8,
-              "encounter": 1
-            },
-            {
-              "date": "2024-04-01",
-              "value": 0.9,
-              "encounter": 2
-            },
-            {
-              "date": "2024-05-06",
-              "value": 0.7,
-              "encounter": 3
-            },
-            {
-              "date": "2024-06-03",
-              "value": 0.6,
-              "encounter": 4
-            },
-            {
-              "date": "2024-07-15",
-              "value": 1.2,
-              "encounter": 5
-            },
-            {
-              "date": "2024-08-12",
-              "value": 6.4,
-              "encounter": 6
-            },
-            {
-              "date": "2024-08-15",
-              "value": 11.1,
-              "encounter": 7
-            }
-          ],
-          "INR": [
-            {
-              "date": "2024-03-05",
-              "value": 1,
-              "encounter": 1
-            },
-            {
-              "date": "2024-04-01",
-              "value": 1,
-              "encounter": 2
-            },
-            {
-              "date": "2024-05-06",
-              "value": 1,
-              "encounter": 3
-            },
-            {
-              "date": "2024-06-03",
-              "value": 1,
-              "encounter": 4
-            },
-            {
-              "date": "2024-07-15",
-              "value": 1,
-              "encounter": 5
-            },
-            {
-              "date": "2024-08-12",
-              "value": 1.1,
-              "encounter": 6
-            },
-            {
-              "date": "2024-08-15",
-              "value": 1.1,
-              "encounter": 7
-            }
-          ]
-        }
-      }
+        },
+        "createdAt": "2025-10-14T16:50:46.156Z",
+        "updatedAt": "2025-11-21T08:36:34.517Z"
     },
-    "createdAt": "2025-10-14T16:50:46.156Z",
-    "updatedAt": "2025-11-21T08:36:34.517Z"
-  },
  {
         "id": "dashboard-item-1759906246157-differential-diagnosis",
         "type": "component",
