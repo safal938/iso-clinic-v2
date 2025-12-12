@@ -24,7 +24,7 @@ export const SCENARIOS: PatientData[] = [
     ]
   },
   {
-    id: "P002",
+    id: "P0002",
     scenarioSecret: "",
     patient: {
       name: "Elena Maria Rosales",

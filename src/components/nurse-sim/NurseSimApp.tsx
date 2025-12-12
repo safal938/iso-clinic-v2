@@ -168,7 +168,7 @@ const NurseSimApp: React.FC = () => {
         setIsTogglingSimulation(true);
         try {
             websocketService.resetAudioTiming();
-            const connected = await websocketService.connect(patientData.patient.identifiers.mrn, patientData.patient.sex);
+            const connected = await websocketService.connect(patientData.id, patientData.patient.sex);
             if (connected) {
                 setIsSimulationActive(true);
                 setTimerStarted(true);
