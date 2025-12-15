@@ -47,24 +47,26 @@ const transformAssessmentData = (): StaticSimData => {
     const primaryDiagnosis: DiagnosisOption = primaryDiag ? {
         diagnosis: primaryDiag.diagnosis,
         confidenceScore: primaryDiag.indicators_count * 8,
+        severity: primaryDiag.severity || 'High',
         indicators: primaryDiag.indicators_point.map((point: string) => ({
             finding: point,
             source: 'Patient reported',
             significance: 'high' as const,
             patientQuote: point
         }))
-    } : { diagnosis: "Pending Assessment...", confidenceScore: 0, indicators: [] };
+    } : { diagnosis: "Pending Assessment...", confidenceScore: 0, severity: 'Very Low', indicators: [] };
 
     const secondaryDiagnosis: DiagnosisOption = secondaryDiag ? {
         diagnosis: secondaryDiag.diagnosis,
         confidenceScore: secondaryDiag.indicators_count * 7,
+        severity: secondaryDiag.severity || 'Moderate',
         indicators: secondaryDiag.indicators_point.map((point: string) => ({
             finding: point,
             source: 'Patient reported',
             significance: 'medium' as const,
             patientQuote: point
         }))
-    } : { diagnosis: "Pending Assessment...", confidenceScore: 0, indicators: [] };
+    } : { diagnosis: "Pending Assessment...", confidenceScore: 0, severity: 'Very Low', indicators: [] };
 
     // Parse elapsed time from duration string (e.g., "5:51")
     const durationParts = data.assessment?.duration?.split(':') || ['0', '0'];

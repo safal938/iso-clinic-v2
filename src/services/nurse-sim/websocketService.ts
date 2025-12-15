@@ -24,6 +24,7 @@ export interface BackendDiagnosis {
     indicators_count: number;
     probability: 'Low' | 'Medium' | 'High';
     rank: number;
+    severity: 'High' | 'Moderate' | 'Low' | 'Very Low';
 }
 
 // Backend question item from WebSocket
@@ -53,6 +54,7 @@ export interface WebSocketMessage {
     // Legacy clinical data
     diagnosis?: string;
     confidenceScore?: number;
+    severity?: 'High' | 'Moderate' | 'Low' | 'Very Low';
     indicators?: Array<{
         finding: string;
         source: string;

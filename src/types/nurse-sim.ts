@@ -64,9 +64,12 @@ export interface DiagnosticIndicator {
     patientQuote: string;
 }
 
+export type SeverityLevel = 'High' | 'Moderate' | 'Low' | 'Very Low';
+
 export interface DiagnosisOption {
     diagnosis: string;
     confidenceScore: number;
+    severity: SeverityLevel;
     indicators: DiagnosticIndicator[];
 }
 

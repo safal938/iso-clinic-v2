@@ -1602,7 +1602,8 @@
           "indicators_point": ["Jaundice (eyes are yellow)", "Pruritus (itching)", "Patient reports intense itching described as 'ants under skin'", "Dark urine ('like Coke')", "Dull heavy feeling under right ribs", "Nausea", "Loss of appetite", "Pale, clay-colored stool", "Patient reports wife noticed yellow eyes", "Elevated Bilirubin", "Elevated Alk Phos"],
           "indicators_count": 11,
           "probability": "High",
-          "rank": 1
+          "rank": 1,
+          "severity": "High"
         },
         {
           "did": "CGL77",
@@ -1610,7 +1611,8 @@
           "indicators_point": ["Right upper quadrant pain", "Fever", "Jaundice", "Elevated Alk Phos", "Elevated Bilirubin", "Pale stool", "Dark urine", "Dull heavy feeling under right ribs", "Loss of appetite", "Nausea", "Pruritus (itching)"],
           "indicators_count": 11,
           "probability": "High",
-          "rank": 2
+          "rank": 2,
+          "severity": "Moderate"
         },
         {
           "did": "K7890",
@@ -1618,7 +1620,8 @@
           "indicators_point": ["History of dental abscess treated with Augmentin", "Dull heavy feeling under right ribs", "Pale, clay-colored stool", "Loss of appetite", "Elevated Bilirubin", "Nausea", "Jaundice", "Elevated Alk Phos", "Pruritus (itching)", "Dark urine ('like Coke')"],
           "indicators_count": 10,
           "probability": "High",
-          "rank": 3
+          "rank": 3,
+          "severity": "Low"
         }
       ],
       "checklist": [

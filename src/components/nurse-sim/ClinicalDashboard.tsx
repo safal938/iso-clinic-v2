@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ChecklistItem, DiagnosisOption, DiagnosticIndicator } from '../../types/nurse-sim';
+import { ChecklistItem, DiagnosisOption, DiagnosticIndicator, SeverityLevel } from '../../types/nurse-sim';
 
 interface Props {
     checklist: ChecklistItem[];
@@ -11,6 +11,22 @@ interface Props {
     onToggleExpand?: () => void;
     turnCount?: number;
 }
+
+// Helper function to get severity display properties
+const getSeverityConfig = (severity: SeverityLevel) => {
+    switch (severity) {
+        case 'High':
+            return { width: '90%', color: 'bg-red-500', textColor: 'text-red-600', label: 'High' };
+        case 'Moderate':
+            return { width: '60%', color: 'bg-orange-500', textColor: 'text-orange-600', label: 'Moderate' };
+        case 'Low':
+            return { width: '30%', color: 'bg-yellow-500', textColor: 'text-yellow-600', label: 'Low' };
+        case 'Very Low':
+            return { width: '10%', color: 'bg-green-500', textColor: 'text-green-600', label: 'Very Low' };
+        default:
+            return { width: '0%', color: 'bg-gray-400', textColor: 'text-gray-500', label: 'Unknown' };
+    }
+};
 
 const QuestionCard: React.FC<{ item: ChecklistItem; isDynamic: boolean; isMoving?: boolean; isExpanded?: boolean }> = ({ item, isDynamic, isMoving = false, isExpanded = false }) => {
     const [isAnswerExpanded, setIsAnswerExpanded] = React.useState(false);
@@ -194,11 +210,11 @@ const ClinicalDashboard: React.FC<Props> = ({ checklist, primaryDiagnosis, secon
                 </div>
                 
                 {/* Dual Diagnosis Cards - Only show when there's data */}
-                {(primaryDiagnosis.confidenceScore > 0 || secondaryDiagnosis.confidenceScore > 0) ? (
+                {(primaryDiagnosis.severity || secondaryDiagnosis.severity) ? (
                     showDiagnoses ? (
                         <div className="grid grid-cols-2 gap-3">
                             {/* Primary Diagnosis Card */}
-                            {primaryDiagnosis.confidenceScore > 0 && (
+                            {primaryDiagnosis.severity && (
                                 <div 
                                     className="p-1 rounded-2xl bg-gradient-to-br from-blue-50 to-white shadow-lg border border-blue-200 cursor-pointer hover:shadow-xl transition-all duration-300 hover:scale-[1.01]"
                                     onClick={() => { setSelectedDiagnosis(primaryDiagnosis); setShowIndicatorsModal(true); }}
@@ -218,13 +234,13 @@ const ClinicalDashboard: React.FC<Props> = ({ checklist, primaryDiagnosis, secon
                                         <div className="mt-3">
                                             <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
                                                 <div 
-                                                    className="h-full transition-all duration-500 ease-out rounded-full bg-blue-500"
-                                                    style={{ width: `${primaryDiagnosis.confidenceScore}%` }}
+                                                    className={`h-full transition-all duration-500 ease-out rounded-full ${getSeverityConfig(primaryDiagnosis.severity).color}`}
+                                                    style={{ width: getSeverityConfig(primaryDiagnosis.severity).width }}
                                                 ></div>
                                             </div>
                                             <div className="flex justify-between mt-1">
-                                                <span className="text-[9px] font-bold text-blue-600">{primaryDiagnosis.confidenceScore}%</span>
-                                                <span className="text-[9px] text-slate-400">confidence</span>
+                                                <span className={`text-[9px] font-bold ${getSeverityConfig(primaryDiagnosis.severity).textColor}`}>{getSeverityConfig(primaryDiagnosis.severity).label}</span>
+                                                <span className="text-[9px] text-slate-400">severity</span>
                                             </div>
                                         </div>
                                     </div>
@@ -232,7 +248,7 @@ const ClinicalDashboard: React.FC<Props> = ({ checklist, primaryDiagnosis, secon
                             )}
 
                             {/* Secondary Diagnosis Card */}
-                            {secondaryDiagnosis.confidenceScore > 0 && (
+                            {secondaryDiagnosis.severity && (
                                 <div 
                                     className="p-1 rounded-2xl bg-gradient-to-br from-gray-50 to-white shadow border border-gray-200 cursor-pointer hover:shadow-lg transition-all duration-300 hover:scale-[1.01]"
                                     onClick={() => { setSelectedDiagnosis(secondaryDiagnosis); setShowIndicatorsModal(true); }}
@@ -252,13 +268,13 @@ const ClinicalDashboard: React.FC<Props> = ({ checklist, primaryDiagnosis, secon
                                         <div className="mt-3">
                                             <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
                                                 <div 
-                                                    className="h-full transition-all duration-500 ease-out rounded-full bg-gray-400"
-                                                    style={{ width: `${secondaryDiagnosis.confidenceScore}%` }}
+                                                    className={`h-full transition-all duration-500 ease-out rounded-full ${getSeverityConfig(secondaryDiagnosis.severity).color}`}
+                                                    style={{ width: getSeverityConfig(secondaryDiagnosis.severity).width }}
                                                 ></div>
                                             </div>
                                             <div className="flex justify-between mt-1">
-                                                <span className="text-[9px] font-bold text-gray-500">{secondaryDiagnosis.confidenceScore}%</span>
-                                                <span className="text-[9px] text-slate-400">confidence</span>
+                                                <span className={`text-[9px] font-bold ${getSeverityConfig(secondaryDiagnosis.severity).textColor}`}>{getSeverityConfig(secondaryDiagnosis.severity).label}</span>
+                                                <span className="text-[9px] text-slate-400">severity</span>
                                             </div>
                                         </div>
                                     </div>
@@ -409,7 +425,7 @@ const ClinicalDashboard: React.FC<Props> = ({ checklist, primaryDiagnosis, secon
                                     <h3 className="text-lg font-bold text-gray-800">Diagnostic Indicators</h3>
                                     <p className="text-sm text-gray-500 mt-1">
                                         Key findings for: <span className="font-semibold text-blue-600">{selectedDiagnosis.diagnosis}</span>
-                                        <span className="ml-2 text-xs text-gray-400">({selectedDiagnosis.confidenceScore}% confidence)</span>
+                                        <span className={`ml-2 text-xs ${getSeverityConfig(selectedDiagnosis.severity).textColor}`}>({getSeverityConfig(selectedDiagnosis.severity).label} severity)</span>
                                     </p>
                                 </div>
                                 <button 

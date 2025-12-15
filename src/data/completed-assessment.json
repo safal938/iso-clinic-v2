@@ -32,7 +32,8 @@
         ],
         "indicators_count": 11,
         "probability": "High",
-        "rank": 1
+        "rank": 1,
+        "severity": "High"
     },
     {
         "did": "CGL77",
@@ -52,7 +53,8 @@
         ],
         "indicators_count": 11,
         "probability": "High",
-        "rank": 2
+        "rank": 2,
+        "severity": "Moderate"
     },
     {
         "did": "K7890",
@@ -71,7 +73,8 @@
         ],
         "indicators_count": 10,
         "probability": "High",
-        "rank": 3
+        "rank": 3,
+        "severity": "Low"
     },
     {
         "did": "H1234",
@@ -89,7 +92,8 @@
         ],
         "indicators_count": 9,
         "probability": "High",
-        "rank": 4
+        "rank": 4,
+        "severity": "Low"
     },
     {
         "did": "C5678",
@@ -107,7 +111,8 @@
         ],
         "indicators_count": 9,
         "probability": "High",
-        "rank": 5
+        "rank": 5,
+        "severity": "Very Low"
     },
     {
         "did": "D9012",
@@ -125,7 +130,8 @@
         ],
         "indicators_count": 9,
         "probability": "High",
-        "rank": 6
+        "rank": 6,
+        "severity": "Very Low"
     }
   ],
   "checklist": [

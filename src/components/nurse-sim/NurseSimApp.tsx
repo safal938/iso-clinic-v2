@@ -33,8 +33,8 @@ const NurseSimApp: React.FC = () => {
     
     // Clinical Dashboard State
     const [checklist, setChecklist] = useState<ChecklistItem[]>(INITIAL_CHECKLIST);
-    const [primaryDiagnosis, setPrimaryDiagnosis] = useState<DiagnosisOption>({ diagnosis: "Pending Assessment...", confidenceScore: 0, indicators: [] });
-    const [secondaryDiagnosis, setSecondaryDiagnosis] = useState<DiagnosisOption>({ diagnosis: "Pending Assessment...", confidenceScore: 0, indicators: [] });
+    const [primaryDiagnosis, setPrimaryDiagnosis] = useState<DiagnosisOption>({ diagnosis: "Pending Assessment...", confidenceScore: 0, severity: 'Very Low', indicators: [] });
+    const [secondaryDiagnosis, setSecondaryDiagnosis] = useState<DiagnosisOption>({ diagnosis: "Pending Assessment...", confidenceScore: 0, severity: 'Very Low', indicators: [] });
     const [diagnosticPivotOccurred, setDiagnosticPivotOccurred] = useState<boolean>(false);
     
     // UI State
@@ -75,6 +75,7 @@ const NurseSimApp: React.FC = () => {
     const transformDiagnosis = (diag: BackendDiagnosis): DiagnosisOption => ({
         diagnosis: diag.diagnosis,
         confidenceScore: calculateConfidenceScore(diag.indicators_count),
+        severity: (diag as any).severity || 'Moderate',
         indicators: diag.indicators_point.map(point => {
             const significance: 'high' | 'medium' | 'low' = diag.indicators_count >= 5 ? 'high' : diag.indicators_count >= 3 ? 'medium' : 'low';
             return {
@@ -122,14 +123,15 @@ const NurseSimApp: React.FC = () => {
                 console.log("System:", message);
             },
             onClinical: (data) => {
-                if (data.diagnosis && data.confidenceScore !== undefined) {
+                if (data.diagnosis && (data.confidenceScore !== undefined || data.severity)) {
                     const indicators = (data.indicators || []).map(ind => ({
                         ...ind,
                         significance: (ind.significance || 'medium') as 'high' | 'medium' | 'low'
                     }));
                     setPrimaryDiagnosis({
                         diagnosis: data.diagnosis,
-                        confidenceScore: data.confidenceScore,
+                        confidenceScore: data.confidenceScore || 0,
+                        severity: data.severity || 'Moderate',
                         indicators
                     });
                 }
@@ -203,8 +205,8 @@ const NurseSimApp: React.FC = () => {
         setIsSimulationActive(false);
         setMessages([]);
         setChecklist(INITIAL_CHECKLIST);
-        setPrimaryDiagnosis({ diagnosis: "Pending Assessment...", confidenceScore: 0, indicators: [] });
-        setSecondaryDiagnosis({ diagnosis: "Pending Assessment...", confidenceScore: 0, indicators: [] });
+        setPrimaryDiagnosis({ diagnosis: "Pending Assessment...", confidenceScore: 0, severity: 'Very Low', indicators: [] });
+        setSecondaryDiagnosis({ diagnosis: "Pending Assessment...", confidenceScore: 0, severity: 'Very Low', indicators: [] });
         setDiagnosticPivotOccurred(false);
         setElapsedTime(0);
         setTimerStarted(false);

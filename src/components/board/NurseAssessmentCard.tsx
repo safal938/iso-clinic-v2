@@ -14,6 +14,8 @@ interface Message {
   highlights?: MessageHighlight[];
 }
 
+type SeverityLevel = 'High' | 'Moderate' | 'Low' | 'Very Low';
+
 interface DifferentialDiagnosis {
   did: string;
   diagnosis: string;
@@ -21,7 +23,24 @@ interface DifferentialDiagnosis {
   indicators_count: number;
   probability: 'High' | 'Medium' | 'Low';
   rank: number;
+  severity?: SeverityLevel;
 }
+
+// Helper function to get severity display properties
+const getSeverityConfig = (severity: SeverityLevel) => {
+  switch (severity) {
+    case 'High':
+      return { width: '90%', color: 'bg-red-500', textColor: 'text-red-600', bgColor: 'bg-red-100', label: 'High' };
+    case 'Moderate':
+      return { width: '60%', color: 'bg-orange-500', textColor: 'text-orange-600', bgColor: 'bg-orange-100', label: 'Moderate' };
+    case 'Low':
+      return { width: '30%', color: 'bg-yellow-500', textColor: 'text-yellow-600', bgColor: 'bg-yellow-100', label: 'Low' };
+    case 'Very Low':
+      return { width: '10%', color: 'bg-green-500', textColor: 'text-green-600', bgColor: 'bg-green-100', label: 'Very Low' };
+    default:
+      return { width: '0%', color: 'bg-gray-400', textColor: 'text-gray-500', bgColor: 'bg-gray-100', label: 'Unknown' };
+  }
+};
 
 interface ChecklistItem {
   id: string;
@@ -254,7 +273,7 @@ const NurseAssessmentCard: React.FC<NurseAssessmentCardProps> = ({ width = 1800,
             <div className="grid grid-cols-3 gap-2">
               {topDiagnoses.map((dx, idx) => {
                 const isTop = idx === 0;
-                const probabilityColor = dx.probability === 'High' ? 'red' : dx.probability === 'Medium' ? 'amber' : 'gray';
+                const severityConfig = getSeverityConfig(dx.severity || 'Moderate');
                 return (
                   <div 
                     key={dx.did} 
@@ -264,11 +283,16 @@ const NurseAssessmentCard: React.FC<NurseAssessmentCardProps> = ({ width = 1800,
                     <div className="bg-white rounded-lg p-3 border border-slate-50">
                       <div className="flex items-center gap-1.5 mb-1.5">
                         <span className={`px-1.5 py-0.5 rounded text-[8px] font-bold ${isTop ? 'bg-blue-100 text-blue-600' : 'bg-gray-100 text-gray-500'}`}>#{dx.rank}</span>
-                        <span className={`px-1.5 py-0.5 rounded text-[8px] font-bold bg-${probabilityColor}-100 text-${probabilityColor}-600`}>{dx.probability}</span>
                       </div>
                       <div className={`text-xs font-bold leading-tight ${isTop ? 'text-slate-800' : 'text-gray-600'}`}>{dx.diagnosis}</div>
-                      <div className="mt-2 flex items-center gap-1">
-                        <span className="text-[9px] text-gray-400">{dx.indicators_count} indicators</span>
+                      <div className="mt-2">
+                        <div className="h-1.5 w-full bg-slate-100 rounded-full overflow-hidden">
+                          <div className={`h-full transition-all duration-500 ease-out rounded-full ${severityConfig.color}`} style={{ width: severityConfig.width }}></div>
+                        </div>
+                        <div className="flex justify-between mt-1">
+                          <span className={`text-[9px] font-bold ${severityConfig.textColor}`}>{severityConfig.label}</span>
+                          <span className="text-[9px] text-slate-400">severity</span>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -319,8 +343,8 @@ const NurseAssessmentCard: React.FC<NurseAssessmentCardProps> = ({ width = 1800,
                   <h3 className="text-lg font-bold text-gray-800">Diagnostic Indicators</h3>
                   <p className="text-sm text-gray-500 mt-1">
                     <span className="font-semibold text-blue-600">{selectedDiagnosis.diagnosis}</span>
-                    <span className={`ml-2 px-2 py-0.5 rounded text-xs font-bold ${selectedDiagnosis.probability === 'High' ? 'bg-red-100 text-red-600' : selectedDiagnosis.probability === 'Medium' ? 'bg-amber-100 text-amber-600' : 'bg-gray-100 text-gray-600'}`}>
-                      {selectedDiagnosis.probability} Probability
+                    <span className={`ml-2 px-2 py-0.5 rounded text-xs font-bold ${getSeverityConfig(selectedDiagnosis.severity || 'Moderate').bgColor} ${getSeverityConfig(selectedDiagnosis.severity || 'Moderate').textColor}`}>
+                      {getSeverityConfig(selectedDiagnosis.severity || 'Moderate').label} Severity
                     </span>
                   </p>
                 </div>
