@@ -4,7 +4,6 @@
  * This file is completely separate from ClinicPanelLeft.tsx
  */
 import React, { useEffect, useRef, useState, useMemo } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { RoomType, RoomDef, Patient } from '../../types/isoclinic';
 import { getRandomColor } from '../../utils/isometric';
 import { gridToScreenRight, getMonitoringTargetRight, WAYPOINTS_RIGHT } from '../../utils/isometric-right';
@@ -125,7 +124,6 @@ interface ClinicPanelRightProps {
 // COMPONENT
 // ============================================
 const ClinicPanelRight: React.FC<ClinicPanelRightProps> = ({ simActive, gameTime, onStatsUpdate }) => {
-  const navigate = useNavigate();
   const [viewState, setViewState] = useState({ x: 0, y: 0, zoom: 0.17 });
   const [isDragging, setIsDragging] = useState(false);
   const lastMousePos = useRef({ x: 0, y: 0 });
@@ -332,13 +330,9 @@ const ClinicPanelRight: React.FC<ClinicPanelRightProps> = ({ simActive, gameTime
   };
   const handleMouseUp = () => { setIsDragging(false); };
 
-  const handleRoomClick = (room: RoomDef) => {
-    if (room.id === 'pre_consult') navigate('/pre-consultation');
-    else if (room.type === RoomType.HEPATOLOGIST) navigate('/board');
-    else if (room.type === RoomType.NURSE && room.id.startsWith('nurse')) {
-      if (room.id === 'nurse1') navigate('/nurse-sim-1');
-      else navigate('/nurse-sim', { state: { triageRoom: room.id } });
-    }
+  // Navigation disabled for this panel
+  const handleRoomClick = (_room: RoomDef) => {
+    // Do nothing - navigation disabled
   };
 
   const isInDoorZone = (gridX: number, gridY: number) => gridX >= DOOR_ZONE.minX && gridX <= DOOR_ZONE.maxX && gridY >= DOOR_ZONE.minY && gridY <= DOOR_ZONE.maxY;
