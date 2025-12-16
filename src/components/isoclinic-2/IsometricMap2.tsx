@@ -255,7 +255,7 @@ const IsometricMap2: React.FC = () => {
 
               {/* Cost Analysis Section */}
               <div className="mb-6">
-                <h3 className="text-sm font-bold text-slate-700 uppercase tracking-wide mb-3 border-b pb-2">💰 Cost Analysis (9-hour shift)</h3>
+                <h3 className="text-sm font-bold text-slate-700 uppercase tracking-wide mb-3 border-b pb-2"> Cost Analysis (9-hour shift)</h3>
                 <div className="grid grid-cols-2 gap-4">
                   {/* AI Clinic Costs */}
                   <div className="bg-indigo-50 rounded-lg p-4">
@@ -280,7 +280,7 @@ const IsometricMap2: React.FC = () => {
 
               {/* Productivity Metrics */}
               <div className="mb-6">
-                <h3 className="text-sm font-bold text-slate-700 uppercase tracking-wide mb-3 border-b pb-2">📈 Productivity Metrics</h3>
+                <h3 className="text-sm font-bold text-slate-700 uppercase tracking-wide mb-3 border-b pb-2"> Productivity Metrics</h3>
                 <div className="grid grid-cols-3 gap-4">
                   <div className="bg-emerald-50 rounded-lg p-4 text-center">
                     <div className="text-3xl font-black text-emerald-600">
@@ -305,7 +305,7 @@ const IsometricMap2: React.FC = () => {
 
               {/* KPI Comparison */}
               <div className="mb-6">
-                <h3 className="text-sm font-bold text-slate-700 uppercase tracking-wide mb-3 border-b pb-2">🎯 KPI Comparison</h3>
+                <h3 className="text-sm font-bold text-slate-700 uppercase tracking-wide mb-3 border-b pb-2"> KPI Comparison</h3>
                 <table className="w-full text-sm">
                   <thead className="bg-slate-100">
                     <tr>
