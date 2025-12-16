@@ -127,7 +127,7 @@ const IsometricMap2: React.FC = () => {
         </button>
         <div className="flex-1 mx-4">
           <div className="w-full h-1 bg-slate-200 rounded-full overflow-hidden">
-            <div className="h-full bg-indigo-500 rounded-full transition-all" style={{ width: `${progressPercent}%` }} />
+            <div className="h-full bg-indigo-500 rounded-full" style={{ width: `${progressPercent}%` }} />
           </div>
         </div>
         <span className="text-xs font-mono text-slate-600">{formatTime(gameTime)}</span>
