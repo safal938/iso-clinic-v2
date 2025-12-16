@@ -279,7 +279,10 @@ const IsometricMap: React.FC = () => {
 
   const handleRoomClick = (room: RoomDef) => {
     console.log('Room clicked:', room.id, room.type, room.name);
-    if (room.type === RoomType.HEPATOLOGIST) {
+    if (room.id === 'pre_consult') {
+      console.log('Navigating to /pre-consultation');
+      navigate('/pre-consultation');
+    } else if (room.type === RoomType.HEPATOLOGIST) {
       console.log('Navigating to /board');
       navigate('/board');
     } else if (room.type === RoomType.NURSE && room.id.startsWith('nurse')) {
@@ -340,7 +343,8 @@ const IsometricMap: React.FC = () => {
       const screenWidth = room.width * 32;
       const screenHeight = room.height * 32;
 
-      const isClickableRoom = room.type === RoomType.HEPATOLOGIST || (room.type === RoomType.NURSE && room.id.startsWith('nurse'));
+      const isClickableRoom = room.id === 'pre_consult' || room.type === RoomType.HEPATOLOGIST || (room.type === RoomType.NURSE && room.id.startsWith('nurse'));
+      const showHighlight = room.type === RoomType.HEPATOLOGIST || (room.type === RoomType.NURSE && room.id.startsWith('nurse'));
       
       clickableAreas.push(
         <g 
@@ -358,7 +362,7 @@ const IsometricMap: React.FC = () => {
             width={screenWidth} 
             height={screenHeight} 
             color={room.floorColor || '#888'} 
-            opacity={isClickableRoom ? 0.15 : 0.01} 
+            opacity={showHighlight ? 0.15 : 0.01} 
             borderRadius={25} 
           />
         </g>

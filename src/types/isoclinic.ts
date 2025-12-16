@@ -37,9 +37,11 @@ export interface Patient {
   targetY?: number;
   state: 'entering' | 'waiting' | 'to_nurse' | 'at_nurse' | 'to_doc' | 'at_doc' | 'to_monitoring' | 'at_monitoring' | 'exiting';
   assignedStaffId?: string;
+  assignedSeatIndex?: number;
   waitTimer: number;
   color: string;
   facing: 'left' | 'right';
+  needsHepa?: boolean;
 }
 
 export interface Staff {

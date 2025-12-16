@@ -1,23 +1,39 @@
-import { RoomDef, RoomType, Staff, Patient } from '../types/isoclinic';
-
-export const TILE_WIDTH = 64;
-export const TILE_HEIGHT = 32;
-export const WALL_HEIGHT = 120;
+import { RoomType, Staff } from '../types/isoclinic';
+import { ExtendedRoomDef } from './isoclinic';
 
 // ============================================
-// AI CLINIC SIMULATION SETTINGS
-// 4X faster processing than regular clinic
+// SVG CONFIGURATION FOR RIGHT CLINIC
 // ============================================
-export const PATIENT_SPEED = 0.2;              // Fast movement (AI guidance)
-export const SPAWN_RATE_TICKS = 900;           // Slower spawn rate (~15 seconds between batches)
-export const BATCH_SIZE = 5;                   // Spawn 5 patients per batch
-export const WAITING_TIME_TICKS = 50;          // 4X faster: 200/4 = 50
-export const TREATMENT_TIME_TICKS = 100;       // 4X faster: 400/4 = 100
+// Change these paths to use different SVG files
+// Place your SVG files in the /public folder
+export const SVG_REST_RIGHT = {
+  src: '/rest.svg',      // <-- Change this to your new SVG path (e.g., '/clinic-right.svg')
+  x: -825,               // <-- Adjust X position
+  y: -300,               // <-- Adjust Y position  
+  width: 4626,           // <-- Adjust width
+  height: 3324,          // <-- Adjust height
+};
 
-export interface ExtendedRoomDef extends RoomDef {
-  labelColor?: string;
-}
+export const SVG_DOOR_RIGHT = {
+  src: '/door.svg',      // <-- Change this to your new door SVG path (or set to empty string to hide)
+  x: 165,                // <-- Adjust X position
+  y: 600,                // <-- Adjust Y position
+  width: 1557,           // <-- Adjust width
+  height: 1869,          // <-- Adjust height
+};
 
+// Door zone defines where characters render "behind" the door
+// Characters in this zone render before the door SVG layer
+export const DOOR_ZONE_RIGHT = {
+  minX: 30,
+  maxX: 55,
+  minY: 10,
+  maxY: 25,
+};
+
+// ============================================
+// ROOM COLORS
+// ============================================
 const COL_PRE_CONSULT = '#93c5fd';
 const COL_WAITING = '#d8b4fe';
 const COL_NURSE = '#67e8f9';
@@ -25,14 +41,19 @@ const COL_HEPA = '#fca5a5';
 const COL_TELE_NURSE = '#cffafe';
 const COL_MONITORING = '#fca5a5';
 
-export const MAIN_ROOM = { x: 24, y: 24, w: 45, h: 45 };
+// Waypoints for right clinic - adjust these to match your room positions
+export const SPAWN_POINT_RIGHT = { x: 30, y: 19 };
+export const WAITING_POINT_RIGHT = { x: 70, y: 22 };
+export const HEPA_POINT_RIGHT = { x: 93, y: 29 };
 
-export const SPAWN_POINT = { x: 30, y: 19 };
-export const WAITING_POINT = { x: 70, y: 22 };
-export const HEPA_POINT = { x: 93, y: 29 };
-export const EXIT_DOOR_POS = { x: 55, y: 10 };
+// Corridor waypoints for right clinic
+export const CORRIDOR_NORTH_RIGHT = { x: 72, y: 10 };
+export const CORRIDOR_SOUTH_RIGHT = { x: 72, y: 45 };
+export const MONITORING_ENTRY_NORTH_RIGHT = { x: 120, y: 12 };
+export const MONITORING_ENTRY_SOUTH_RIGHT = { x: 120, y: 50 };
 
-export const ROOMS: ExtendedRoomDef[] = [
+// Room definitions for right clinic - modify gridX, gridY, width, height as needed
+export const ROOMS_RIGHT: ExtendedRoomDef[] = [
   {
     id: 'pre_consult',
     name: 'Pre consultation',
@@ -58,28 +79,28 @@ export const ROOMS: ExtendedRoomDef[] = [
     id: 'nurse1',
     name: 'Expert Nurse',
     type: RoomType.NURSE,
-    gridX: 77, gridY: 33.5, width: 12, height: 12,
+    gridX: 77, gridY: 33.5, width: 12, height: 12,  // <-- Modify these values
     color: '#fff', floorColor: COL_NURSE, wallColor: '#fff',
   },
   {
     id: 'nurse2',
     name: 'Expert Nurse',
     type: RoomType.NURSE,
-    gridX: 76, gridY: 22, width: 13, height: 12,
+    gridX: 76, gridY: 22, width: 13, height: 12,  // <-- Modify these values
     color: '#fff', floorColor: COL_NURSE, wallColor: '#fff',
   },
   {
     id: 'nurse3',
     name: 'Expert Nurse',
     type: RoomType.NURSE,
-    gridX: 74, gridY: 10, width: 13, height: 11,
+    gridX: 74, gridY: 10, width: 13, height: 11,  // <-- Modify these values
     color: '#fff', floorColor: COL_NURSE, wallColor: '#fff',
   },
   {
     id: 'hepatologist',
     name: 'Hepatologist',
     type: RoomType.HEPATOLOGIST,
-    gridX: 77, gridY: 23, width: 33, height: 12,
+    gridX: 77, gridY: 23, width: 33, height: 12,  // <-- Modify these values
     color: '#fff', floorColor: COL_HEPA, wallColor: '#fff',
   },
   {
@@ -93,12 +114,13 @@ export const ROOMS: ExtendedRoomDef[] = [
     id: 'monitoring',
     name: 'Monitoring',
     type: RoomType.MONITORING,
-    gridX: 94, gridY: 12, width: 58, height: 40,
+    gridX: 94, gridY: 12, width: 58, height: 40,  // <-- Modify these values
     color: '#fff', floorColor: COL_MONITORING, wallColor: '#fff',
   }
 ];
 
-export const STAFF: Staff[] = [
+// Staff positions for right clinic - positions are relative to their room
+export const STAFF_RIGHT: Staff[] = [
   { id: 'tele_doc', type: 'doctor', roomId: 'tele_pre', gridX: 11.5, gridY: 11.5, facing: 'right', name: 'Tele Doc', isSeated: true },
   { id: 'nurse_1', type: 'nurse', roomId: 'nurse1', gridX: 6, gridY: 6, facing: 'left', name: 'Nurse 1', isSeated: true },
   { id: 'nurse_2', type: 'nurse', roomId: 'nurse2', gridX: 6.5, gridY: 6, facing: 'left', name: 'Nurse 2', isSeated: true },
@@ -106,8 +128,3 @@ export const STAFF: Staff[] = [
   { id: 'hepa_doc', type: 'doctor', roomId: 'hepatologist', gridX: 16.5, gridY: 6, facing: 'left', name: 'Hepatologist', isSeated: false },
   { id: 'expert_tele_nurse', type: 'nurse', roomId: 'expert_tele', gridX: 12, gridY: 12, facing: 'left', name: 'Tele Nurse', isSeated: true },
 ];
-
-export const STATIC_PATIENTS: Patient[] = [];
-
-export const CLINIC_WIDTH = 80;
-export const CLINIC_HEIGHT = 80;
