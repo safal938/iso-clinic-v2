@@ -175,7 +175,7 @@ const IsometricMap2: React.FC = () => {
             {/* Patients Treated Graph */}
             <div className="bg-white rounded p-2 flex-1 flex flex-col">
               <div className="font-bold text-indigo-600 mb-1 text-xs">Patients Treated Over Time</div>
-              <div style={{ width: '100%', height: 120 }}>
+              <div style={{ width: '100%', height: 130 }}>
                 {treatedHistory.length > 1 ? (
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={treatedHistory} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
@@ -228,38 +228,7 @@ const IsometricMap2: React.FC = () => {
               </div>
             </div>
             {/* Patients Treated Graph */}
-            <div className="bg-white rounded p-2 flex-1 flex flex-col">
-              <div className="font-bold text-slate-500 mb-1 text-xs">Patients Treated Over Time</div>
-              <div style={{ width: '100%', height: 120 }}>
-                {treatedHistory.length > 1 ? (
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={treatedHistory} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
-                      <XAxis 
-                        dataKey="time" 
-                        tick={{ fontSize: 9 }} 
-                        tickFormatter={(val) => `${Math.floor(START_HOUR + val / 60)}:${String(Math.floor(val % 60)).padStart(2, '0')}`}
-                        stroke="#94a3b8"
-                      />
-                      <YAxis tick={{ fontSize: 9 }} stroke="#94a3b8" width={30} />
-                      <Tooltip 
-                        contentStyle={{ fontSize: 10, padding: '4px 8px' }}
-                        labelFormatter={(val) => `Time: ${Math.floor(START_HOUR + Number(val) / 60)}:${String(Math.floor(Number(val) % 60)).padStart(2, '0')}`}
-                      />
-                      <Line type="linear" dataKey="aiTreated" stroke="#4f46e5" strokeWidth={2} dot={{ r: 1, fill: '#4f46e5' }} isAnimationActive={false} name="AI Clinic" />
-                      <Line type="linear" dataKey="stdTreated" stroke="#84cc16" strokeWidth={2} dot={{ r: 1, fill: '#84cc16' }} isAnimationActive={false} name="Standard" />
-                    </LineChart>
-                  </ResponsiveContainer>
-                ) : (
-                  <div className="h-full flex items-center justify-center text-xs text-slate-400">
-                    Graph will appear during simulation
-                  </div>
-                )}
-              </div>
-              <div className="flex gap-3 text-[10px] mt-1">
-                <div className="flex items-center gap-1"><span className="w-3 h-0.5 bg-indigo-600"></span>AI Clinic</div>
-                <div className="flex items-center gap-1"><span className="w-3 h-0.5 bg-lime-500"></span>Standard</div>
-              </div>
-            </div>
+            
           </div>
         </div>
 
