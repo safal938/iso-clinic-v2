@@ -28,7 +28,7 @@ const getSeverityConfig = (severity: SeverityLevel) => {
     }
 };
 
-const QuestionCard: React.FC<{ item: ChecklistItem; isDynamic: boolean; isMoving?: boolean; isExpanded?: boolean; swapDirection?: 'up' | 'down' | null; rankPosition?: number }> = ({ item, isDynamic, isMoving = false, isExpanded = false, swapDirection = null, rankPosition }) => {
+const QuestionCard: React.FC<{ item: ChecklistItem; isDynamic: boolean; isMoving?: boolean; isExpanded?: boolean; swapDirection?: 'up' | 'down' | null }> = ({ item, isDynamic, isMoving = false, isExpanded = false, swapDirection = null }) => {
     const [isAnswerExpanded, setIsAnswerExpanded] = React.useState(false);
     const hasLongAnswer = item.answer && item.answer.length > 80;
     const isNew = isDynamic && !item.isCompleted;
@@ -53,14 +53,6 @@ const QuestionCard: React.FC<{ item: ChecklistItem; isDynamic: boolean; isMoving
                 ${isExpanded ? 'hover:shadow-md hover:scale-[1.01]' : ''}
             `}
         >
-            {/* Rank Position Badge */}
-            {rankPosition !== undefined && isNew && (
-                <div className={`absolute -top-2 -left-2 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shadow-sm z-10 ${
-                    rankPosition <= 3 ? 'bg-amber-400 text-amber-900' : 'bg-gray-300 text-gray-600'
-                }`}>
-                    {rankPosition}
-                </div>
-            )}
             <div className="flex items-start gap-2">
                 {/* Status Icon */}
                 <div className={`
@@ -146,8 +138,8 @@ const ClinicalDashboard: React.FC<Props> = ({ checklist, primaryDiagnosis, secon
     const [selectedDiagnosis, setSelectedDiagnosis] = React.useState<DiagnosisOption | null>(null);
     const prevChecklistRef = React.useRef(checklist);
     
-    // Track swapping items for animation
-    const [swappingItems, setSwappingItems] = React.useState<{id1: string; id2: string; direction1: 'up' | 'down'; direction2: 'up' | 'down'} | null>(null);
+    // Track items with their movement direction for animation
+    const [movingItems, setMovingItems] = React.useState<Map<string, 'up' | 'down'>>(new Map());
     
     // Split checklist into dynamic (new) and fixed (standard)
     // Sort by rank (lower rank = higher priority = appears first)
@@ -156,21 +148,20 @@ const ClinicalDashboard: React.FC<Props> = ({ checklist, primaryDiagnosis, secon
         .sort((a, b) => (a.rank ?? 999) - (b.rank ?? 999));
     const fixedItems = checklist.filter(i => i.category === 'fixed');
     
-    // Track items that changed rank for highlight animation
-    const [rankChangedItems, setRankChangedItems] = React.useState<Set<string>>(new Set());
-    
-    // Detect when an item becomes completed OR when ranks change (swap)
+    // Detect when an item becomes completed OR when ranks change (reorder)
     React.useEffect(() => {
         const prevChecklist = prevChecklistRef.current;
         
-        // Find newly completed items by comparing with previous state
+        // Check if any item just became completed (answered)
+        let hasNewlyCompleted = false;
         checklist.forEach((item) => {
             const prevItem = prevChecklist.find(p => p.id === item.id);
             if (prevItem && !prevItem.isCompleted && item.isCompleted) {
+                hasNewlyCompleted = true;
                 setMovingItemId(item.id);
                 // Store the item data before it moves
                 setMovingItemData({...prevItem, isCompleted: false});
-                // Clear after animation completes
+                // Clear after move animation completes (before re-ranking starts)
                 setTimeout(() => {
                     setMovingItemId(null);
                     setMovingItemData(null);
@@ -178,51 +169,53 @@ const ClinicalDashboard: React.FC<Props> = ({ checklist, primaryDiagnosis, secon
             }
         });
         
-        // Detect rank changes in dynamic items (unanswered only)
-        const prevDynamic = prevChecklist
-            .filter(i => i.category === 'dynamic' && !i.isCompleted)
-            .sort((a, b) => (a.rank ?? 999) - (b.rank ?? 999));
-        const currDynamic = checklist
-            .filter(i => i.category === 'dynamic' && !i.isCompleted)
-            .sort((a, b) => (a.rank ?? 999) - (b.rank ?? 999));
-        
-        // Find items whose position changed
-        const changedIds = new Set<string>();
-        const swapPairs: {id1: string; id2: string; dir1: 'up' | 'down'; dir2: 'up' | 'down'} | null = null;
-        
-        currDynamic.forEach((item, newIndex) => {
-            const oldIndex = prevDynamic.findIndex(p => p.id === item.id);
-            if (oldIndex !== -1 && oldIndex !== newIndex) {
-                changedIds.add(item.id);
-            }
-        });
-        
-        // If positions changed, trigger animation
-        if (changedIds.size > 0) {
-            // Find the first pair that swapped for the swap animation
-            for (let i = 0; i < Math.min(prevDynamic.length, currDynamic.length); i++) {
-                const prevItem = prevDynamic[i];
-                const currItem = currDynamic[i];
-                
-                if (prevItem && currItem && prevItem.id !== currItem.id) {
-                    const newPosOfPrevItem = currDynamic.findIndex(c => c.id === prevItem.id);
-                    
-                    if (newPosOfPrevItem !== -1) {
-                        setSwappingItems({
-                            id1: prevItem.id,
-                            id2: currItem.id,
-                            direction1: newPosOfPrevItem > i ? 'down' : 'up',
-                            direction2: 'up' // The item that moved up
-                        });
-                        
-                        // Clear swap animation after it completes
-                        setTimeout(() => {
-                            setSwappingItems(null);
-                        }, 600);
-                        break; // Only animate one swap at a time
-                    }
+        // Function to detect and trigger rank change animations
+        const triggerRankAnimations = () => {
+            const prevDynamic = prevChecklist
+                .filter(i => i.category === 'dynamic' && !i.isCompleted)
+                .sort((a, b) => (a.rank ?? 999) - (b.rank ?? 999));
+            const currDynamic = checklist
+                .filter(i => i.category === 'dynamic' && !i.isCompleted)
+                .sort((a, b) => (a.rank ?? 999) - (b.rank ?? 999));
+            
+            // Build a map of old positions
+            const oldPositions = new Map<string, number>();
+            prevDynamic.forEach((item, index) => oldPositions.set(item.id, index));
+            
+            // Find items whose position changed and determine direction
+            const movements = new Map<string, 'up' | 'down'>();
+            
+            currDynamic.forEach((item, newIndex) => {
+                const oldIndex = oldPositions.get(item.id);
+                if (oldIndex !== undefined && oldIndex !== newIndex) {
+                    // Item moved: up if new index is smaller (moved to top), down if larger
+                    movements.set(item.id, newIndex < oldIndex ? 'up' : 'down');
                 }
+            });
+            
+            // If any items moved, trigger animations
+            if (movements.size > 0) {
+                setMovingItems(movements);
+                
+                // Clear animations after they complete
+                setTimeout(() => {
+                    setMovingItems(new Map());
+                }, 800);
             }
+        };
+        
+        // If an item was just answered, delay the re-ranking animation
+        // Wait for: 1) answered item to move to other column (~1.5s)
+        //           2) empty space to collapse/fill in
+        //           3) additional 1 second pause
+        // Total delay: 1500ms (move) + 1000ms (pause) = 2500ms
+        if (hasNewlyCompleted) {
+            setTimeout(() => {
+                triggerRankAnimations();
+            }, 2500);
+        } else {
+            // No newly completed item, trigger rank animations immediately
+            triggerRankAnimations();
         }
         
         prevChecklistRef.current = checklist;
@@ -399,18 +392,14 @@ const ClinicalDashboard: React.FC<Props> = ({ checklist, primaryDiagnosis, secon
                                             </div>
                                         </div>
                                     )}
-                                    {dynamicItems.filter(i => !i.isCompleted).map((item, index) => {
-                                        const isSwapping = swappingItems && (swappingItems.id1 === item.id || swappingItems.id2 === item.id);
-                                        const swapDir = isSwapping 
-                                            ? (swappingItems.id1 === item.id ? swappingItems.direction1 : swappingItems.direction2)
-                                            : null;
+                                    {dynamicItems.filter(i => !i.isCompleted).map((item) => {
+                                        const moveDirection = movingItems.get(item.id) || null;
                                         return (
                                             <div 
                                                 key={item.id}
-                                                className={`${movingItemData ? 'animate-in slide-in-from-right-2 fade-in duration-700' : ''}`}
-                                                style={{ animationDelay: `${movingItemData ? '1200ms' : `${index * 50}ms`}` }}
+                                                className={`question-card-wrapper ${moveDirection ? (moveDirection === 'up' ? 'animate-swap-up' : 'animate-swap-down') : ''}`}
                                             >
-                                                <QuestionCard item={item} isDynamic={true} isMoving={false} isExpanded={isExpanded} swapDirection={swapDir} />
+                                                <QuestionCard item={item} isDynamic={true} isMoving={false} isExpanded={isExpanded} swapDirection={moveDirection} />
                                             </div>
                                         );
                                     })}
@@ -481,18 +470,14 @@ const ClinicalDashboard: React.FC<Props> = ({ checklist, primaryDiagnosis, secon
                                             </div>
                                         </div>
                                     )}
-                                    {dynamicItems.filter(i => !i.isCompleted).map((item, index) => {
-                                        const isSwapping = swappingItems && (swappingItems.id1 === item.id || swappingItems.id2 === item.id);
-                                        const swapDir = isSwapping 
-                                            ? (swappingItems.id1 === item.id ? swappingItems.direction1 : swappingItems.direction2)
-                                            : null;
+                                    {dynamicItems.filter(i => !i.isCompleted).map((item) => {
+                                        const moveDirection = movingItems.get(item.id) || null;
                                         return (
                                             <div 
                                                 key={item.id}
-                                                className={`${movingItemData ? 'animate-in slide-in-from-right-2 fade-in duration-700' : ''}`}
-                                                style={{ animationDelay: `${movingItemData ? '1200ms' : `${index * 50}ms`}` }}
+                                                className={`question-card-wrapper ${moveDirection ? (moveDirection === 'up' ? 'animate-swap-up' : 'animate-swap-down') : ''}`}
                                             >
-                                                <QuestionCard item={item} isDynamic={true} isMoving={false} isExpanded={isExpanded} swapDirection={swapDir} />
+                                                <QuestionCard item={item} isDynamic={true} isMoving={false} isExpanded={isExpanded} swapDirection={moveDirection} />
                                             </div>
                                         );
                                     })}
@@ -582,7 +567,7 @@ const ClinicalDashboard: React.FC<Props> = ({ checklist, primaryDiagnosis, secon
                                                     </span>
                                                     {indicator.patientQuote && (
                                                         <div className="mt-2 p-3 bg-white rounded-lg border border-gray-200">
-                                                            <p className="text-xs text-gray-400 mb-1 font-medium">Patient said:</p>
+                                                            <p className="text-xs text-gray-400 mb-1 font-medium">Source:</p>
                                                             <p className="text-sm text-gray-700 italic">"{indicator.patientQuote}"</p>
                                                         </div>
                                                     )}

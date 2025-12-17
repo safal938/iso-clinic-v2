@@ -260,6 +260,7 @@ class WebSocketService {
             
             switch (msg.type) {
                 case 'transcript':
+                    console.log('[WS] Transcript received:', { speaker: msg.speaker, text: msg.text?.substring(0, 50) + '...' });
                     if (msg.speaker && msg.text) {
                         const transcriptId = msg.id;
                         
@@ -391,6 +392,7 @@ class WebSocketService {
                     break;
 
                 case 'diagnosis':
+                    console.log('[WS] Diagnosis received:', msg.data?.length, 'diagnoses', msg.data?.map((d: any) => d.diagnosis));
                     if (msg.data && Array.isArray(msg.data)) {
                         // Store diagnosis data, don't apply yet - wait for turn cycle
                         this.pendingDiagnoses = msg.data as BackendDiagnosis[];
@@ -398,6 +400,7 @@ class WebSocketService {
                     break;
 
                 case 'questions':
+                    console.log('[WS] Questions received:', msg.data?.length, 'questions');
                     if (msg.data && Array.isArray(msg.data)) {
                         // Store questions data, don't apply yet - wait for turn cycle
                         this.pendingQuestions = msg.data as BackendQuestion[];
