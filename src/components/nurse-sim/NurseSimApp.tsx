@@ -95,7 +95,8 @@ const NurseSimApp: React.FC = () => {
                 text: q.content,
                 isCompleted: q.status === 'asked',
                 category: q.qid.startsWith('0000') ? 'fixed' : 'dynamic' as const,
-                answer: q.status === 'asked' ? (q.answer || 'Asked') : undefined
+                answer: q.status === 'asked' ? (q.answer || 'Asked') : undefined,
+                rank: q.rank
             }));
     };
 

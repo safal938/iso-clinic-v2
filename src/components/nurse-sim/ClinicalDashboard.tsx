@@ -28,15 +28,20 @@ const getSeverityConfig = (severity: SeverityLevel) => {
     }
 };
 
-const QuestionCard: React.FC<{ item: ChecklistItem; isDynamic: boolean; isMoving?: boolean; isExpanded?: boolean }> = ({ item, isDynamic, isMoving = false, isExpanded = false }) => {
+const QuestionCard: React.FC<{ item: ChecklistItem; isDynamic: boolean; isMoving?: boolean; isExpanded?: boolean; swapDirection?: 'up' | 'down' | null; rankPosition?: number }> = ({ item, isDynamic, isMoving = false, isExpanded = false, swapDirection = null, rankPosition }) => {
     const [isAnswerExpanded, setIsAnswerExpanded] = React.useState(false);
     const hasLongAnswer = item.answer && item.answer.length > 80;
     const isNew = isDynamic && !item.isCompleted;
     
+    const getSwapAnimation = () => {
+        if (!swapDirection) return '';
+        return swapDirection === 'up' ? 'animate-swap-up' : 'animate-swap-down';
+    };
+    
     return (
         <div 
             className={`
-                group rounded-lg border transition-all duration-500 ease-in-out
+                group rounded-lg border transition-all duration-500 ease-in-out relative
                 ${isExpanded ? 'p-4' : 'p-3'}
                 ${item.isCompleted 
                     ? 'bg-white border-gray-200' 
@@ -44,9 +49,18 @@ const QuestionCard: React.FC<{ item: ChecklistItem; isDynamic: boolean; isMoving
                 }
                 ${isNew ? 'ring-2 ring-blue-400 ring-offset-1 border-blue-400 bg-blue-50/30' : ''}
                 ${isMoving ? 'animate-move-to-answered' : ''}
+                ${swapDirection ? getSwapAnimation() : ''}
                 ${isExpanded ? 'hover:shadow-md hover:scale-[1.01]' : ''}
             `}
         >
+            {/* Rank Position Badge */}
+            {rankPosition !== undefined && isNew && (
+                <div className={`absolute -top-2 -left-2 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shadow-sm z-10 ${
+                    rankPosition <= 3 ? 'bg-amber-400 text-amber-900' : 'bg-gray-300 text-gray-600'
+                }`}>
+                    {rankPosition}
+                </div>
+            )}
             <div className="flex items-start gap-2">
                 {/* Status Icon */}
                 <div className={`
@@ -132,12 +146,20 @@ const ClinicalDashboard: React.FC<Props> = ({ checklist, primaryDiagnosis, secon
     const [selectedDiagnosis, setSelectedDiagnosis] = React.useState<DiagnosisOption | null>(null);
     const prevChecklistRef = React.useRef(checklist);
     
+    // Track swapping items for animation
+    const [swappingItems, setSwappingItems] = React.useState<{id1: string; id2: string; direction1: 'up' | 'down'; direction2: 'up' | 'down'} | null>(null);
+    
     // Split checklist into dynamic (new) and fixed (standard)
-    // We reverse dynamic so newest added appear at the very top of that section
-    const dynamicItems = checklist.filter(i => i.category === 'dynamic').reverse();
+    // Sort by rank (lower rank = higher priority = appears first)
+    const dynamicItems = checklist
+        .filter(i => i.category === 'dynamic')
+        .sort((a, b) => (a.rank ?? 999) - (b.rank ?? 999));
     const fixedItems = checklist.filter(i => i.category === 'fixed');
     
-    // Detect when an item becomes completed
+    // Track items that changed rank for highlight animation
+    const [rankChangedItems, setRankChangedItems] = React.useState<Set<string>>(new Set());
+    
+    // Detect when an item becomes completed OR when ranks change (swap)
     React.useEffect(() => {
         const prevChecklist = prevChecklistRef.current;
         
@@ -145,7 +167,6 @@ const ClinicalDashboard: React.FC<Props> = ({ checklist, primaryDiagnosis, secon
         checklist.forEach((item) => {
             const prevItem = prevChecklist.find(p => p.id === item.id);
             if (prevItem && !prevItem.isCompleted && item.isCompleted) {
-                console.log("Item completed, starting animation:", item.id);
                 setMovingItemId(item.id);
                 // Store the item data before it moves
                 setMovingItemData({...prevItem, isCompleted: false});
@@ -156,6 +177,53 @@ const ClinicalDashboard: React.FC<Props> = ({ checklist, primaryDiagnosis, secon
                 }, 1500);
             }
         });
+        
+        // Detect rank changes in dynamic items (unanswered only)
+        const prevDynamic = prevChecklist
+            .filter(i => i.category === 'dynamic' && !i.isCompleted)
+            .sort((a, b) => (a.rank ?? 999) - (b.rank ?? 999));
+        const currDynamic = checklist
+            .filter(i => i.category === 'dynamic' && !i.isCompleted)
+            .sort((a, b) => (a.rank ?? 999) - (b.rank ?? 999));
+        
+        // Find items whose position changed
+        const changedIds = new Set<string>();
+        const swapPairs: {id1: string; id2: string; dir1: 'up' | 'down'; dir2: 'up' | 'down'} | null = null;
+        
+        currDynamic.forEach((item, newIndex) => {
+            const oldIndex = prevDynamic.findIndex(p => p.id === item.id);
+            if (oldIndex !== -1 && oldIndex !== newIndex) {
+                changedIds.add(item.id);
+            }
+        });
+        
+        // If positions changed, trigger animation
+        if (changedIds.size > 0) {
+            // Find the first pair that swapped for the swap animation
+            for (let i = 0; i < Math.min(prevDynamic.length, currDynamic.length); i++) {
+                const prevItem = prevDynamic[i];
+                const currItem = currDynamic[i];
+                
+                if (prevItem && currItem && prevItem.id !== currItem.id) {
+                    const newPosOfPrevItem = currDynamic.findIndex(c => c.id === prevItem.id);
+                    
+                    if (newPosOfPrevItem !== -1) {
+                        setSwappingItems({
+                            id1: prevItem.id,
+                            id2: currItem.id,
+                            direction1: newPosOfPrevItem > i ? 'down' : 'up',
+                            direction2: 'up' // The item that moved up
+                        });
+                        
+                        // Clear swap animation after it completes
+                        setTimeout(() => {
+                            setSwappingItems(null);
+                        }, 600);
+                        break; // Only animate one swap at a time
+                    }
+                }
+            }
+        }
         
         prevChecklistRef.current = checklist;
     }, [checklist]);
@@ -301,111 +369,168 @@ const ClinicalDashboard: React.FC<Props> = ({ checklist, primaryDiagnosis, secon
                 )}
             </div>
 
-            {/* Questions List - Responsive Column Layout */}
-            <div className={`flex-1 overflow-y-auto min-h-0 bg-gray-50 transition-all duration-500 ${isExpanded ? 'p-6' : 'p-4'}`}>
-                <div className={`space-y-4 transition-all duration-500 ${isExpanded ? 'max-w-none' : ''}`}>
-                    
-                    {/* Unanswered Dynamic Questions */}
-                    {(dynamicItems.filter(i => !i.isCompleted).length > 0 || movingItemData) && (
-                        <div className="animate-in fade-in duration-300">
-                             <div className="flex items-center space-x-2 mb-3">
-                                <div className={`rounded-full bg-blue-500 transition-all duration-300 ${isExpanded ? 'w-2 h-2' : 'w-1.5 h-1.5'}`}></div>
-                                <h3 className={`font-bold text-gray-600 uppercase tracking-wider transition-all duration-300 ${isExpanded ? 'text-xs' : 'text-[10px]'}`}>New Inquiries</h3>
+            {/* Questions List - Two Column Layout when Expanded */}
+            <div className={`flex-1 overflow-y-auto min-h-0 bg-gray-50 transition-all duration-500 ${isExpanded ? 'p-6 pl-4' : 'p-4'}`}>
+                {isExpanded ? (
+                    /* Expanded View: Two Column Layout - New Inquiries (Left) | Answered (Right) */
+                    <div className="grid grid-cols-2 gap-6 h-full">
+                        {/* Left Column - New Inquiries */}
+                        <div className="flex flex-col min-h-0 m-2">
+                            <div className="flex items-center space-x-2 mb-4 flex-shrink-0">
+                                <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                                <h3 className="text-xs font-bold text-gray-600 uppercase tracking-wider">New Inquiries</h3>
+                                <span className="text-xs text-gray-400">({dynamicItems.filter(i => !i.isCompleted).length})</span>
                             </div>
-                            <div className={`grid gap-3 transition-all duration-500 ${isExpanded ? 'grid-cols-3 xl:grid-cols-4' : 'grid-cols-2'}`}>
-                                {/* Show the moving item in its original position while animating */}
-                                {movingItemData && movingItemData.category === 'dynamic' && (
-                                    <div className="relative" key={`moving-${movingItemData.id}`}>
-                                        <QuestionCard item={movingItemData} isDynamic={true} isMoving={true} isExpanded={isExpanded} />
-                                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                                            <div className="bg-green-500 text-white px-3 py-1 rounded-full shadow-lg animate-bounce">
-                                                <span className="text-[10px] font-bold flex items-center gap-1">
-                                                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                                                    </svg>
-                                                    Answered
-                                                </span>
+                            <div className="flex-1 overflow-y-auto p-2">
+                                <div className="grid grid-cols-2 gap-3">
+                                    {/* Show the moving item in its original position while animating */}
+                                    {movingItemData && movingItemData.category === 'dynamic' && (
+                                        <div className="relative" key={`moving-${movingItemData.id}`}>
+                                            <QuestionCard item={movingItemData} isDynamic={true} isMoving={true} isExpanded={isExpanded} />
+                                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                                <div className="bg-green-500 text-white px-3 py-1 rounded-full shadow-lg animate-bounce">
+                                                    <span className="text-[10px] font-bold flex items-center gap-1">
+                                                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M9 5l7 7-7 7" />
+                                                        </svg>
+                                                        Answered
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                )}
-                                {dynamicItems.filter(i => !i.isCompleted).map((item, index) => (
-                                    <div 
-                                        key={item.id}
-                                        className={`${movingItemData ? 'animate-in slide-in-from-right-2 fade-in duration-700' : 'animate-in slide-in-from-top-2 fade-in duration-300'}`}
-                                        style={{ animationDelay: `${movingItemData ? '1200ms' : `${index * 50}ms`}` }}
-                                    >
-                                        <QuestionCard item={item} isDynamic={true} isMoving={false} isExpanded={isExpanded} />
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    )}
-
-                    {/* Unanswered Fixed Questions */}
-                    {(fixedItems.filter(i => !i.isCompleted).length > 0 || (movingItemData && movingItemData.category === 'fixed')) && (
-                        <div className="animate-in fade-in duration-300">
-                             <div className="flex items-center space-x-2 mb-3">
-                                 <div className={`rounded-full bg-gray-300 transition-all duration-300 ${isExpanded ? 'w-2 h-2' : 'w-1.5 h-1.5'}`}></div>
-                                <h3 className={`font-bold text-gray-500 uppercase tracking-wider transition-all duration-300 ${isExpanded ? 'text-xs' : 'text-[10px]'}`}>Standard Protocol</h3>
-                             </div>
-                             <div className={`grid gap-3 transition-all duration-500 ${isExpanded ? 'grid-cols-3 xl:grid-cols-4' : 'grid-cols-2'}`}>
-                                 {/* Show the moving item in its original position while animating */}
-                                 {movingItemData && movingItemData.category === 'fixed' && (
-                                    <div className="relative" key={`moving-${movingItemData.id}`}>
-                                        <QuestionCard item={movingItemData} isDynamic={false} isMoving={true} isExpanded={isExpanded} />
-                                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                                            <div className="bg-green-500 text-white px-3 py-1 rounded-full shadow-lg animate-bounce">
-                                                <span className="text-[10px] font-bold flex items-center gap-1">
-                                                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                                                    </svg>
-                                                    Answered
-                                                </span>
+                                    )}
+                                    {dynamicItems.filter(i => !i.isCompleted).map((item, index) => {
+                                        const isSwapping = swappingItems && (swappingItems.id1 === item.id || swappingItems.id2 === item.id);
+                                        const swapDir = isSwapping 
+                                            ? (swappingItems.id1 === item.id ? swappingItems.direction1 : swappingItems.direction2)
+                                            : null;
+                                        return (
+                                            <div 
+                                                key={item.id}
+                                                className={`${movingItemData ? 'animate-in slide-in-from-right-2 fade-in duration-700' : ''}`}
+                                                style={{ animationDelay: `${movingItemData ? '1200ms' : `${index * 50}ms`}` }}
+                                            >
+                                                <QuestionCard item={item} isDynamic={true} isMoving={false} isExpanded={isExpanded} swapDirection={swapDir} />
                                             </div>
-                                        </div>
-                                    </div>
-                                )}
-                                 {fixedItems.filter(i => !i.isCompleted).map((item) => (
-                                     <div key={item.id} className="transition-all duration-500 ease-in-out">
-                                         <QuestionCard item={item} isDynamic={false} isMoving={false} isExpanded={isExpanded} />
-                                     </div>
-                                 ))}
-                             </div>
-                        </div>
-                    )}
-
-                    {/* Answered Questions Section */}
-                    {(dynamicItems.filter(i => i.isCompleted).length > 0 || fixedItems.filter(i => i.isCompleted).length > 0) && (
-                        <div className="pt-4 animate-in fade-in duration-500">
-                            <div className="flex items-center gap-3 mb-3">
-                                <hr className="flex-1 border-gray-300" />
-                                <div className="flex items-center space-x-2">
-                                    <svg className={`text-green-600 transition-all duration-300 ${isExpanded ? 'w-4 h-4' : 'w-3 h-3'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    <h3 className={`font-bold text-gray-500 uppercase tracking-wider transition-all duration-300 ${isExpanded ? 'text-xs' : 'text-[10px]'}`}>Answered Questions</h3>
+                                        );
+                                    })}
                                 </div>
-                                <hr className="flex-1 border-gray-300" />
-                            </div>
-                            <div className={`grid gap-3 transition-all duration-500 ${isExpanded ? 'grid-cols-3 xl:grid-cols-4' : 'grid-cols-2'}`}>
-                                {[...dynamicItems.filter(i => i.isCompleted), ...fixedItems.filter(i => i.isCompleted)].map((item) => {
-                                    const isJustArrived = movingItemId === item.id;
-                                    return (
-                                        <div 
-                                        
-                                            key={item.id} 
-                                            className={`${isJustArrived ? 'animate-in fade-in zoom-in duration-500' : 'animate-in fade-in duration-300'}`}
-                                            style={isJustArrived ? { animationDelay: '1000ms' } : {}}
-                                        >
-                                            <QuestionCard item={item} isDynamic={false} isMoving={false} isExpanded={isExpanded} />
-                                        </div>
-                                    );
-                                })}
+                                {dynamicItems.filter(i => !i.isCompleted).length === 0 && !movingItemData && (
+                                    <div className="flex items-center justify-center h-32 text-gray-400 text-sm">
+                                        No pending inquiries
+                                    </div>
+                                )}
                             </div>
                         </div>
-                    )}
-                </div>
+
+                        {/* Right Column - Answered Questions */}
+                        <div className="flex flex-col min-h-0 border-l border-gray-200 pl-6">
+                            <div className="flex items-center space-x-2 mb-4 flex-shrink-0">
+                                <svg className="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+                                </svg>
+                                <h3 className="text-xs font-bold text-gray-600 uppercase tracking-wider">Answered Questions</h3>
+                                <span className="text-xs text-gray-400">({dynamicItems.filter(i => i.isCompleted).length})</span>
+                            </div>
+                            <div className="flex-1 overflow-y-auto pr-2">
+                                <div className="grid grid-cols-2 gap-3">
+                                    {[...dynamicItems.filter(i => i.isCompleted)].reverse().map((item) => {
+                                        const isJustArrived = movingItemId === item.id;
+                                        return (
+                                            <div 
+                                                key={item.id} 
+                                                className={`${isJustArrived ? 'animate-in slide-in-from-left-4 fade-in duration-500' : 'animate-in fade-in duration-300'}`}
+                                                style={isJustArrived ? { animationDelay: '800ms' } : {}}
+                                            >
+                                                <QuestionCard item={item} isDynamic={false} isMoving={false} isExpanded={isExpanded} />
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                                {dynamicItems.filter(i => i.isCompleted).length === 0 && (
+                                    <div className="flex items-center justify-center h-32 text-gray-400 text-sm">
+                                        No answered questions yet
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                ) : (
+                    /* Collapsed View: Original stacked layout */
+                    <div className="space-y-4">
+                        {/* Unanswered Dynamic Questions */}
+                        {(dynamicItems.filter(i => !i.isCompleted).length > 0 || movingItemData) && (
+                            <div className="animate-in fade-in duration-300">
+                                <div className="flex items-center space-x-2 mb-3">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                                    <h3 className="text-[10px] font-bold text-gray-600 uppercase tracking-wider">New Inquiries</h3>
+                                </div>
+                                <div className="grid grid-cols-2 gap-3">
+                                    {movingItemData && movingItemData.category === 'dynamic' && (
+                                        <div className="relative" key={`moving-${movingItemData.id}`}>
+                                            <QuestionCard item={movingItemData} isDynamic={true} isMoving={true} isExpanded={isExpanded} />
+                                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                                                <div className="bg-green-500 text-white px-3 py-1 rounded-full shadow-lg animate-bounce">
+                                                    <span className="text-[10px] font-bold flex items-center gap-1">
+                                                        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                                                        </svg>
+                                                        Answered
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    )}
+                                    {dynamicItems.filter(i => !i.isCompleted).map((item, index) => {
+                                        const isSwapping = swappingItems && (swappingItems.id1 === item.id || swappingItems.id2 === item.id);
+                                        const swapDir = isSwapping 
+                                            ? (swappingItems.id1 === item.id ? swappingItems.direction1 : swappingItems.direction2)
+                                            : null;
+                                        return (
+                                            <div 
+                                                key={item.id}
+                                                className={`${movingItemData ? 'animate-in slide-in-from-right-2 fade-in duration-700' : ''}`}
+                                                style={{ animationDelay: `${movingItemData ? '1200ms' : `${index * 50}ms`}` }}
+                                            >
+                                                <QuestionCard item={item} isDynamic={true} isMoving={false} isExpanded={isExpanded} swapDirection={swapDir} />
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Answered Questions Section */}
+                        {dynamicItems.filter(i => i.isCompleted).length > 0 && (
+                            <div className="pt-4 animate-in fade-in duration-500">
+                                <div className="flex items-center gap-3 mb-3">
+                                    <hr className="flex-1 border-gray-300" />
+                                    <div className="flex items-center space-x-2">
+                                        <svg className="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+                                        </svg>
+                                        <h3 className="text-[10px] font-bold text-gray-500 uppercase tracking-wider">Answered Questions</h3>
+                                    </div>
+                                    <hr className="flex-1 border-gray-300" />
+                                </div>
+                                <div className="grid grid-cols-2 gap-3">
+                                    {[...dynamicItems.filter(i => i.isCompleted)].reverse().map((item) => {
+                                        const isJustArrived = movingItemId === item.id;
+                                        return (
+                                            <div 
+                                                key={item.id} 
+                                                className={`${isJustArrived ? 'animate-in fade-in zoom-in duration-500' : 'animate-in fade-in duration-300'}`}
+                                                style={isJustArrived ? { animationDelay: '1000ms' } : {}}
+                                            >
+                                                <QuestionCard item={item} isDynamic={false} isMoving={false} isExpanded={isExpanded} />
+                                            </div>
+                                        );
+                                    })}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                )}
             </div>
 
             {/* Diagnostic Indicators Modal */}

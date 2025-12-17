@@ -50,6 +50,7 @@ export interface ChecklistItem {
     isCompleted: boolean;
     category: 'fixed' | 'dynamic';
     answer?: string;
+    rank?: number;
 }
 
 export interface ChecklistAnswer {

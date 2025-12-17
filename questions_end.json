@@ -1,0 +1,374 @@
+[
+    {
+        "role": "nurse",
+        "content": "What brings you in today?",
+        "qid": "00001",
+        "score": 10,
+        "rank": 999,
+        "status": "deleted"
+    },
+    {
+        "role": "nurse",
+        "content": "Current Medications",
+        "qid": "00004",
+        "score": 7,
+        "rank": 999,
+        "status": "deleted"
+    },
+    {
+        "role": "nurse",
+        "content": "Drug Allergies",
+        "qid": "00005",
+        "score": 6,
+        "rank": 999,
+        "status": "deleted"
+    },
+    {
+        "role": "nurse",
+        "content": "Past Surgeries",
+        "qid": "00006",
+        "score": 6,
+        "rank": 999,
+        "status": "deleted"
+    },
+    {
+        "role": "nurse",
+        "content": "Have you traveled recently or been exposed to anyone with similar symptoms?",
+        "qid": "8ef2ae55",
+        "score": 9,
+        "rank": 999,
+        "status": "deleted"
+    },
+    {
+        "role": "nurse",
+        "content": "Have you taken any other medications, supplements, or herbal remedies recently?",
+        "qid": "a7062a5f",
+        "score": 3,
+        "rank": 7,
+        "status": "asked",
+        "answer": "I take lisinopril for my blood pressure. And... oh yeah, I had that toothache a few weeks ago, and the dentist gave me some big white pills for 10 days. I finished them all. That's really it, besides the Tylenol."
+    },
+    {
+        "role": "nurse",
+        "content": "Can you describe the itching? Is it worse at certain times of the day or on specific parts of your body?",
+        "qid": "8d26a602",
+        "score": 8,
+        "rank": 3,
+        "status": "asked",
+        "answer": "Yeah, actually. It's been driving me nuts for a while. It feels like there are ants under my skin, you know? I've been scratching all over."
+    },
+    {
+        "role": "nurse",
+        "content": "Have you had any recent travel or exposure to anyone with hepatitis?",
+        "qid": "c9361394",
+        "score": 8,
+        "rank": 3,
+        "status": "asked",
+        "answer": "Traveled? Nah. And hepatitis? Not that I know of."
+    },
+    {
+        "role": "nurse",
+        "content": "How much alcohol do you typically consume in a week?",
+        "qid": "71f90880",
+        "score": 1,
+        "rank": 11,
+        "status": null
+    },
+    {
+        "role": "nurse",
+        "content": "Have you taken any other new medications or supplements recently, besides the Augmentin and Tylenol?",
+        "qid": "ef3a1a49",
+        "score": 8,
+        "rank": 999,
+        "status": "deleted"
+    },
+    {
+        "role": "nurse",
+        "content": "Have you had any abdominal pain, especially in the upper right side?",
+        "qid": "0cd50dcd",
+        "score": 8,
+        "rank": 3,
+        "status": "asked",
+        "answer": "Yeah, there's kind of a dull ache there. Not sharp, just... heavy, you know? It's been around for a bit."
+    },
+    {
+        "role": "nurse",
+        "content": "Have you traveled recently or been exposed to anyone with hepatitis?",
+        "qid": "079a2a97",
+        "score": 7,
+        "rank": 999,
+        "status": "deleted"
+    },
+    {
+        "role": "nurse",
+        "content": "Can you tell me more about how much Tylenol you've been taking and for how long?",
+        "qid": "3ad3ecfe",
+        "score": 5,
+        "rank": 6,
+        "status": "asked",
+        "answer": "Uh, yeah. I had this terrible toothache a few weeks ago, and the pain was just awful. So, I was popping Tylenol like candy, maybe six to eight a day for a couple of weeks. I stopped yesterday, though."
+    },
+    {
+        "role": "nurse",
+        "content": "Have you consumed any alcohol in the last few weeks?",
+        "qid": "d031ad0e",
+        "score": 1,
+        "rank": 14,
+        "status": null
+    },
+    {
+        "role": "nurse",
+        "content": "Can you describe the itching? Is it worse at certain times of the day or night?",
+        "qid": "80a05612",
+        "score": 5,
+        "rank": 5,
+        "status": null
+    },
+    {
+        "role": "nurse",
+        "content": "Have you had any fever or chills?",
+        "qid": "30619275",
+        "score": 1,
+        "rank": 12,
+        "status": "asked",
+        "answer": "No, no fever or chills."
+    },
+    {
+        "role": "nurse",
+        "content": "Have you experienced any nausea, vomiting, or changes in your stool color?",
+        "qid": "53484b1d",
+        "score": 9,
+        "rank": 2,
+        "status": "asked",
+        "answer": "Nausea, a little. Nothing much else. But the stool, that's weird. This morning it was kind of a whitish, clay color. That freaked me out, to be honest."
+    },
+    {
+        "role": "nurse",
+        "content": "Do you consume alcohol, and if so, how much and how often?",
+        "qid": "985bd0ba",
+        "score": 5,
+        "rank": 5,
+        "status": "asked",
+        "answer": "I have a few beers with the guys, nothing crazy. Why?"
+    },
+    {
+        "role": "nurse",
+        "content": "Have you consumed any alcohol recently, and if so, how much?",
+        "qid": "f43fc1e6",
+        "score": 1,
+        "rank": 13,
+        "status": null
+    },
+    {
+        "role": "nurse",
+        "content": "Can you describe the itching more? Is it worse at certain times of the day or night?",
+        "qid": "ac6fd07f",
+        "score": 6,
+        "rank": 4,
+        "status": null
+    },
+    {
+        "role": "nurse",
+        "content": "Have you had any fevers or chills?",
+        "qid": "5c85cf1c",
+        "score": 10,
+        "rank": 999,
+        "status": "deleted"
+    },
+    {
+        "role": "nurse",
+        "content": "How long have you been experiencing the dull ache and heavy feeling in your abdomen?",
+        "qid": "45d528fc",
+        "score": 1,
+        "rank": 11,
+        "status": "asked",
+        "answer": "It's been around for a week or so, maybe a little longer. It wasn't that bad at first, just a bit heavy."
+    },
+    {
+        "role": "nurse",
+        "content": "Can you describe the color of your urine? Is it darker than usual?",
+        "qid": "4446447d",
+        "score": 10,
+        "rank": 1,
+        "status": "asked",
+        "answer": "Yeah, it's been dark, like Coke or something. I noticed that a few days ago but didn't think much of it."
+    },
+    {
+        "role": "nurse",
+        "content": "Have you noticed any changes in the color of your urine?",
+        "qid": "998da75e",
+        "score": 1,
+        "rank": 999,
+        "status": "deleted"
+    },
+    {
+        "role": "nurse",
+        "content": "Can you describe the itching more? Is it worse at certain times of day or on certain parts of your body?",
+        "qid": "dfa51989",
+        "score": 7,
+        "rank": 3,
+        "status": null
+    },
+    {
+        "role": "nurse",
+        "content": "Have you had any recent changes in your diet or consumed any new foods or supplements?",
+        "qid": "756d7b38",
+        "score": 1,
+        "rank": 999,
+        "status": "deleted"
+    },
+    {
+        "role": "nurse",
+        "content": "Have you noticed any changes in your urine color, such as it becoming darker?",
+        "qid": "c4af7198",
+        "score": 1,
+        "rank": 999,
+        "status": "deleted"
+    },
+    {
+        "role": "nurse",
+        "content": "Have you had any fever or chills since the itching and jaundice started?",
+        "qid": "38878dfa",
+        "score": 1,
+        "rank": 999,
+        "status": "deleted"
+    },
+    {
+        "role": "nurse",
+        "content": "Have you had any recent fevers or chills?",
+        "qid": "d93b65f3",
+        "score": 0,
+        "rank": 999,
+        "status": "deleted"
+    },
+    {
+        "role": "nurse",
+        "content": "Can you describe the itching more? Is it localized or all over your body?",
+        "qid": "e40812ee",
+        "score": 8,
+        "rank": 2,
+        "status": null
+    },
+    {
+        "role": "nurse",
+        "content": "Can you describe the color of your urine?",
+        "qid": "ae8ea0fb",
+        "score": 1,
+        "rank": 999,
+        "status": "deleted"
+    },
+    {
+        "role": "nurse",
+        "content": "Have you experienced any unintentional weight loss?",
+        "qid": "f1250fea",
+        "score": 2,
+        "rank": 8,
+        "status": null
+    },
+    {
+        "role": "nurse",
+        "content": "Have you consumed alcohol recently, and if so, how much?",
+        "qid": "c3bcb628",
+        "score": 1,
+        "rank": 12,
+        "status": null
+    },
+    {
+        "role": "nurse",
+        "content": "Have you noticed any changes in your urine color, such as it being darker than usual?",
+        "qid": "34867532",
+        "score": 1,
+        "rank": 999,
+        "status": "deleted"
+    },
+    {
+        "role": "nurse",
+        "content": "Can you describe the itching? Is it localized or all over your body?",
+        "qid": "38fe0058",
+        "score": 4,
+        "rank": 6,
+        "status": null
+    },
+    {
+        "role": "nurse",
+        "content": "Have you noticed any changes in your appetite or unintentional weight loss?",
+        "qid": "60960745",
+        "score": 1,
+        "rank": 10,
+        "status": "asked",
+        "answer": "Yeah, I'm not hungry at all. Food just doesn't look good. I haven't really eaten much in the last few days, lost a few pounds, I guess."
+    },
+    {
+        "role": "nurse",
+        "content": "Can you describe the itching more? Is it worse at certain times of the day or on specific parts of your body?",
+        "qid": "769f5e26",
+        "score": 1,
+        "rank": 10,
+        "status": "asked",
+        "answer": "Thanks. I need to know what's going on. And this itching... is there anything that can help with it? It's relentless."
+    },
+    {
+        "role": "nurse",
+        "content": "How many alcoholic drinks do you typically have in a week?",
+        "qid": "ad6a29aa",
+        "score": 1,
+        "rank": 10,
+        "status": null
+    },
+    {
+        "role": "nurse",
+        "content": "Have you experienced any fever or chills?",
+        "qid": "60f23b43",
+        "score": 1,
+        "rank": 999,
+        "status": "deleted"
+    },
+    {
+        "role": "nurse",
+        "content": "Have you had any changes in your stool color, such as pale or clay-colored stools?",
+        "qid": "279a8444",
+        "score": 0,
+        "rank": 999,
+        "status": "deleted"
+    },
+    {
+        "role": "nurse",
+        "content": "Can you describe the location and intensity of your abdominal pain?",
+        "qid": "8aab0c7b",
+        "score": 0,
+        "rank": 999,
+        "status": "deleted"
+    },
+    {
+        "role": "nurse",
+        "content": "Have you had any changes in your appetite or unintentional weight loss?",
+        "qid": "9e67f1ba",
+        "score": 1,
+        "rank": 9,
+        "status": null
+    },
+    {
+        "role": "nurse",
+        "content": "Have you had any changes in your bowel habits other than the color, such as diarrhea or constipation?",
+        "qid": "84d8ab44",
+        "score": 1,
+        "rank": 15,
+        "status": null
+    },
+    {
+        "role": "nurse",
+        "content": "Have you experienced any unintentional weight loss or changes in appetite recently?",
+        "qid": "5bffe4c5",
+        "score": 3,
+        "rank": 7,
+        "status": null
+    },
+    {
+        "role": "nurse",
+        "content": "Can you describe the location and intensity of the itching? Is it worse at night or on specific body parts?",
+        "qid": "3eb431bb",
+        "score": 9,
+        "rank": 1,
+        "status": null
+    }
+]

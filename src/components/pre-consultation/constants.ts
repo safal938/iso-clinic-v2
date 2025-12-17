@@ -38,7 +38,7 @@ export const MOCK_PATIENTS: Patient[] = [
     severity: "High",
     pre_consultation: {
       documents: [
-        getLocalImg("lab1.png"),
+        getLocalImg("lab1.png"), 
         getLocalImg("lab2.png"),
         getLocalImg("nhs_screenshot.png"),
         getLocalImg("radiology.png"),
