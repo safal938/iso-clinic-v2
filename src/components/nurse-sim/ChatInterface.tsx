@@ -284,7 +284,7 @@ const ChatInterface: React.FC<Props> = ({
                             <div className={`flex flex-col ${msg.role === 'nurse' ? 'items-end' : 'items-start'}`}>
                                 {!isCompact && (
                                     <span className="text-xs font-bold text-gray-400 mb-1 mx-1 uppercase tracking-wider">
-                                        {msg.role === 'nurse' ? 'Nurse AI' : 'Patient'}
+                                        {msg.role === 'nurse' ? 'Nurse' : 'Patient'}
                                     </span>
                                 )}
                                 <div className={`rounded-2xl shadow-sm leading-relaxed relative transition-all duration-300 ${

@@ -226,7 +226,7 @@ const CompletedAssessment: React.FC = () => {
                   </div>
                   <div className={`flex flex-col ${msg.role === 'nurse' ? 'items-end' : 'items-start'}`}>
                     <span className="text-xs font-bold text-gray-400 mb-1 mx-1 uppercase tracking-wider">
-                      {msg.role === 'nurse' ? 'Nurse AI' : 'Patient'}
+                      {msg.role === 'nurse' ? 'Nurse' : 'Patient'}
                     </span>
                     <div className={`rounded-2xl px-6 py-4 text-sm leading-relaxed shadow-sm ${msg.role === 'nurse' ? 'bg-white text-gray-800 border border-teal-100 rounded-tr-none' : 'bg-blue-50 text-blue-900 border border-blue-100 rounded-tl-none'}`}>
                       {renderTextWithHighlights(msg.text, msg.highlights as MessageHighlight[])}

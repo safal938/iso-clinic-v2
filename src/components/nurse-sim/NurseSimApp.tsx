@@ -117,7 +117,7 @@ const NurseSimApp: React.FC = () => {
                 setMessages(prev => [...prev, newMsg]);
             },
             onAudio: (_base64Data) => {
-                console.log("Audio chunk received");
+                // Audio chunk received - handled by websocket service
             },
             onSystem: (message) => {
                 console.log("System:", message);

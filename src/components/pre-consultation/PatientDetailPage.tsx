@@ -30,9 +30,9 @@ export const PatientDetailPage: React.FC<PatientDetailPageProps> = ({ patient, o
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] pb-12 font-sans">
+    <div className="h-screen bg-[#F8FAFC] font-sans flex flex-col overflow-hidden">
       {/* Page Header */}
-      <div className="bg-white/80 backdrop-blur-md border-b border-slate-200 px-6 py-4 sticky top-0 z-30 flex items-center justify-between">
+      <div className="bg-white/80 backdrop-blur-md border-b border-slate-200 px-6 py-4 flex-shrink-0 z-30 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <button
             onClick={onBack}
@@ -55,8 +55,9 @@ export const PatientDetailPage: React.FC<PatientDetailPageProps> = ({ patient, o
       </div>
 
       {/* Main Grid Layout */}
-      <div className="max-w-7xl mx-auto px-6 mt-8 space-y-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 h-auto lg:h-[600px]">
+      <div className="flex-1 overflow-y-auto pb-12">
+        <div className="max-w-7xl mx-auto px-6 mt-8 space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Patient Summary Card */}
           <div className="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden flex flex-col">
             <div className="px-6 py-4 border-b border-slate-100 bg-slate-50/50 flex items-center justify-between">
@@ -259,6 +260,7 @@ export const PatientDetailPage: React.FC<PatientDetailPageProps> = ({ patient, o
               </div>
             )}
           </div>
+        </div>
         </div>
       </div>
 

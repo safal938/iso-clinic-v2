@@ -240,7 +240,7 @@ const NurseAssessmentCard: React.FC<NurseAssessmentCardProps> = ({ width = 1800,
                   </div>
                   <div className={`flex flex-col ${msg.role === 'nurse' ? 'items-end' : 'items-start'}`}>
                     <span className="text-xs font-bold text-gray-400 mb-1 mx-1 uppercase tracking-wider">
-                      {msg.role === 'nurse' ? 'Nurse AI' : 'Patient'}
+                      {msg.role === 'nurse' ? 'Nurse' : 'Patient'}
                     </span>
                     <div className={`rounded-2xl px-6 py-4 text-sm leading-relaxed shadow-sm ${msg.role === 'nurse' ? 'bg-white text-gray-800 border border-teal-100 rounded-tr-none' : 'bg-blue-50 text-blue-900 border border-blue-100 rounded-tl-none'}`}>
                       {renderTextWithHighlights(msg.text, msg.highlights as MessageHighlight[])}
@@ -291,7 +291,7 @@ const NurseAssessmentCard: React.FC<NurseAssessmentCardProps> = ({ width = 1800,
                         </div>
                         <div className="flex justify-between mt-1">
                           <span className={`text-[9px] font-bold ${severityConfig.textColor}`}>{severityConfig.label}</span>
-                          <span className="text-[9px] text-slate-400">severity</span>
+                          <span className="text-[9px] text-slate-400">confidence level</span>
                         </div>
                       </div>
                     </div>
@@ -344,7 +344,7 @@ const NurseAssessmentCard: React.FC<NurseAssessmentCardProps> = ({ width = 1800,
                   <p className="text-sm text-gray-500 mt-1">
                     <span className="font-semibold text-blue-600">{selectedDiagnosis.diagnosis}</span>
                     <span className={`ml-2 px-2 py-0.5 rounded text-xs font-bold ${getSeverityConfig(selectedDiagnosis.severity || 'Moderate').bgColor} ${getSeverityConfig(selectedDiagnosis.severity || 'Moderate').textColor}`}>
-                      {getSeverityConfig(selectedDiagnosis.severity || 'Moderate').label} Severity
+                      {getSeverityConfig(selectedDiagnosis.severity || 'Moderate').label} Confidence
                     </span>
                   </p>
                 </div>

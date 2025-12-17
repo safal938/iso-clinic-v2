@@ -240,11 +240,6 @@ class WebSocketService {
             if (this.displayQueue[0].showAtTime <= currentTime) {
                 const item = this.displayQueue.shift()!;
                 if (item.type === 'transcript') {
-                    console.log(`[SYNC] ✅ DISPLAYING TRANSCRIPT NOW at ${currentTime.toFixed(2)}s`);
-                    console.log(`[SYNC]    - Speaker: ${item.speaker}`);
-                    console.log(`[SYNC]    - Text: "${item.text.substring(0, 80)}..."`);
-                    console.log(`[SYNC]    - Scheduled for: ${item.showAtTime.toFixed(2)}s`);
-                    console.log(`[SYNC]    - Last audio ends: ${this.lastAudioEndTime.toFixed(2)}s`);
                     this.callbacks?.onTranscript(item.speaker, item.text, item.highlights);
                 }
             }
@@ -263,9 +258,6 @@ class WebSocketService {
         try {
             const msg = JSON.parse(event.data);
             
-            // Debug: Log every message type received
-            console.log(`[WS] 📨 Received message type: "${msg.type}"`, msg.data ? `(data: ${typeof msg.data === 'string' ? msg.data : Array.isArray(msg.data) ? msg.data.length + ' items' : 'object'})` : '');
-
             switch (msg.type) {
                 case 'transcript':
                     if (msg.speaker && msg.text) {
@@ -283,7 +275,6 @@ class WebSocketService {
                             
                             // Show text AFTER audio finishes
                             const textShowTime = audioTiming.endTime;
-                            console.log(`[SYNC] Transcript arrived AFTER audio (id: ${transcriptId}), queuing at ${textShowTime.toFixed(2)}s (audio ends at ${audioTiming.endTime.toFixed(2)}s)`);
                             
                             // Queue transcript to show
                             this.displayQueue.push({
@@ -318,7 +309,6 @@ class WebSocketService {
                         // If no audio comes within 2 seconds, show transcript immediately
                         this.pendingTimeout = setTimeout(() => {
                             if (this.pendingTranscript?.text === msg.text && !this.currentTranscriptQueued) {
-                                console.log(`[SYNC] No audio received for transcript, showing immediately`);
                                 this.callbacks?.onTranscript(msg.speaker, msg.text, msg.highlights);
                                 this.pendingTranscript = null;
                                 this.currentTranscriptQueued = false;
@@ -345,9 +335,6 @@ class WebSocketService {
                                 this.pendingTimeout = null;
                             }
                             
-                            const currentAudioTime = this.audioContext?.currentTime || 0;
-                            console.log(`[SYNC] Audio chunk received: start=${startTime.toFixed(2)}s, end=${endTime.toFixed(2)}s, currentTime=${currentAudioTime.toFixed(2)}s`);
-                            
                             // Mark as queued but DON'T actually queue yet - wait for all audio chunks
                             this.currentTranscriptQueued = true;
                             
@@ -358,18 +345,11 @@ class WebSocketService {
                                 highlights: this.pendingTranscript!.highlights
                             };
                             this.pendingTranscript = null;
-                            
-                            console.log(`[SYNC] 📝 Transcript ready, will show after ALL audio chunks finish`);
-                        } else if (this.currentTranscriptQueued && this.pendingTranscriptData) {
-                            // Additional audio chunks - just log
-                            console.log(`[SYNC] Additional audio chunk (ends at ${endTime.toFixed(2)}s)`);
                         } else if (!this.currentTranscriptQueued && audioId) {
                             // Audio arrived BEFORE transcript - store timing info
                             if (!this.pendingAudioById.has(audioId)) {
-                                console.log(`[SYNC] Audio arrived BEFORE transcript (id: ${audioId}), storing timing`);
                                 this.pendingAudioById.set(audioId, { startTime, endTime });
                             } else {
-                                console.log(`[SYNC] Additional audio chunk for id: ${audioId} (ends at ${endTime.toFixed(2)}s)`);
                                 // Update the end time for this audio ID
                                 this.pendingAudioById.set(audioId, { startTime: this.pendingAudioById.get(audioId)!.startTime, endTime });
                             }
@@ -388,7 +368,6 @@ class WebSocketService {
                             
                             // Queue transcript to show after THIS chunk ends
                             const textShowTime = endTime;
-                            console.log(`[SYNC] 📝 Updating transcript to show at ${textShowTime.toFixed(2)}s (after current audio chunk)`);
                             
                             this.displayQueue.push({
                                 type: 'transcript',
@@ -414,47 +393,24 @@ class WebSocketService {
                 case 'diagnosis':
                     if (msg.data && Array.isArray(msg.data)) {
                         // Store diagnosis data, don't apply yet - wait for turn cycle
-                        console.log('[TURN] ⏸️ Received diagnosis data, STORING (not applying yet)', msg.data.length, 'diagnoses');
                         this.pendingDiagnoses = msg.data as BackendDiagnosis[];
-                        console.log('[TURN] ⏸️ Pending diagnoses stored:', this.pendingDiagnoses?.map(d => d.diagnosis));
                     }
                     break;
 
                 case 'questions':
                     if (msg.data && Array.isArray(msg.data)) {
                         // Store questions data, don't apply yet - wait for turn cycle
-                        console.log('[TURN] ⏸️ Received questions data, STORING (not applying yet)', msg.data.length, 'questions');
                         this.pendingQuestions = msg.data as BackendQuestion[];
-                        console.log('[TURN] ⏸️ Pending questions stored:', this.pendingQuestions?.length);
                     }
                     break;
 
                 case 'turn':
                     // Turn cycle event - schedule clinical data updates AFTER audio finishes
                     if (msg.data === 'finish cycle') {
-                        console.log('═══════════════════════════════════════════════════');
-                        console.log('[TURN] ✅ Turn cycle FINISHED event received');
-                        console.log('[TURN] 📊 Current state:');
-                        console.log('  - Has pending diagnoses?', !!this.pendingDiagnoses, this.pendingDiagnoses ? `(${this.pendingDiagnoses.length} items)` : '');
-                        console.log('  - Has pending questions?', !!this.pendingQuestions, this.pendingQuestions ? `(${this.pendingQuestions.length} items)` : '');
-                        console.log('  - Audio context exists?', !!this.audioContext);
-                        
                         // Calculate when the last audio will finish
                         const audioEndTime = this.lastAudioEndTime;
                         const currentTime = this.audioContext?.currentTime || 0;
                         const delayMs = Math.max(0, (audioEndTime - currentTime) * 1000);
-                        
-                        console.log('[TURN] 🔊 Audio timing:');
-                        console.log(`  - Current audio time: ${currentTime.toFixed(2)}s`);
-                        console.log(`  - Last audio ends at: ${audioEndTime.toFixed(2)}s`);
-                        console.log(`  - Calculated delay: ${delayMs.toFixed(0)}ms`);
-                        
-                        if (delayMs <= 0) {
-                            console.log('[TURN] ⚠️ WARNING: Audio already finished or no audio context!');
-                        }
-                        
-                        console.log(`[TURN] ⏰ Scheduling clinical data update in ${delayMs.toFixed(0)}ms`);
-                        console.log('═══════════════════════════════════════════════════');
                         
                         // Store references to pending data (in case they get cleared)
                         const diagnosesToApply = this.pendingDiagnoses;
@@ -462,58 +418,31 @@ class WebSocketService {
                         
                         // Schedule the updates to happen AFTER audio finishes
                         setTimeout(() => {
-                            console.log('═══════════════════════════════════════════════════');
-                            console.log('[TURN] 🎵 TIMEOUT FIRED - Audio should be finished now');
-                            console.log('[TURN] 📊 Applying clinical data:');
-                            
                             // Apply pending diagnoses
                             if (diagnosesToApply) {
-                                console.log(`[TURN] ✅ Applying ${diagnosesToApply.length} diagnoses NOW`);
-                                console.log('[TURN] 🎯 Diagnoses:', diagnosesToApply.map(d => d.diagnosis));
                                 this.callbacks?.onDiagnoses?.(diagnosesToApply);
                                 this.pendingDiagnoses = null;
-                            } else {
-                                console.log('[TURN] ⚠️ No diagnoses to apply (was null)');
                             }
                             
                             // Apply pending questions
                             if (questionsToApply) {
-                                console.log(`[TURN] ✅ Applying ${questionsToApply.length} questions NOW`);
                                 this.callbacks?.onQuestions?.(questionsToApply);
                                 this.pendingQuestions = null;
-                            } else {
-                                console.log('[TURN] ⚠️ No questions to apply (was null)');
                             }
-                            console.log('═══════════════════════════════════════════════════');
                         }, delayMs);
                         
                         // Notify callback immediately (not delayed)
                         this.callbacks?.onTurnCycle?.('finish cycle');
                         
                     } else if (msg.data === 'end') {
-                        console.log('═══════════════════════════════════════════════════');
-                        console.log('[TURN] 🏁 Simulation END event received');
-                        console.log('[TURN] 🔊 Must wait for all audio to finish before showing "Assessment Complete"');
-                        
                         // Calculate when the last audio will finish
                         const audioEndTime = this.lastAudioEndTime;
                         const currentTime = this.audioContext?.currentTime || 0;
                         const delayMs = Math.max(0, (audioEndTime - currentTime) * 1000);
                         
-                        console.log('[TURN] 🔊 Audio timing:');
-                        console.log(`  - Current audio time: ${currentTime.toFixed(2)}s`);
-                        console.log(`  - Last audio ends at: ${audioEndTime.toFixed(2)}s`);
-                        console.log(`  - Calculated delay: ${delayMs.toFixed(0)}ms`);
-                        console.log(`[TURN] ⏰ Scheduling "end" notification in ${delayMs.toFixed(0)}ms (after audio finishes)`);
-                        console.log('═══════════════════════════════════════════════════');
-                        
                         // Schedule the "end" notification to happen AFTER audio finishes
                         setTimeout(() => {
-                            console.log('═══════════════════════════════════════════════════');
-                            console.log('[TURN] 🎵 All audio finished - NOW showing "Assessment Complete"');
-                            console.log('[TURN] 🏁 Notifying app that simulation has ended');
                             this.callbacks?.onTurnCycle?.('end');
-                            console.log('═══════════════════════════════════════════════════');
                         }, delayMs);
                     }
                     break;

@@ -240,7 +240,7 @@ const ClinicalDashboard: React.FC<Props> = ({ checklist, primaryDiagnosis, secon
                                             </div>
                                             <div className="flex justify-between mt-1">
                                                 <span className={`text-[9px] font-bold ${getSeverityConfig(primaryDiagnosis.severity).textColor}`}>{getSeverityConfig(primaryDiagnosis.severity).label}</span>
-                                                <span className="text-[9px] text-slate-400">severity</span>
+                                                <span className="text-[9px] text-slate-400">confidence level</span>
                                             </div>
                                         </div>
                                     </div>
@@ -274,7 +274,7 @@ const ClinicalDashboard: React.FC<Props> = ({ checklist, primaryDiagnosis, secon
                                             </div>
                                             <div className="flex justify-between mt-1">
                                                 <span className={`text-[9px] font-bold ${getSeverityConfig(secondaryDiagnosis.severity).textColor}`}>{getSeverityConfig(secondaryDiagnosis.severity).label}</span>
-                                                <span className="text-[9px] text-slate-400">severity</span>
+                                                <span className="text-[9px] text-slate-400">confidence level</span>
                                             </div>
                                         </div>
                                     </div>
@@ -425,7 +425,7 @@ const ClinicalDashboard: React.FC<Props> = ({ checklist, primaryDiagnosis, secon
                                     <h3 className="text-lg font-bold text-gray-800">Diagnostic Indicators</h3>
                                     <p className="text-sm text-gray-500 mt-1">
                                         Key findings for: <span className="font-semibold text-blue-600">{selectedDiagnosis.diagnosis}</span>
-                                        <span className={`ml-2 text-xs ${getSeverityConfig(selectedDiagnosis.severity).textColor}`}>({getSeverityConfig(selectedDiagnosis.severity).label} severity)</span>
+                                        <span className={`ml-2 text-xs ${getSeverityConfig(selectedDiagnosis.severity).textColor}`}>({getSeverityConfig(selectedDiagnosis.severity).label} confidence)</span>
                                     </p>
                                 </div>
                                 <button 
