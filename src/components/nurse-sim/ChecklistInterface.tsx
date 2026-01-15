@@ -1,17 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, ChevronLeft, ChevronRight, ChevronDown, Info, AlertCircle } from 'lucide-react';
-
-interface ChecklistItem {
-  id: string;
-  title: string;
-  description: string;
-  reasoning: string;
-  category: string;
-  completed: boolean;
-  priority: 'high' | 'medium' | 'low';
-  status: 'asked' | null;
-}
+import { ChecklistItem } from '../../types/nurse-sim';
 
 const MOCK_CHECKLIST_ITEMS: ChecklistItem[] = [
   {

@@ -1,42 +1,56 @@
 [
   {
-    "headline": "Emergency Red Flags for Sepsis",
-    "content": "If you develop a high fever, chills, or notice the red area on your skin spreading rapidly, you must seek emergency care at the hospital immediately.",
-    "reasoning": "This warning is required to mitigate 'Failure to Warn' liability. Providing specific 'stop-use' and 'seek-care' triggers shifts the burden of action to the patient, protecting the clinic in the event of rapid clinical deterioration.",
+    "headline": "Introduction of Medical Professional",
+    "content": "You must be informed that I am Nurse Sarah, a registered nurse providing care.",
+    "reasoning": "Failure to identify oneself as a medical professional can lead to claims of misrepresentation or lack of informed consent regarding the qualifications of the caregiver.",
+    "category": "Legal/Informed Consent",
+    "urgency": "Low",
+    "context_reference": "Hello, I'm nurse Sarah,",
+    "status": "asked"
+  },
+  {
+    "headline": "Tylenol Overuse Warning",
+    "content": "You must be warned that excessive use of acetaminophen (Tylenol), even regular strength, can cause severe liver damage. You must not exceed the recommended daily dosage.",
+    "reasoning": "Failure to warn the patient about the hepatotoxicity of acetaminophen, especially when they report taking it for pain, creates a significant risk of malpractice. The patient may not be aware of the dangers of overuse, leading to potential liver injury and a claim of negligent miscommunication.",
+    "category": "Medication Risk",
+    "urgency": "High",
+    "context_reference": "Patient states 'I was popping Tylenol for a bit because my tooth was killing me, but I stopped taking the Tylenol yesterday.'",
+    "status": "asked"
+  },
+  {
+    "headline": "Augmentin Side Effect Warning",
+    "content": "You must be aware that nausea can be a side effect of Augmentin. If you experience persistent vomiting or severe abdominal pain, you must seek medical attention.",
+    "reasoning": "While nausea is a common side effect, it can also be a symptom of more serious complications or drug interactions. Failing to warn the patient about this potential side effect and the need for further evaluation if it persists or is accompanied by other severe symptoms creates a risk of negligent miscommunication.",
+    "category": "Medication Risk",
+    "urgency": "Normal",
+    "context_reference": "Patient states 'I felt a little nauseous but no'",
+    "status": null
+  },
+  {
+    "headline": "Jaundice and Pruritus Education",
+    "content": "You must be aware that yellowing of the skin and eyes (jaundice) and severe itching (pruritus) can indicate serious liver issues. You must seek immediate medical attention if these symptoms worsen or if you develop abdominal pain, dark urine, or pale stools.",
+    "reasoning": "Failure to warn the patient about the potential severity of jaundice and pruritus, and the critical signs requiring immediate ER evaluation, creates a significant risk of malpractice for failure to warn and negligent miscommunication, as the patient may delay seeking necessary urgent care.",
     "category": "Safety",
     "urgency": "High",
-    "context_reference": "Patient mentioned the redness on their leg has been there for two days."
+    "context_reference": "Patient states 'my eyes keep getting yellow. ... this itching, it's driving me crazy.'",
+    "status": "asked"
   },
   {
-    "headline": "Antibiotic Compliance Requirement",
-    "content": "You must complete the entire 7-day course of antibiotics even if the skin looks normal after a few days. Do not stop early.",
-    "reasoning": "Failure to disclose the risks of non-compliance (antibiotic resistance and secondary infection) constitutes a breach of the 'Duty of Care.' Documentation of this instruction prevents negligence claims if the infection returns due to patient error.",
-    "category": "Medication Risk",
-    "urgency": "Normal",
-    "context_reference": "Nurse provided a prescription for Amoxicillin."
+    "headline": "Coke-Colored Urine and White Stool Warning",
+    "content": "You must be aware that urine appearing as 'Coke-colored' and stools that are white or pale are critical indicators of potential liver dysfunction. You must seek immediate medical attention if these symptoms persist or if you develop any other concerning symptoms.",
+    "reasoning": "The patient's report of 'Coke-colored' urine and white stools are highly indicative of severe liver issues, such as biliary obstruction. Failure to immediately warn the patient of the critical nature of these symptoms and the requirement for urgent medical evaluation creates a significant risk of malpractice for failure to warn and negligent miscommunication, as the patient may delay seeking necessary urgent care.",
+    "category": "Safety",
+    "urgency": "High",
+    "context_reference": "Patient states 'my pee looked like Coke for a few days. And my poop was white this morning.'",
+    "status": "asked"
   },
   {
-    "headline": "NSAID Gastric Risk Warning",
-    "content": "Take the Ibuprofen only with food. If you experience sharp stomach pain or notice black, tarry stools, stop the medication immediately and contact us.",
-    "reasoning": "Under the 'Informed Consent Doctrine,' clinicians must disclose 'material risks.' Gastric bleeding is a known risk of NSAIDs; failing to provide this warning leaves the clinic vulnerable to a malpractice suit if a GI bleed occurs.",
-    "category": "Medication Risk",
-    "urgency": "Normal",
-    "context_reference": "Nurse suggested taking Advil (Ibuprofen) for the pain."
-  },
-  {
-    "headline": "Diagnostic Limitations Disclosure",
-    "content": "This is a preliminary assessment based on your current symptoms. A physical examination is required if symptoms do not improve within 48 hours.",
-    "reasoning": "This is a legal safeguard for remote or preliminary consultations. It establishes that the assessment has limitations and clearly defines the timeframe for follow-up, protecting the doctor against 'Failure to Diagnose' claims.",
+    "headline": "Medication Disclosure Requirement",
+    "content": "You are required to disclose all medications you are currently taking, including over-the-counter drugs and supplements, to ensure safe and effective treatment.",
+    "reasoning": "Failure to obtain a complete medication list can lead to adverse drug interactions or contraindications, creating a liability for the clinic due to negligent care and failure to obtain informed consent regarding treatment risks.",
     "category": "Legal/Informed Consent",
     "urgency": "Normal",
-    "context_reference": "Nurse stated 'It looks like a simple skin infection.'"
-  },
-  {
-    "headline": "Expected Skin Tenderness",
-    "content": "It is normal for the area to remain slightly tender and warm for the next 24 hours as the medication begins to work. This is an expected part of the healing process.",
-    "reasoning": "Strategic 'Reassurance' prevents 'Anxiety-based Litigation.' By defining what is 'normal,' the clinic prevents the patient from claiming they were 'misled' or 'frightened' by standard recovery symptoms.",
-    "category": "Reassurance",
-    "urgency": "Low",
-    "context_reference": "Patient asked if it was okay that the leg felt hot."
+    "context_reference": "Nurse asks 'Are you taking any medications right now either prescribed or over the counter.'",
+    "status": null
   }
 ]

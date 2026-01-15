@@ -24,6 +24,10 @@ import { Patient, ChatMessage, Diagnosis, Question, EducationItem, AnalyticsData
 import chatData from '../../data/nurse-sim/new_format/chat.json';
 import diagnosisData from '../../data/nurse-sim/new_format/diagnosis.json';
 import analyticsData from '../../data/nurse-sim/new_format/analytics.json';
+import questionsData from '../../data/nurse-sim/new_format/questions.json';
+import reportData from '../../data/nurse-sim/new_format/report.json';
+import educationData from '../../data/nurse-sim/new_format/education.json';
+import checklistData from '../../data/nurse-sim/new_format/checklist.json';
 
 type SectionId = 'patient' | 'chat' | 'questions' | 'education' | 'diagnostic' | 'checklist' | 'analytics' | 'report';
 
@@ -186,236 +190,25 @@ export const ConsultationPageShowcase: React.FC<{ onBack: () => void }> = ({ onB
   const [elapsedTime, setElapsedTime] = useState<number>(450); // 7:30 elapsed
   const [hasStarted] = useState(true);
 
-  // Static dummy data - already populated
-  const chatMessages = chatData as ChatMessage[];
-  const diagnoses = (diagnosisData as any).diagnosis as Diagnosis[];
+  // Static dummy data - already populated with safety checks
+  const chatMessages = Array.isArray(chatData) ? (chatData as ChatMessage[]) : [];
+  const diagnoses = Array.isArray(diagnosisData) ? (diagnosisData as Diagnosis[]) : [];
   const analytics = analyticsData as AnalyticsData;
+  const questions = Array.isArray(questionsData) ? (questionsData as Question[]) : [];
+  const educationItems = Array.isArray(educationData) ? (educationData as EducationItem[]) : [];
+  const checklistItems = Array.isArray(checklistData) ? (checklistData as ChecklistItem[]) : [];
 
-  // Mock questions data
-  const questions: Question[] = [
-    {
-      content: "What brings you in today?",
-      qid: "00001",
-      rank: 999,
-      status: "asked",
-      answer: "I'm yellow. And this itching is driving me nuts.",
-      headline: "Chief Complaint",
-      domain: "Symptom Triage",
-      system_affected: "General",
-      clinical_intent: "To understand the primary reason for the patient's visit.",
-      tags: ["chief complaint"]
-    },
-    {
-      content: "Current Medications",
-      qid: "00004",
-      rank: 999,
-      status: "asked",
-      answer: "I'm taking Tylenol for jaw pain, and I had antibiotics for a dental infection.",
-      headline: "Current Medications",
-      domain: "Medication Review",
-      system_affected: "General",
-      clinical_intent: "To obtain an accurate list of current medications.",
-      tags: ["medication", "current"]
-    },
-    {
-      content: "Do you have any known drug allergies?",
-      qid: "00005",
-      rank: 999,
-      status: "asked",
-      answer: "No known allergies.",
-      headline: "Drug Allergies",
-      domain: "Medical History",
-      system_affected: "General",
-      clinical_intent: "To identify potential adverse reactions to medications.",
-      tags: ["allergy", "drug"]
-    },
-    {
-      content: "Have you noticed any changes in the color of your urine or stool?",
-      qid: "A1B2C",
-      status: "asked",
-      answer: "Yeah, darker urine and lighter stool.",
-      rank: 1,
-      headline: "GI Symptom Assessment",
-      domain: "Symptom Triage",
-      system_affected: "Gastrointestinal",
-      clinical_intent: "To assess GI symptoms.",
-      tags: ["GI symptoms"]
-    },
-    {
-      qid: "D3E4F",
-      content: "Have you had any recent travel or exposure to viral hepatitis?",
-      status: null,
-      answer: null,
-      rank: 2,
-      headline: "Hepatitis Exposure Risk",
-      domain: "Symptom Triage",
-      system_affected: "Gastrointestinal",
-      clinical_intent: "To assess exposure risks.",
-      tags: ["hepatitis", "exposure"]
-    },
-    {
-      qid: "J7K8L",
-      content: "Can you estimate how many Extra Strength Tylenol pills you take in a typical day?",
-      status: null,
-      answer: null,
-      rank: 3,
-      headline: "Tylenol Usage",
-      domain: "Medication Review",
-      system_affected: "General",
-      clinical_intent: "To quantify daily acetaminophen intake.",
-      tags: ["acetaminophen", "medication use"]
-    },
-    {
-      qid: "XYZ78",
-      content: "Have you consumed raw seafood or had close contact with someone with similar symptoms?",
-      status: null,
-      answer: null,
-      rank: 5,
-      headline: "Hepatitis Risk Factors",
-      domain: "Symptom Triage",
-      system_affected: "Gastrointestinal",
-      clinical_intent: "To identify risk factors for hepatitis infection.",
-      tags: ["hepatitis", "risk factors"]
-    },
-    {
-      content: "Have you had any surgeries in the past?",
-      qid: "00006",
-      rank: 6,
-      status: null,
-      answer: null,
-      headline: "Past Surgical History",
-      domain: "Surgical History",
-      system_affected: "General",
-      clinical_intent: "To gather information on previous surgical interventions.",
-      tags: ["surgery", "medical history"]
-    },
-    {
-      qid: "G5H6I",
-      content: "On a scale of 0 to 10, how severe is your jaw pain currently?",
-      status: "asked",
-      answer: "It's about a 3 now, much better than before.",
-      rank: 999,
-      headline: "Jaw Pain Assessment",
-      domain: "Symptom Triage",
-      system_affected: "Neurological",
-      clinical_intent: "To quantify the severity of jaw pain.",
-      tags: ["pain", "jaw pain"]
-    }
-  ];
+  // Debug logging
+  console.log('Data loaded:', {
+    chatMessages: chatMessages?.length,
+    diagnoses: diagnoses?.length,
+    questions: questions?.length,
+    educationItems: educationItems?.length,
+    checklistItems: checklistItems?.length
+  });
 
-  // Mock education items
-  const educationItems: EducationItem[] = [
-    {
-      headline: "Emergency Red Flags for Liver Injury",
-      content: "If you develop a high fever, severe abdominal pain, confusion, or notice the yellow color worsening rapidly, you must seek emergency care at the hospital immediately.",
-      reasoning: "This warning is required to mitigate 'Failure to Warn' liability. Providing specific 'stop-use' and 'seek-care' triggers shifts the burden of action to the patient.",
-      category: "Safety",
-      urgency: "High",
-      context_reference: "Patient mentioned jaundice and itching symptoms.",
-      status: "pending"
-    },
-    {
-      headline: "Acetaminophen (Tylenol) Discontinuation",
-      content: "You must stop taking all forms of Tylenol immediately, including Extra Strength Tylenol and Tylenol PM. This medication is causing liver damage.",
-      reasoning: "Immediate cessation of hepatotoxic medication is critical. Failure to communicate this clearly constitutes negligence.",
-      category: "Medication Risk",
-      urgency: "High",
-      context_reference: "Patient reported frequent Tylenol use.",
-      status: "pending"
-    },
-    {
-      headline: "Alcohol Avoidance",
-      content: "You must completely avoid alcohol consumption while your liver is recovering. Even small amounts can cause further damage.",
-      reasoning: "Alcohol is hepatotoxic and will worsen liver injury. This is a standard of care requirement.",
-      category: "Safety",
-      urgency: "High",
-      context_reference: "Patient has liver injury.",
-      status: "asked"
-    },
-    {
-      headline: "Medication Compliance",
-      content: "Complete the entire course of any prescribed medications even if symptoms improve. Do not stop early.",
-      reasoning: "Prevents resistance and ensures proper treatment.",
-      category: "Medication Risk",
-      urgency: "Normal",
-      context_reference: "Prescription provided.",
-      status: "asked"
-    },
-    {
-      headline: "Hydration Importance",
-      content: "Drink plenty of water throughout the day to help your liver flush out toxins. Aim for at least 8 glasses of water daily.",
-      reasoning: "Adequate hydration supports liver function and recovery.",
-      category: "Lifestyle",
-      urgency: "Normal",
-      context_reference: "Patient has liver injury.",
-      status: "asked"
-    },
-    {
-      headline: "Follow-up Lab Work",
-      content: "You will need to have your liver function tests repeated in 48-72 hours to monitor your recovery. Do not skip this appointment.",
-      reasoning: "Monitoring is essential to ensure liver function is improving and to detect any complications early.",
-      category: "Follow-up Care",
-      urgency: "Normal",
-      context_reference: "Patient has elevated liver enzymes.",
-      status: "pending"
-    },
-    {
-      headline: "Over-the-Counter Medication Warning",
-      content: "Many over-the-counter medications contain acetaminophen. Always read labels carefully and avoid any product containing acetaminophen or paracetamol.",
-      reasoning: "Prevents accidental re-exposure to hepatotoxic medication.",
-      category: "Medication Risk",
-      urgency: "Normal",
-      context_reference: "Patient needs to avoid acetaminophen.",
-      status: "pending"
-    },
-    {
-      headline: "Rest and Activity Modification",
-      content: "Get plenty of rest and avoid strenuous physical activity until your liver function improves. Listen to your body and rest when you feel tired.",
-      reasoning: "Rest supports the body's natural healing processes.",
-      category: "Lifestyle",
-      urgency: "Low",
-      context_reference: "Patient reported fatigue.",
-      status: "asked"
-    }
-  ];
-
-  // Mock checklist items
-  const checklistItems: ChecklistItem[] = [
-    {
-      id: "1",
-      title: "Drug Allergy Verification",
-      description: "Verify allergies before suggesting treatment.",
-      reasoning: "Standard of Care requirement.",
-      category: "Legal/Safety",
-      completed: false,
-      priority: "high",
-      status: "asked"
-    },
-    {
-      id: "2",
-      title: "Safety Netting",
-      description: "Provided emergency instructions.",
-      reasoning: "Fulfills legal requirement.",
-      category: "Informed Consent",
-      completed: true,
-      priority: "high",
-      status: "asked"
-    }
-  ];
-
-  // Mock report data
-  const reportData: ReportData = {
-    clinical_handover: {
-      hpi_narrative: "Patient presents with jaundice and severe itching.",
-      key_biomarkers_extracted: ["AST: 450 U/L", "ALT: 620 U/L"],
-      clinical_impression_summary: "Drug-induced liver injury.",
-      suggested_doctor_actions: ["Discontinue acetaminophen", "Monitor liver function"]
-    },
-    audit_summary: {
-      performance_narrative: "Consultation conducted efficiently.",
-      areas_for_improvement_summary: "Consider more detailed history taking."
-    }
-  };
+  // Import report data from JSON
+  const report = reportData as ReportData;
 
   // Calculate dynamic counts
   const totalQuestions = questions.length;
@@ -571,7 +364,7 @@ export const ConsultationPageShowcase: React.FC<{ onBack: () => void }> = ({ onB
           ) : activeSection === 'analytics' ? (
             <AnalyticsInterface analyticsData={analytics} />
           ) : activeSection === 'report' ? (
-            <ReportInterface reportData={reportData} />
+            <ReportInterface reportData={report} />
           ) : null}
         </div>
       </div>

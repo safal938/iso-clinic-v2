@@ -106,7 +106,7 @@ export interface ChecklistItem {
   category: string;
   completed: boolean;
   priority: 'high' | 'medium' | 'low';
-  status: 'asked' | null;
+  status?: 'asked' | null;
 }
 
 export interface EducationItem {
