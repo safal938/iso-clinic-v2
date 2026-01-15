@@ -1588,58 +1588,204 @@
         "nurseId": "RN-2847",
         "nurseName": "Sarah Mitchell, RN"
       },
-      "differentialDiagnoses": [
-        {
-          "did": "B3456",
-          "diagnosis": "Biliary Obstruction",
-          "indicators_point": ["Jaundice (eyes are yellow)", "Pruritus (itching)", "Patient reports intense itching described as 'ants under skin'", "Dark urine ('like Coke')", "Dull heavy feeling under right ribs", "Nausea", "Loss of appetite", "Pale, clay-colored stool", "Patient reports wife noticed yellow eyes", "Elevated Bilirubin", "Elevated Alk Phos"],
-          "indicators_count": 11,
-          "probability": "High",
-          "rank": 1
-        },
-        {
-          "did": "CGL77",
-          "diagnosis": "Cholangitis",
-          "indicators_point": ["Right upper quadrant pain", "Fever", "Jaundice", "Elevated Alk Phos", "Elevated Bilirubin", "Pale stool", "Dark urine", "Dull heavy feeling under right ribs", "Loss of appetite", "Nausea", "Pruritus (itching)"],
-          "indicators_count": 11,
-          "probability": "High",
-          "rank": 2
-        },
-        {
-          "did": "K7890",
-          "diagnosis": "Choledocholithiasis",
-          "indicators_point": ["History of dental abscess treated with Augmentin", "Dull heavy feeling under right ribs", "Pale, clay-colored stool", "Loss of appetite", "Elevated Bilirubin", "Nausea", "Jaundice", "Elevated Alk Phos", "Pruritus (itching)", "Dark urine ('like Coke')"],
-          "indicators_count": 10,
-          "probability": "High",
-          "rank": 3
-        }
-      ],
-      "checklist": [
-        {"id": "00004", "text": "Current Medications", "isCompleted": true, "category": "fixed", "answer": "Yeah, just that lisinopril for my blood pressure. I was takin' some Tylenol for a toothache, but I stopped that yesterday."},
-        {"id": "00005", "text": "Drug Allergies", "isCompleted": true, "category": "fixed", "answer": "Nah, no allergies to meds that I know of."},
-        {"id": "51c2beb4", "text": "Have you traveled recently or been exposed to anyone with similar symptoms?", "isCompleted": true, "category": "dynamic", "answer": "Nah, been stayin' close to home. And nope, no one else is sick around me. Just me."},
-        {"id": "93aec75c", "text": "Have you had any changes in your urine or stool color?", "isCompleted": true, "category": "dynamic", "answer": "Yeah, the urine's dark, like Coke. And the stool this mornin' was like... pale. Like clay."},
-        {"id": "4847c5ca", "text": "Can you describe the itching more? Is it worse at certain times of day or on certain parts of your body?", "isCompleted": true, "category": "dynamic", "answer": "It's just... everywhere. All the time. Sometimes it's on my arms, other times my chest. It was really bad last night, made it hard to sleep. Feels like my skin is raw underneath."},
-        {"id": "1217cca7", "text": "Have you experienced any abdominal pain, especially in the upper right side?", "isCompleted": true, "category": "dynamic", "answer": "Yeah, kinda. It's not really sharp or anything, just a dull heavy feelin' under my ribs down there on the right side. Been there a little while."},
-        {"id": "e3759b27", "text": "Can you describe the intensity of the itching on a scale of 1 to 10?", "isCompleted": true, "category": "dynamic", "answer": "It's bad. Like, a good eight or nine most of the time. Sometimes worse if I think about it. Makes it hard to focus or even sleep."},
-        {"id": "1b902d11", "text": "Have you experienced any nausea, vomiting, or loss of appetite?", "isCompleted": true, "category": "dynamic", "answer": "Yeah, I haven't been feelin' real hungry lately. Had a little nausea now and then, but haven't thrown up."},
-        {"id": "2322fe62", "text": "Have you had any fevers or chills?", "isCompleted": true, "category": "dynamic", "answer": "Nah, don't think so. No fevers I noticed."},
-        {"id": "679d9322", "text": "Can you describe the pain in your right side more? Is it constant or does it come and go?", "isCompleted": true, "category": "dynamic", "answer": "Well, my tooth was really killin' me. I was takin' like, six to eight pills a day, for about the last three weeks. Just tryin' to deal with the pain."},
-        {"id": "c0637081", "text": "Have you experienced any unintentional weight loss recently?", "isCompleted": true, "category": "dynamic", "answer": "Nah, haven't really weighed myself, but my clothes feel a little loose. Must be from not eatin' as much with the nausea."},
-        {"id": "e5e85abc", "text": "Have you had any recent travel or exposure to anyone with similar symptoms?", "isCompleted": true, "category": "dynamic", "answer": "Nope, haven't traveled, and no one else seems to be havin' these problems."},
-        {"id": "7277b444", "text": "Have you had any fevers or chills, especially with the itching or abdominal discomfort?", "isCompleted": true, "category": "dynamic", "answer": "Nah, don't think so. Haven't felt feverish or had any chills. Just this itch and the yellow."},
-        {"id": "c60ad62f", "text": "Have you noticed any changes in your bowel habits besides the color, such as diarrhea or constipation?", "isCompleted": true, "category": "dynamic", "answer": "Nah, just the color of the stool. No real diarrhea or gettin' stopped up."},
-        {"id": "398fbb90", "text": "Have you consumed alcohol recently, and if so, how much?", "isCompleted": true, "category": "dynamic", "answer": "I have a few beers with the guys, nothin' crazy."}
-      ],
-      "recommendations": [
-        "Urgent hepatology consultation for suspected acute liver injury",
-        "Comprehensive liver panel (AST, ALT, ALP, GGT, Bilirubin)",
-        "Coagulation studies (PT/INR)",
-        "Abdominal ultrasound with Doppler to evaluate biliary tree",
-        "Viral hepatitis panel (HAV, HBV, HCV)",
-        "Review acetaminophen toxicity risk given high-dose Tylenol use",
-        "Consider N-acetylcysteine if acetaminophen toxicity suspected",
-        "Antihistamines or cholestyramine for pruritus management"
+      "transcrit": [
+        
+  {
+    "role": "Nurse",
+    "message": "Hello Marcus, I'm Nurse Sarah, the urgent care sent you over today. Can you tell me a little bit about what brings you in today?",
+    "highlights": []
+  },
+  {
+    "role": "Patient",
+    "message": "My eyes are yellow. My sister saw it two days ago. Now I look like I have a bad tan that won't go away.",
+    "highlights": [
+      "My eyes are yellow"
+    ]
+  },
+  {
+    "role": "Nurse",
+    "message": "I understand you're concerned about the yellow color. Can you tell me what medications you've been taking recently?",
+    "highlights": []
+  },
+  {
+    "role": "Patient",
+    "message": "I take lisinopril for my blood pressure. I stopped taking Tylenol yesterday. I was taking a bunch of it for a toothache.",
+    "highlights": [
+      "lisinopril",
+      "blood pressure",
+      "Tylenol",
+      "toothache"
+    ]
+  },
+  {
+    "role": "Nurse",
+    "message": "Thank you for letting me know. It's good you stopped taking the Tylenol. It's important to be aware that excessive use of acetaminophen, the medicine in Tylenol, can cause serious liver damage. Can you estimate how many extra strength or Tylenol PM pills you were taking daily over the past few weeks?",
+    "highlights": [
+      "excessive",
+      "liver damage"
+    ]
+  },
+  {
+    "role": "Patient",
+    "message": "It was probably six to eight pills a day. My tooth was really throbbing. I just needed the pain to stop.",
+    "highlights": [
+      "six to eight pills a day"
+    ]
+  },
+  {
+    "role": "Nurse",
+    "message": "Thank you for sharing that. Since you took Augmentin for your tooth infection, have you had any nausea, vomiting, or any abdominal pain?",
+    "highlights": []
+  },
+  {
+    "role": "Patient",
+    "message": "I've had a dull ache under my ribs, like it feels heavy. No vomiting, but I just feel nauseous all the time. I haven't been very hungry either.",
+    "highlights": [
+      "dull ache under my ribs",
+      "nauseous"
+    ]
+  },
+  {
+    "role": "Nurse",
+    "message": "I appreciate you letting me know about those symptoms. The yellowing of your eyes and skin, called jaundice, and the severe itching, can sometimes be signs of liver issues. Can you tell me when you first started noticing the yellowing and itching after you finished the Augmentin?",
+    "highlights": []
+  },
+  {
+    "role": "Patient",
+    "message": "I finished the pills three weeks ago. The yellow started maybe two days ago. This itching, it's the worst though. It feels like there are ants under my skin, especially on my arms and chest. I can't stop scratching. I need it to stop.",
+    "highlights": [
+      "three weeks ago",
+      "itching",
+      "arms and chest"
+    ]
+  },
+  {
+    "role": "Nurse",
+    "message": "That sounds really uncomfortable. It's important to know, have you had any recent travel, new sexual partners, or been exposed to anyone with hepatitis in the past few months?",
+    "highlights": []
+  },
+  {
+    "role": "Patient",
+    "message": "No travel, no new partners. Nobody I know has hepatitis. I did have that tooth infection though. It was really bad.",
+    "highlights": [
+      "No travel",
+      "no new partners",
+      "hepatitis"
+    ]
+  },
+  {
+    "role": "Nurse",
+    "message": "Okay, thank you. Have you noticed any confusion or changes in your mental state recently?",
+    "highlights": []
+  },
+  {
+    "role": "Patient",
+    "message": "I've been really tired, like wiped out. I had to leave work yesterday. Other than that, no. Just the pain under my ribs and all this itching. It feels like there are bugs crawling under my skin. I just need it to stop.",
+    "highlights": [
+      "tired",
+      "pain",
+      "ribs",
+      "itching"
+    ]
+  },
+  {
+    "role": "Nurse",
+    "message": "I see. Have you had any fevers, chills, or any flu-like symptoms in the past month?",
+    "highlights": []
+  },
+  {
+    "role": "Patient",
+    "message": "I felt a little warm a few times, but nothing major. No chills, just this tiredness and the itching. It's really getting to me.",
+    "highlights": [
+      "little warm",
+      "No chills",
+      "tiredness",
+      "itching"
+    ]
+  },
+  {
+    "role": "Nurse",
+    "message": "Thank you for letting me know about the tiredness and itching. It's important to be aware that urine that looks like Coke or stools that are white or pale can be important signs of potential liver problems. Have you noticed any changes in the color of your urine or stools since your eyes started to yellow?",
+    "highlights": []
+  },
+  {
+    "role": "Patient",
+    "message": "My pee got really dark, like Coke. That happened three days ago. This morning my stool was pale, almost white. That's what really freaked me out.",
+    "highlights": [
+      "pee",
+      "dark",
+      "Coke",
+      "three days ago",
+      "stool",
+      "pale"
+    ]
+  },
+  {
+    "role": "Nurse",
+    "message": "Thank you for that information. Have you consumed any alcohol in the past month?",
+    "highlights": []
+  },
+  {
+    "role": "Patient",
+    "message": "I have a few beers with the guys, nothing crazy. A couple nights a week.",
+    "highlights": [
+      "few beers",
+      "couple nights a week"
+    ]
+  },
+  {
+    "role": "Nurse",
+    "message": "Okay, thanks for letting me know about that. Have you had any unintentional weight loss recently?",
+    "highlights": []
+  },
+  {
+    "role": "Patient",
+    "message": "I haven't really been eating much with the nausea and pain under my ribs. Maybe a few pounds. Mostly because I just don't want to eat.",
+    "highlights": [
+      "haven't",
+      "eating"
+    ]
+  },
+  {
+    "role": "Nurse",
+    "message": "I understand. Do you have any drug allergies?",
+    "highlights": []
+  },
+  {
+    "role": "Patient",
+    "message": "I'm not allergic to anything. The Augmentin was fine. Just that bad toothache and all the Tylenol.",
+    "highlights": []
+  },
+  {
+    "role": "Nurse",
+    "message": "Okay. Have you had any surgeries in the past?",
+    "highlights": []
+  },
+  {
+    "role": "Patient",
+    "message": "No surgeries. Just need this itching to stop.",
+    "highlights": [
+      "No surgeries"
+    ]
+  },
+  {
+    "role": "Nurse",
+    "message": "I understand you're very itchy. Have you had any recent skin piercings or tattoos?",
+    "highlights": []
+  },
+  {
+    "role": "Patient",
+    "message": "No piercings or tattoos. Just this yellow skin and the itching. It feels like I'm on fire under my skin. It's so annoying.",
+    "highlights": [
+      "No piercings or tattoos"
+    ]
+  },
+  {
+    "role": "Nurse",
+    "message": "Thank you for providing that information. We have enough to go on for now. Goodbye.",
+    "highlights": []
+  }
+
       ]
     }
   },
