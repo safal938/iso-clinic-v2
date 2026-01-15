@@ -1,0 +1,150 @@
+{
+  "type": "diagnosis",
+  "diagnosis": [
+    {
+      "did": "A1B2C",
+      "headline": "Drug-Induced Liver Injury",
+      "diagnosis": "Drug-Induced Liver Injury secondary to Amoxicillin-Clavulanate and Acetaminophen (Acute)",
+      "indicators_point": [
+        {
+          "criteria": "Jaundice",
+          "check": true
+        },
+        {
+          "criteria": "Pruritus",
+          "check": true
+        },
+        {
+          "criteria": "Elevated AST",
+          "check": true
+        },
+        {
+          "criteria": "Elevated ALT",
+          "check": true
+        },
+        {
+          "criteria": "Elevated Alk Phos",
+          "check": false
+        },
+        {
+          "criteria": "Elevated Total Bilirubin",
+          "check": true
+        },
+        {
+          "criteria": "Recent Amoxicillin-Clavulanate use",
+          "check": true
+        },
+        {
+          "criteria": "Frequent Acetaminophen use",
+          "check": true
+        },
+        {
+          "criteria": "Nausea or Vomiting",
+          "check": false
+        },
+        {
+          "criteria": "Abdominal Pain (RUQ)",
+          "check": true
+        },
+        {
+          "criteria": "Dark Urine",
+          "check": true
+        },
+        {
+          "criteria": "Pale Stool",
+          "check": true
+        }
+      ],
+      "reasoning": "The patient presents with jaundice, pruritus, elevated AST, ALT, and Total Bilirubin, along with dark urine and pale stools. Recent use of Amoxicillin-Clavulanate and frequent acetaminophen use are confirmed. Abdominal pain (RUQ) is also reported. The primary missing criteria for a complete picture of drug-induced liver injury are elevated Alk Phos and reported nausea/vomiting.",
+      "followup_question": "Have you experienced any nausea or vomiting, or has your abdominal pain been severe or sharp in nature?",
+      "rank": 1,
+      "severity": "High"
+    },
+    {
+      "did": "D3E4F",
+      "headline": "Cholestasis",
+      "diagnosis": "Cholestasis secondary to Biliary Obstruction of Unknown Etiology (Acute)",
+      "indicators_point": [
+        {
+          "criteria": "Jaundice",
+          "check": true
+        },
+        {
+          "criteria": "Pruritus",
+          "check": true
+        },
+        {
+          "criteria": "Elevated Alk Phos",
+          "check": true
+        },
+        {
+          "criteria": "Elevated Total Bilirubin",
+          "check": true
+        },
+        {
+          "criteria": "Pale Stool",
+          "check": true
+        },
+        {
+          "criteria": "Dark Urine",
+          "check": true
+        },
+        {
+          "criteria": "Abdominal Pain (RUQ)",
+          "check": true
+        },
+        {
+          "criteria": "Recent travel",
+          "check": false
+        },
+        {
+          "criteria": "Consumption of raw shellfish",
+          "check": false
+        },
+        {
+          "criteria": "Contact with jaundiced individuals",
+          "check": false
+        }
+      ],
+      "reasoning": "The patient exhibits jaundice, pruritus, elevated Alk Phos and Total Bilirubin, along with dark urine and pale stools, all indicative of cholestasis. RUQ pain is also reported. The primary missing criteria to fully assess the etiology of this cholestasis are recent travel, consumption of raw shellfish, or contact with jaundiced individuals.",
+      "followup_question": "Have you recently traveled, eaten raw shellfish, or had any contact with individuals who have had similar symptoms or known hepatitis?",
+      "rank": 2,
+      "severity": "Moderate"
+    },
+    {
+      "did": "G5H6I",
+      "headline": "Dental Abscess",
+      "diagnosis": "Acute Dental Abscess (Resolved)",
+      "indicators_point": [
+        {
+          "criteria": "History of Dental Abscess",
+          "check": true
+        },
+        {
+          "criteria": "Recent Amoxicillin-Clavulanate use",
+          "check": true
+        },
+        {
+          "criteria": "Lingering jaw pain",
+          "check": true
+        },
+        {
+          "criteria": "Fever",
+          "check": false
+        },
+        {
+          "criteria": "Swelling of the face/jaw",
+          "check": false
+        },
+        {
+          "criteria": "Difficulty opening mouth",
+          "check": false
+        }
+      ],
+      "reasoning": "The patient has a history of a dental abscess and recent Amoxicillin-Clavulanate use, with reported lingering jaw pain. The missing criteria to fully assess the status of the dental abscess are fever, swelling of the face/jaw, and difficulty opening the mouth.",
+      "followup_question": "Have you experienced any fever, swelling of your face or jaw, or difficulty opening your mouth since your dental abscess was treated?",
+      "rank": 3,
+      "severity": "Moderate"
+    }
+  ]
+}

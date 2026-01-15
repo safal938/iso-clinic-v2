@@ -1,0 +1,82 @@
+{
+  "referralDetails": {
+    "referredBy": "Midtown Primary Care Associates",
+    "referringPhysician": "Dr. Richard Jenkins",
+    "referralDate": "2025-11-20",
+    "referredTo": "Hepatology Clinic",
+    "consultingPhysician": "Dr. A. Gupta",
+    "urgency": "Urgent",
+    "reason": "Acute liver injury with jaundice requiring specialist evaluation"
+  },
+  "referralSummary": {
+    "clinicalContext": {
+      "text": "46-year-old male construction worker presenting with acute onset jaundice and severe pruritus. Recent history of dental infection treated with Augmentin, followed by excessive acetaminophen use for pain management.",
+      "highlights": ["Augmentin", "acetaminophen"]
+    },
+    "concerningFeatures": [
+      {
+        "text": "Rapid onset of symptoms (2 days)",
+        "highlights": []
+      },
+      {
+        "text": "Marked elevation in liver enzymes (ALT >600 U/L)",
+        "highlights": ["ALT >600 U/L"]
+      },
+      {
+        "text": "Eosinophilia suggesting drug hypersensitivity",
+        "highlights": ["Eosinophilia"]
+      },
+      {
+        "text": "Patient distress from severe itching",
+        "highlights": []
+      }
+    ],
+    "actionsTaken": [
+      {
+        "text": "Discontinued all hepatotoxic medications (Tylenol)",
+        "highlights": ["Tylenol"]
+      },
+      {
+        "text": "Ordered comprehensive liver panel and CBC",
+        "highlights": []
+      },
+      {
+        "text": "Arranged urgent abdominal ultrasound",
+        "highlights": []
+      },
+      {
+        "text": "Advised patient to avoid alcohol and unnecessary medications",
+        "highlights": []
+      }
+    ],
+    "questionsForSpecialist": [
+      {
+        "text": "Is this drug-induced liver injury (DILI) from Augmentin or acetaminophen?",
+        "highlights": ["DILI"]
+      },
+      {
+        "text": "Should we consider liver biopsy?",
+        "highlights": ["liver biopsy"]
+      },
+      {
+        "text": "What is the prognosis and risk of progression?",
+        "highlights": []
+      },
+      {
+        "text": "Management recommendations for pruritus?",
+        "highlights": []
+      }
+    ]
+  },
+  "attachedDocuments": [
+    {
+      "id": 3,
+      "title": "Urgent Care Referral Letter",
+      "type": "letter",
+      "source": "Dr. Richard Jenkins, Midtown Primary Care",
+      "date": "2025-11-20",
+      "description": "Formal referral letter with clinical summary and initial workup",
+      "image": "/images/referal_letter.png"
+    }
+  ]
+}

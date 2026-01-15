@@ -1,0 +1,43 @@
+{
+  "overall_score": 78.5,
+  "metrics": {
+    "empathy": {
+      "score": 85,
+      "reasoning": "The nurse acknowledged the patient's anxiety regarding their symptoms early in the conversation, which helped build rapport.",
+      "example_quote": "I can hear how worried you are about this cough, especially since it's been three weeks. We're going to take a close look at this for you.",
+      "pros": "The nurse successfully used emotional validation in the opening minute. By acknowledging that three weeks is a long time to be sick, the nurse made the patient feel heard and less like 'just another case.'",
+      "cons": "Toward the end of the call, the nurse became much more task-oriented and failed to respond when the patient mentioned they were worried about missing work, missing a second opportunity to show empathy."
+    },
+    "clarity": {
+      "score": 62,
+      "reasoning": "The nurse provided clear instructions but used several medical terms that were not explained to the patient.",
+      "feedback": "Try to replace technical terms like 'pulmonary parenchyma' with simpler phrases like 'your lung tissue.'",
+      "pros": "The nurse was very effective at explaining the logistics of the upcoming X-ray, including exactly which building the patient needed to go to and what time to arrive.",
+      "cons": "What did not go well was the use of jargon; the nurse used the terms 'tachycardia' and 'auscultation' without defining them. The transcript shows the patient stayed silent during these parts, suggesting they may have been confused."
+    },
+    "information_gathering": {
+      "score": 88,
+      "reasoning": "The clinical inquiry was very thorough, covering all major respiratory red flags.",
+      "pros": "The nurse did an excellent job of following up on the patient's mention of a 'slight fever.' Instead of moving on, the nurse asked exactly when it started and what the highest reading was, which is vital for the clinical record.",
+      "cons": "The nurse focused so much on the cough that they forgot to ask about the patient's history of allergies or previous similar illnesses, which could have provided more context for the current symptoms."
+    },
+    "patient_engagement": {
+      "score": 72,
+      "reasoning": "The nurse dominated the conversation during the education phase, leading to a drop in patient participation.",
+      "turn_taking_ratio": "Nurse 68% / Patient 32%",
+      "pros": "In the first half of the call, the nurse used great open-ended questions like 'Tell me more about how this is affecting your daily sleep,' which allowed the patient to speak at length.",
+      "cons": "The engagement dropped significantly in the second half. The nurse spoke for nearly two minutes straight without pausing, which led to the patient giving only one-word answers like 'Okay' and 'Yeah' toward the end."
+    }
+  },
+  "key_strengths": [
+    "Strong initial emotional validation and support",
+    "Thorough investigation of fever onset and duration",
+    "Excellent logistical coordination for follow-up testing"
+  ],
+  "improvement_areas": [
+    "Reduce the use of medical jargon when explaining anatomy",
+    "Practice pausing more frequently during patient education to check for understanding",
+    "Ensure the patient has finished their sentence before moving to the next diagnostic question"
+  ],
+  "sentiment_trend": "The patient started the call appearing 'Anxious and Fearful' about their symptoms, but shifted to feeling 'Clinically Managed' by the end, though they seemed a bit 'Overwhelmed' by the technical explanation of the X-ray."
+}

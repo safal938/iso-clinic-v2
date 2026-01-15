@@ -1,0 +1,132 @@
+[
+  {
+    "role": "admin",
+    "message": "Good morning! This is Linda at the Hepatology Clinic admin desk. How can I help you today?"
+  },
+  {
+    "role": "patient",
+    "message": "Yeah, hi. I need to schedule a clinic visit. Something's wrong—my eyes are turning yellow and I'm itching like crazy. It feels like there are ants under my skin."
+  },
+  {
+    "role": "admin",
+    "message": "I'm sorry to hear you're uncomfortable, Mr. Thorne. Have you already booked an appointment request through the NHS app?"
+  },
+  {
+    "role": "patient",
+    "message": "Yes, I did that this morning."
+  },
+  {
+    "role": "admin",
+    "message": "Great. Could you please send a screenshot of the booking reference from the app so I can locate your request in our system?"
+  },
+  {
+    "role": "patient",
+    "attachment": "/images/nhs_screenshot.png"
+  },
+  {
+    "role": "admin",
+    "message": "Thank you, I found your request. Since this is your first time visiting the Hepatology department specifically, I need you to confirm your current details and complete a brief intake form."
+  },
+  {
+    "role": "admin",
+    "object": {
+      "formType": "emptyRequest"
+    }
+  },
+  {
+    "role": "patient",
+    "message": "Done. I filled out the form.",
+    "object": {
+      "formType": "filledResponse",
+      "firstName": "Marcus",
+      "lastName": "Thorne Elias",
+      "dob": "1978-08-14",
+      "email": "m.thorne78@example.com",
+      "phone": "+44 7700 900555",
+      "complaint": "Jaundice (yellow eyes) and severe itching",
+      "medicalHistory": ["Dental Abscess (Recent)"]
+    }
+  },
+  {
+    "role": "admin",
+    "message": "Thanks, Marcus. Your profile is updated. Based on your request, Dr. A. Gupta has the following slots available for an urgent consultation:"
+  },
+  {
+    "role": "admin",
+    "object": {
+      "doctorName": "Dr. A. Gupta",
+      "specialty": "Hepatology",
+      "availableSlots": [
+        { "slotId": "SLOT_10_AM", "date": "2025-12-10", "time": "09:30 AM", "type": "In-Person" },
+        { "slotId": "SLOT_11_PM", "date": "2025-12-11", "time": "02:00 PM", "type": "In-Person" },
+        { "slotId": "SLOT_12_AM", "date": "2025-12-12", "time": "10:00 AM", "type": "In-Person" }
+      ]
+    }
+  },
+  {
+    "role": "patient",
+    "message": "I'll take the first one. Wednesday the 10th at 9:30. I need to get this sorted out fast."
+  },
+  {
+    "role": "admin",
+    "message": "Understood. That is confirmed. Here are your appointment details:"
+  },
+  {
+    "role": "admin",
+    "object": {
+      "appointmentId": "APT-HEP-2025-9901",
+      "status": "Confirmed",
+      "schedule": {
+        "date": "2025-12-10",
+        "time": "09:30 AM",
+        "provider": "Dr. A. Gupta",
+        "location": "Royal London Hospital – Hepatology Department, Whitechapel",
+        "instructions": "Arrive 10 minutes early. Fast for 8 hours."
+      }
+    }
+  },
+  {
+    "role": "admin",
+    "message": "To help Dr. Gupta understand your condition before you arrive, please upload the screenshots of your most recent lab results (Blood work)."
+  },
+  {
+    "role": "patient",
+    "attachment": "/images/lab1.png"
+  },
+  {
+    "role": "patient",
+    "attachment": "/images/lab2.png"
+  },
+  {
+    "role": "admin",
+    "message": "Received. Do you have any recent radiology reports? Specifically the Ultrasound mentioned in your intake?"
+  },
+  {
+    "role": "patient",
+    "attachment": "/images/radiology.png"
+  },
+  {
+    "role": "admin",
+    "message": "Got it. Do you have the digital copy of the referral letter from the Urgent Care center you visited?"
+  },
+  {
+    "role": "patient",
+    "attachment": "/images/referal_letter.png"
+  },
+  {
+    "role": "admin",
+    "message": "Thank you. Lastly, to build a complete timeline, do you have the encounter report or screenshot from your previous dental visit 3 weeks ago where the antibiotics were prescribed?"
+  },
+  {
+    "role": "patient",
+    "message": "Yeah, I have the discharge summary from the dental clinic. Here."
+  },
+  {
+    "role": "patient",
+    "attachment": "/images/clinicnote2.png"
+  },
+  {
+    "role": "admin",
+    "message": "Perfect. I have uploaded all documents to your file. Dr. Gupta will review these before you come in on Wednesday the 10th. Please try to stay hydrated. Goodbye!"
+  }
+]

@@ -44,9 +44,9 @@ const NurseNotesCard: React.FC<NurseNotesCardProps> = ({ width = 350, height = 9
           <div className="border-t border-gray-200 pt-4 mt-4">
             <p className="text-sm font-medium text-gray-800 mb-2">Impression:</p>
             <p className="text-sm text-gray-700 leading-relaxed">
-              Clinical picture highly suggestive of <span className="font-medium text-red-700">biliary obstruction</span>. 
+              Clinical picture highly suggestive of <span className="font-medium text-red-700">Drug Induced Liver Injury</span>. 
               Classic triad of jaundice, pruritus, and acholic stools with choluria. 
-              Differential includes <span className="font-medium text-amber-700">cholangitis</span> and <span className="font-medium text-amber-700">choledocholithiasis</span>. 
+              Differential includes <span className="font-medium text-amber-700">cholangitis</span> and <span className="font-medium text-amber-700">biliary obstruction</span>. 
               RUQ discomfort supports hepatobiliary etiology.
             </p>
           </div>

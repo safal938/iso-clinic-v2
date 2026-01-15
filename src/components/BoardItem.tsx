@@ -2,6 +2,7 @@ import React, { useState, useRef, useCallback, useEffect } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { FileText, Activity } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import LabResult from "./LabResult";
 import PatientContext from "./dashboard/PatientContext";
 import MedicationTimeline from "./dashboard/MedicationTimeline";
@@ -435,6 +436,7 @@ const pastMeds = [
 const pastMedDates = pastMeds.map(m => new Date(m.startDate));
 
 const BoardItem = ({ item, isSelected, onUpdate, onDelete, onSelect, zoom = 1 }) => {
+  const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
@@ -1432,6 +1434,11 @@ const BoardItem = ({ item, isSelected, onUpdate, onDelete, onSelect, zoom = 1 })
                       message: 'Failed to push to EHR. Please try again.',
                       type: 'error'
                     });
+                  }
+                } else if (item.buttonAction === "navigate") {
+                  // Simple navigation action
+                  if (item.buttonTarget) {
+                    navigate(item.buttonTarget);
                   }
                 }
               }}

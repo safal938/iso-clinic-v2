@@ -775,7 +775,6 @@
         "date": "2025-11-19",
         "studyType": "Laboratory Results Panel 1",
         "provider": "ICE Laboratory",
-        "content": "DOCUMENT TYPE: External Lab Import (Urgent Care Interface)\nSource: Metro Detroit Urgent Care – Central Lab\nCollection Date: 20/11/2025 16:30\nPatient: Thorne, Marcus (MRN: EXT-99821)\n\nHEMATOLOGY (CBC)\nWBC: 11.2 K/uL (Ref 4.5–11.0) [HIGH]\nHemoglobin: 14.2 g/dL (Ref 13.5–17.5)\nPlatelets: 210 K/uL (Ref 150–450)\nNeutrophils: 60 % (Ref 40–70)\nLymphocytes: 30 % (Ref 20–40)\nEosinophils: 8.5 % (Ref 0.0–6.0) [HIGH]\nEosinophils Absolute: 0.95 K/uL (Ref 0.0–0.5) [HIGH]\n\nCOAGULATION\nPT: 13.8 sec (Ref 11–13.5) [HIGH]\nINR: 1.2 (Ref 0.8–1.1) [HIGH]\n\nTOXICOLOGY SCREEN\nAcetaminophen: <10 ug/mL (Therapeutic 10–30)\nEthanol: Negative\nSalicylates: Negative",
         "specialty": "Clinical Chemistry",
         "imageUrl": "/images/lab1.png",
         "dataSource": "ICE Lab System"
@@ -802,8 +801,6 @@
         "date": "2025-11-19",
         "studyType": "Laboratory Results Panel 2",
         "provider": "ICE Laboratory",
-              "content": "DOCUMENT TYPE: External Lab Import (Urgent Care Interface)\nSource: Metro Detroit Urgent Care – Central Lab\nCollection Date: 20/11/2025 16:30\nPatient: Thorne, Marcus (MRN: EXT-99821)\n\nCHEMISTRY PANEL\nSodium: 137 mmol/L (Ref 135–145)\nPotassium: 3.9 mmol/L (Ref 3.5–5.2)\nCreatinine: 0.9 mg/dL (Ref 0.7–1.3)\nGlucose (Random): 108 mg/dL (Ref 70–140)\n\nLIVER FUNCTION TESTS\nAST (SGOT): 450 U/L (Ref 10–40) [HIGH]\nALT (SGPT): 620 U/L (Ref 7–56) [HIGH]\nAlkaline Phosphatase: 188 U/L (Ref 44–147) [HIGH]\nTotal Bilirubin: 5.2 mg/dL (Ref 0.1–1.2) [HIGH]\nDirect Bilirubin: 3.8 mg/dL (Ref 0.0–0.3) [HIGH]\nAlbumin: 3.6 g/dL (Ref 3.4–5.4)\nTotal Protein: 7.1 g/dL (Ref 6.0–8.3)",
-
         "specialty": "Clinical Chemistry",
         "imageUrl": "/images/lab2.png",
         "dataSource": "ICE Lab System"
@@ -829,7 +826,6 @@
         "encounterNumber": 1,
         "date": "2025-11-19",
         "studyType": "NHS System Data",
-      "content": "NHS Appointment Summary\n\nClinic: Hepatology Clinic\nAppointment Type: Follow-up / Liver evaluation\nDate: Wednesday, 10 December 2025\nTime: 09:30 AM\nLocation: Royal London Hospital – Hepatology Department, Whitechapel\nStatus: Confirmed\n\nClinician: Dr A. Gupta\nInstructions:\n- Arrive 10 minutes early\n- Bring photo ID\n- Fast for 8 hours if blood work is planned",
         "provider": "NHS",
         "specialty": "Clinical Records",
         "imageUrl": "/images/nhs_screenshot.png",
@@ -855,7 +851,6 @@
       "props": {
         "encounterNumber": 1,
         "date": "2025-11-19",
-       "content": "DOCUMENT TYPE: Radiology Report\nFacility: Metro Detroit Urgent Care – Radiology Department\nExam: Ultrasound Abdomen Complete\nDate: May 21, 2024 08:15 AM\nOrdering Physician: Dr A. Gupta (Hepatology Intake)\nIndication: Jaundice, elevated LFTs, RUQ pain\n\nFINDINGS\nLIVER:\n- Mild hepatomegaly (17.2 cm craniocaudal)\n- Diffusely increased echotexture consistent with moderate hepatic steatosis\n- No focal hepatic masses or fluid collections\n- Portal vein patent with hepatopetal flow\n\nGALLBLADDER:\n- Distended but thin-walled (<3 mm)\n- No gallstones identified\n- No pericholecystic fluid\n- Sonographic Murphy sign absent\n\nBILIARY TREE:\n- Common bile duct measures 4 mm (normal)\n- No intrahepatic or extrahepatic biliary dilatation\n\nPANCREAS:\n- Partially obscured by bowel gas; visualized portions unremarkable\n\nSPLEEN:\n- Normal size and echotexture\n- Length 10.5 cm\n\nIMPRESSION:\n1. Moderate hepatic steatosis with mild hepatomegaly\n2. No biliary obstruction or gallstones identified",
         "studyType": "Radiology Imaging Study",
         "provider": "Radiology Department",
         "specialty": "Radiology",
@@ -882,7 +877,6 @@
       "props": {
         "encounterNumber": 1,
         "date": "2025-11-19",
-        "content": "METRO CITY WALK-IN CLINIC\nENCOUNTER SUMMARY\n\nPatient: Thorne, Marcus \"Mark\" Elias\nDOB: 14/08/1978 (47M)\nProvider: Dr Emily Chen, MD\n\nCHIEF COMPLAINT\n\"Severe throbbing jaw pain and facial swelling for days.\"\n\nHISTORY OF PRESENT ILLNESS\n47-year-old male with worsening right mandibular pain radiating to the ear. Reports difficulty chewing and mild dysphagia. Taking OTC ibuprofen with minimal relief.\n\nPHYSICAL EXAM\nTemp: 37.8°C (100°F)\nBP: 155/85\nHR: 88\nRR: 16\nSpO2: 98%\n\nAllergies: NKDA\nMedications: Lisinopril 10 mg\n\nHEENT:\n- Right-sided facial swelling along mandible\n- Tender right submandibular lymphadenopathy\n- Intraoral exam shows erythema and fluctuance near tooth #30\n- Airway patent\n\nASSESSMENT\n1. Acute dental abscess (right mandibular molar)\n\nPLAN\n- Amoxicillin–Clavulanate (Augmentin) 875/125 mg PO BID x 10 days\n- Acetaminophen (Tylenol) 500–1000 mg PRN pain\n- Urgent dental referral for root canal or extraction\n- Encourage hydration\n- Return to ER if worsening swelling, difficulty swallowing, or breathing issues",
         "studyType": "Clinical Documentation",
         "provider": "Primary Care",
         "specialty": "Clinical Notes",
@@ -909,7 +903,6 @@
       "props": {
         "encounterNumber": 1,
         "date": "2025-11-19",
-        "content": "METRO CITY FAMILY MEDICINE\nTELEHEALTH CONSULTATION NOTE\n\nPatient: Thorne, Marcus \"Mark\" Elias\nDOB: 14/08/1978 (47M)\nDate: 10/11/2025 10:00\nProvider: Sarah Bones, NP\n\nCHIEF COMPLAINT\n\"Nausea and trouble sleeping.\"\n\nHISTORY OF PRESENT ILLNESS\nRecently completed 10-day course of amoxicillin-clavulanate for dental abscess. Facial swelling improved. Persistent jaw throbbing at night affecting sleep. Reports fatigue, mild nausea, reduced appetite. Attributes symptoms to antibiotics upsetting stomach.\n\nMedications:\n- Lisinopril 10 mg\n- Completed Augmentin course\n\nREVIEW OF SYSTEMS\nNo vomiting, diarrhea, fever, chills, chest pain, or shortness of breath.\n\nASSESSMENT\n1. Antibiotic-associated dyspepsia / gastritis\n2. Residual dental pain\n\nPLAN\n- Supportive care: BRAT diet (bananas, rice, applesauce, toast)\n- Maintain hydration\n- Acetaminophen (Tylenol PM) 1000 mg at bedtime PRN pain/sleep\n- Follow up in person if unable to tolerate fluids, if jaundice develops, or if abdominal pain worsens",
         "studyType": "Clinical Documentation",
         "provider": "Primary Care",
         "specialty": "Clinical Notes",
@@ -1570,9 +1563,9 @@
   {
     "id": "nurse-assessment-card-001",
     "type": "component",
-    "x": -2400,
+    "x": -1500,
     "y": -2900,
-    "width": 2400,
+    "width": 1000,
     "height": 1300,
     "componentType": "NurseAssessmentCard",
     "color": "#ffffff",
@@ -1602,8 +1595,7 @@
           "indicators_point": ["Jaundice (eyes are yellow)", "Pruritus (itching)", "Patient reports intense itching described as 'ants under skin'", "Dark urine ('like Coke')", "Dull heavy feeling under right ribs", "Nausea", "Loss of appetite", "Pale, clay-colored stool", "Patient reports wife noticed yellow eyes", "Elevated Bilirubin", "Elevated Alk Phos"],
           "indicators_count": 11,
           "probability": "High",
-          "rank": 1,
-          "severity": "High"
+          "rank": 1
         },
         {
           "did": "CGL77",
@@ -1611,8 +1603,7 @@
           "indicators_point": ["Right upper quadrant pain", "Fever", "Jaundice", "Elevated Alk Phos", "Elevated Bilirubin", "Pale stool", "Dark urine", "Dull heavy feeling under right ribs", "Loss of appetite", "Nausea", "Pruritus (itching)"],
           "indicators_count": 11,
           "probability": "High",
-          "rank": 2,
-          "severity": "Moderate"
+          "rank": 2
         },
         {
           "did": "K7890",
@@ -1620,8 +1611,7 @@
           "indicators_point": ["History of dental abscess treated with Augmentin", "Dull heavy feeling under right ribs", "Pale, clay-colored stool", "Loss of appetite", "Elevated Bilirubin", "Nausea", "Jaundice", "Elevated Alk Phos", "Pruritus (itching)", "Dark urine ('like Coke')"],
           "indicators_count": 10,
           "probability": "High",
-          "rank": 3,
-          "severity": "Low"
+          "rank": 3
         }
       ],
       "checklist": [
@@ -1654,10 +1644,25 @@
     }
   },
   {
+    "id": "nurse-assessment-action-button",
+    "type": "button",
+    "x": -350,
+    "y": -2900,
+    "width": 200,
+    "height": 60,
+    "buttonColor": "#0EA5E9",
+    "buttonText": "View Details",
+    "buttonAction": "navigate",
+    "buttonTarget": "/nurse-sim-1",
+    "description": "Action button for nurse pre-assessment",
+    "createdAt": "2025-01-15T12:00:00.000Z",
+    "updatedAt": "2025-01-15T12:00:00.000Z"
+  },
+  {
     "id": "nurse-notes-card-001",
     "type": "component",
-    "x": 150,
-    "y": -2850,
+    "x": -350,
+    "y": -2750,
     "width": 900,
     "height": 700,
     "componentType": "NurseNotesCard",

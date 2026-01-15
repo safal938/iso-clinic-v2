@@ -1,0 +1,42 @@
+[
+  {
+    "headline": "Emergency Red Flags for Sepsis",
+    "content": "If you develop a high fever, chills, or notice the red area on your skin spreading rapidly, you must seek emergency care at the hospital immediately.",
+    "reasoning": "This warning is required to mitigate 'Failure to Warn' liability. Providing specific 'stop-use' and 'seek-care' triggers shifts the burden of action to the patient, protecting the clinic in the event of rapid clinical deterioration.",
+    "category": "Safety",
+    "urgency": "High",
+    "context_reference": "Patient mentioned the redness on their leg has been there for two days."
+  },
+  {
+    "headline": "Antibiotic Compliance Requirement",
+    "content": "You must complete the entire 7-day course of antibiotics even if the skin looks normal after a few days. Do not stop early.",
+    "reasoning": "Failure to disclose the risks of non-compliance (antibiotic resistance and secondary infection) constitutes a breach of the 'Duty of Care.' Documentation of this instruction prevents negligence claims if the infection returns due to patient error.",
+    "category": "Medication Risk",
+    "urgency": "Normal",
+    "context_reference": "Nurse provided a prescription for Amoxicillin."
+  },
+  {
+    "headline": "NSAID Gastric Risk Warning",
+    "content": "Take the Ibuprofen only with food. If you experience sharp stomach pain or notice black, tarry stools, stop the medication immediately and contact us.",
+    "reasoning": "Under the 'Informed Consent Doctrine,' clinicians must disclose 'material risks.' Gastric bleeding is a known risk of NSAIDs; failing to provide this warning leaves the clinic vulnerable to a malpractice suit if a GI bleed occurs.",
+    "category": "Medication Risk",
+    "urgency": "Normal",
+    "context_reference": "Nurse suggested taking Advil (Ibuprofen) for the pain."
+  },
+  {
+    "headline": "Diagnostic Limitations Disclosure",
+    "content": "This is a preliminary assessment based on your current symptoms. A physical examination is required if symptoms do not improve within 48 hours.",
+    "reasoning": "This is a legal safeguard for remote or preliminary consultations. It establishes that the assessment has limitations and clearly defines the timeframe for follow-up, protecting the doctor against 'Failure to Diagnose' claims.",
+    "category": "Legal/Informed Consent",
+    "urgency": "Normal",
+    "context_reference": "Nurse stated 'It looks like a simple skin infection.'"
+  },
+  {
+    "headline": "Expected Skin Tenderness",
+    "content": "It is normal for the area to remain slightly tender and warm for the next 24 hours as the medication begins to work. This is an expected part of the healing process.",
+    "reasoning": "Strategic 'Reassurance' prevents 'Anxiety-based Litigation.' By defining what is 'normal,' the clinic prevents the patient from claiming they were 'misled' or 'frightened' by standard recovery symptoms.",
+    "category": "Reassurance",
+    "urgency": "Low",
+    "context_reference": "Patient asked if it was okay that the leg felt hot."
+  }
+]

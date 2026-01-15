@@ -1,0 +1,103 @@
+{
+  "documents": [
+    {
+      "id": 1,
+      "title": "Hematology (CBC)",
+      "type": "report",
+      "source": "Metro Detroit Urgent Care",
+      "date": "23 Oct 2023",
+      "hasStamp": true,
+      "color": "text-blue-600",
+      "content": "labs",
+      "image": "/images/lab1.png"
+    },
+    {
+      "id": 2,
+      "title": "Blood Panel Results",
+      "type": "report",
+      "source": "Central Lab",
+      "date": "22 Oct 2023",
+      "hasStamp": true,
+      "color": "text-blue-600",
+      "content": "labs",
+      "image": "/images/lab2.png"
+    },
+    {
+      "id": 3,
+      "title": "Urgent Care Referral",
+      "type": "letter",
+      "source": "Dr. A. Gupta",
+      "date": "21 Oct 2023",
+      "hasStamp": false,
+      "color": "text-amber-600",
+      "content": "text",
+      "image": "/images/referal_letter.png"
+    },
+    {
+      "id": 4,
+      "title": "Appt. Confirmation",
+      "type": "app",
+      "source": "NHS App",
+      "date": "20 Oct 2023",
+      "hasStamp": false,
+      "color": "text-sky-600",
+      "content": "mobile",
+      "image": "/images/nhs_screenshot.png"
+    },
+    {
+      "id": 5,
+      "title": "Abdominal Ultrasound",
+      "type": "image",
+      "source": "Radiology Dept",
+      "date": "19 Oct 2023",
+      "hasStamp": true,
+      "color": "text-neutral-600",
+      "content": "image",
+      "image": "/images/radiology.png"
+    },
+    {
+      "id": 6,
+      "title": "Clinical History",
+      "type": "letter",
+      "source": "Midtown Primary",
+      "date": "18 Oct 2023",
+      "hasStamp": false,
+      "color": "text-neutral-600",
+      "content": "text",
+      "image": "/images/clinicnote1.png"
+    },
+    {
+      "id": 7,
+      "title": "Follow-up Notes",
+      "type": "letter",
+      "source": "Midtown Primary",
+      "date": "15 Oct 2023",
+      "hasStamp": false,
+      "color": "text-neutral-600",
+      "content": "text",
+      "image": "/images/clinicnote2.png"
+    }
+  ],
+  "patientDetails": {
+    "occupation": "Site Foreman",
+    "contact": "+44 7700 900555",
+    "lastVisit": "2023-10-24",
+    "dob": "1978-08-14",
+    "medicalHistory": [
+      "Dental Abscess (Recent)",
+      "Mild Hypertension (2019)",
+      "Appendectomy (2010)"
+    ],
+    "referral": {
+      "referredBy": "Midtown Primary",
+      "previousProvider": "Dr. A. Gupta",
+      "referralDate": "21 Oct 2023"
+    },
+    "preConsultation": {
+      "messageCount": 25,
+      "status": "Completed"
+    },
+    "chief_complaint" : "Jaundice & Severe Itching",
+    "summary": "Mr. Thorne is a 46-year-old male presenting with a history of jaundice & severe itching. History significant for recent dental abscess treated with Amoxicillin-Clavulanate and high-dose acetaminophen."
+  }
+}

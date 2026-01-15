@@ -1,66 +1,189 @@
-import { PatientData, ChecklistItem } from '../types/nurse-sim';
+import { Patient, PatientStatus } from '../types/nurse-sim';
 
-// Initial checklist - backend will provide questions dynamically
-export const INITIAL_CHECKLIST: ChecklistItem[] = [];
-
-export const SCENARIOS: PatientData[] = [
+const BASE_PATIENTS: Patient[] = [
   {
-    id: "P0001",
-    scenarioSecret: "",
-    patient: {
-      name: "Marcus Mark Elias Thorne",
-      date_of_birth: "1979-03-15",
-      age: 46,
-      sex: "Male",
-      age_at_first_encounter: 46,
-      identifiers: {
-        mrn: "MRN-0001"
-      }
-    },
-    riskLevel: "high",
-    primaryDiagnosis: "Jaundice (yellow eyes) and severe itching",
-    problem_list: [
-      { name: "Dental Abscess (Recent)", status: "active" }
-    ]
+    id: 'P0001',
+    firstName: 'Marcus',
+    middleName: 'Mark Elias',
+    lastName: 'Thorne',
+    age: 46,
+    gender: 'Male',
+    diagnosis: 'Jaundice & Severe Itching',
+    status: PatientStatus.Critical,
+    lastUpdate: '2023-10-24'
   },
   {
-    id: "P0002",
-    scenarioSecret: "",
-    patient: {
-      name: "Elena Maria Rosales",
-      date_of_birth: "1993-07-22",
-      age: 32,
-      sex: "Female",
-      age_at_first_encounter: 32,
-      identifiers: {
-        mrn: "MRN-0002"
-      }
-    },
-    riskLevel: "high",
-    primaryDiagnosis: "Constant nausea and jaundice (looking orange)",
-    problem_list: []
+    id: 'P0002',
+    firstName: 'Elena',
+    middleName: 'Maria',
+    lastName: 'Rosales',
+    age: 32,
+    gender: 'Female',
+    diagnosis: 'Constant Nausea',
+    status: PatientStatus.Critical,
+    lastUpdate: '2023-10-22'
   },
   {
-    id: "P0003",
-    scenarioSecret: "",
-    patient: {
-      name: "Margaret Peggy Louise O'Neil",
-      date_of_birth: "1957-11-08",
-      age: 68,
-      sex: "Female",
-      age_at_first_encounter: 68,
-      identifiers: {
-        mrn: "MRN-0003"
-      }
-    },
-    riskLevel: "medium",
-    primaryDiagnosis: "Fatigue and generalized aches (flu-like symptoms)",
-    problem_list: [
-      { name: "Hypertension", status: "active" },
-      { name: "Recurrent Urinary Tract Infections (UTIs)", status: "active" },
-      { name: "Osteoarthritis", status: "active" }
-    ]
+    id: 'P0003',
+    firstName: 'Margaret',
+    middleName: 'Peggy Louise',
+    lastName: "O'Neil",
+    age: 68,
+    gender: 'Female',
+    diagnosis: 'General Fatigue',
+    status: PatientStatus.Recovering,
+    lastUpdate: '2023-10-20'
+  },
+  {
+    id: 'P0004',
+    firstName: 'David',
+    lastName: 'Chen',
+    age: 55,
+    gender: 'Male',
+    diagnosis: 'Hypertension',
+    status: PatientStatus.Stable,
+    lastUpdate: '2023-10-19'
+  },
+  {
+    id: 'P0005',
+    firstName: 'Sarah',
+    lastName: 'Jenkins',
+    age: 29,
+    gender: 'Female',
+    diagnosis: 'Migraine with Aura',
+    status: PatientStatus.Stable,
+    lastUpdate: '2023-10-18'
+  },
+  {
+    id: 'P0006',
+    firstName: 'Robert',
+    lastName: 'Fox',
+    age: 71,
+    gender: 'Male',
+    diagnosis: 'Arrhythmia',
+    status: PatientStatus.Critical,
+    lastUpdate: '2023-10-24'
+  },
+  {
+    id: 'P0007',
+    firstName: 'Emily',
+    lastName: 'Watson',
+    age: 41,
+    gender: 'Female',
+    diagnosis: 'Type 2 Diabetes',
+    status: PatientStatus.Stable,
+    lastUpdate: '2023-10-17'
+  },
+  {
+    id: 'P0008',
+    firstName: 'James',
+    lastName: 'Kowalski',
+    age: 63,
+    gender: 'Male',
+    diagnosis: 'Chronic Bronchitis',
+    status: PatientStatus.Recovering,
+    lastUpdate: '2023-10-16'
+  },
+  {
+    id: 'P0009',
+    firstName: 'Anita',
+    lastName: 'Patel',
+    age: 52,
+    gender: 'Female',
+    diagnosis: 'Rheumatoid Arthritis',
+    status: PatientStatus.Stable,
+    lastUpdate: '2023-10-15'
+  },
+  {
+    id: 'P0010',
+    firstName: 'William',
+    lastName: 'Hau',
+    age: 24,
+    gender: 'Male',
+    diagnosis: 'Appendicitis Post-Op',
+    status: PatientStatus.Discharged,
+    lastUpdate: '2023-10-14'
+  },
+  {
+    id: 'P0011',
+    firstName: 'Patricia',
+    lastName: 'Lomm',
+    age: 81,
+    gender: 'Female',
+    diagnosis: 'Fractured Hip',
+    status: PatientStatus.Critical,
+    lastUpdate: '2023-10-24'
+  },
+  {
+    id: 'P0012',
+    firstName: 'Michael',
+    lastName: 'Jordan',
+    age: 45,
+    gender: 'Male',
+    diagnosis: 'Flu Symptoms',
+    status: PatientStatus.Stable,
+    lastUpdate: '2023-10-23'
+  },
+  {
+    id: 'P0013',
+    firstName: 'Linda',
+    lastName: 'Garret',
+    age: 36,
+    gender: 'Female',
+    diagnosis: 'Anemia',
+    status: PatientStatus.Recovering,
+    lastUpdate: '2023-10-21'
+  },
+  {
+    id: 'P0014',
+    firstName: 'Thomas',
+    lastName: 'Shelby',
+    age: 39,
+    gender: 'Male',
+    diagnosis: 'Insomnia',
+    status: PatientStatus.Stable,
+    lastUpdate: '2023-10-20'
+  },
+  {
+    id: 'P0015',
+    firstName: 'Ada',
+    lastName: 'Lovelace',
+    age: 32,
+    gender: 'Female',
+    diagnosis: 'Carpal Tunnel',
+    status: PatientStatus.Stable,
+    lastUpdate: '2023-10-19'
+  },
+  {
+    id: 'P0016',
+    firstName: 'Grace',
+    lastName: 'Hopper',
+    age: 76,
+    gender: 'Female',
+    diagnosis: 'Glaucoma',
+    status: PatientStatus.Stable,
+    lastUpdate: '2023-10-18'
+  },
+  {
+    id: 'P0017',
+    firstName: 'Alan',
+    lastName: 'Turing',
+    age: 41,
+    gender: 'Male',
+    diagnosis: 'Allergic Reaction',
+    status: PatientStatus.Critical,
+    lastUpdate: '2023-10-24'
+  },
+  {
+    id: 'P0018',
+    firstName: 'Katherine',
+    lastName: 'Johnson',
+    age: 98,
+    gender: 'Female',
+    diagnosis: 'Pneumonia',
+    status: PatientStatus.Recovering,
+    lastUpdate: '2023-10-22'
   }
 ];
 
-export const INITIAL_PATIENT_DATA: PatientData = SCENARIOS[0];
+export const MOCK_PATIENTS = BASE_PATIENTS;

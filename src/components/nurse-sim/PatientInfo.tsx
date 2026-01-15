@@ -1,134 +1,227 @@
+import React, { useState } from 'react';
+import { 
+  FileText, ChevronRight, ChevronLeft, Maximize2,
+  Download, X, MessageSquare
+} from 'lucide-react';
+import { Patient } from '../../types/nurse-sim';
+import patientInfoData from '../../data/nurse-sim/patient_info_data.json';
+import { SummaryTab } from './patientInfo/SummaryTab';
+import { ReferralTab } from './patientInfo/ReferralTab';
+import { HistoryTab } from './patientInfo/HistoryTab';
+import { ChatTab } from './patientInfo/ChatTab';
+import { ContactTab } from './patientInfo/ContactTab';
+import { DocumentThumbnail, FullDocumentView } from './patientInfo/SharedComponents';
 
-import React from 'react';
-import { PatientData } from '../../types/nurse-sim';
-
-interface Props {
-    data: PatientData;
-    isOpen: boolean;
-    onToggle: () => void;
-    onChangeScenario?: () => void;
-}
-
-const PatientInfo: React.FC<Props> = ({ data, isOpen, onToggle, onChangeScenario }) => {
-    return (
-        <div className="h-full bg-white flex flex-col overflow-hidden relative border-r border-gray-200">
-            {/* Header with Back Button and Toggle */}
-            <div className={`flex ${isOpen ? 'justify-between items-center px-4 py-3 border-b border-gray-100' : 'justify-center pt-4'}`}>
-                {isOpen && onChangeScenario && (
-                    <button 
-                        onClick={onChangeScenario}
-                        className="text-sm font-medium text-slate-600 hover:text-slate-800 hover:bg-slate-50 px-3 py-2 rounded-lg transition-colors flex items-center gap-2 border border-slate-200"
-                    >
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                        </svg>
-                        Back to Clinic
-                    </button>
-                )}
-                <button 
-                    onClick={onToggle}
-                    className="p-2 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition-colors"
-                    title={isOpen ? "Collapse Sidebar" : "Expand Sidebar"}
-                >
-                    {isOpen ? (
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 19l-7-7 7-7m8 14l-7-7 7-7" />
-                        </svg>
-                    ) : (
-                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" />
-                        </svg>
-                    )}
-                </button>
-            </div>
-
-            {isOpen ? (
-                // EXPANDED VIEW
-                <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
-                    <div className="px-6 pb-6 pt-4 border-b border-gray-100 bg-white">
-                        <div className="flex items-center space-x-3 mb-4">
-                            <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-xl flex-shrink-0">
-                                {data.patient.name.charAt(0)}
-                            </div>
-                            <div className="min-w-0">
-                                <h2 className="text-xl font-bold text-gray-900 truncate">{data.patient.name}</h2>
-                                <p className="text-sm text-gray-500 truncate">MRN: {data.patient.identifiers.mrn}</p>
-                            </div>
-                        </div>
-                        
-                        <div className="grid grid-cols-2 gap-4 text-sm">
-                            <div>
-                                <p className="text-gray-500 text-xs uppercase tracking-wide">DOB</p>
-                                <p className="font-medium whitespace-nowrap">{data.patient.date_of_birth}</p>
-                            </div>
-                            <div>
-                                <p className="text-gray-500 text-xs uppercase tracking-wide">Age/Sex</p>
-                                <p className="font-medium whitespace-nowrap">{data.patient.age} / {data.patient.sex}</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="flex-1 overflow-y-auto p-6 space-y-6">
-                        <div>
-                            <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Risk Status</h3>
-                            <div className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
-                                data.riskLevel === 'high' ? 'bg-red-50 text-red-700 border border-red-100' : 'bg-amber-50 text-amber-700 border border-amber-100'
-                            }`}>
-                                <span className={`w-2 h-2 rounded-full mr-2 ${
-                                    data.riskLevel === 'high' ? 'bg-red-500' : 'bg-amber-500'
-                                }`}></span>
-                                {data.riskLevel.toUpperCase()} RISK
-                            </div>
-                        </div>
-
-                        <div>
-                            <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Presenting Diagnosis</h3>
-                            <div className="bg-slate-50 p-3 rounded-lg border border-slate-100 text-slate-800 text-sm leading-relaxed font-medium">
-                                {data.primaryDiagnosis}
-                            </div>
-                        </div>
-
-                        <div>
-                            <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-2">Active Problems</h3>
-                            <ul className="space-y-2">
-                                {data.problem_list.map((problem, idx) => (
-                                    <li key={idx} className="flex items-start space-x-2 text-sm text-gray-600 bg-white border border-gray-100 p-2 rounded">
-                                        <svg className="w-4 h-4 text-slate-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                        </svg>
-                                        <span>{problem.name}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            ) : (
-                // COLLAPSED VIEW
-                <div className="flex-1 flex flex-col items-center pt-4 space-y-6">
-                     <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-lg cursor-pointer" title={data.patient.name}>
-                        {data.patient.name.charAt(0)}
-                    </div>
-                    
-                    <div className="flex flex-col items-center space-y-2 w-full" title={`Status: ${data.riskLevel}`}>
-                        <div className={`w-3 h-3 rounded-full ${
-                             data.riskLevel === 'high' ? 'bg-red-500 animate-pulse' : 'bg-amber-500'
-                        }`}></div>
-                    </div>
-
-                    <div className="border-t border-gray-100 w-full"></div>
-
-                    <div className="flex flex-col items-center space-y-4 text-gray-400">
-                         <button onClick={onChangeScenario} title="Change Scenario">
-                             <svg className="w-6 h-6 hover:text-blue-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-                             </svg>
-                         </button>
-                    </div>
-                </div>
-            )}
-        </div>
-    );
+// Mock data generator
+const getPatientDetails = (patient: Patient) => {
+  const details = patientInfoData.patientDetails;
+  
+  return {
+    occupation: details.occupation,
+    contact: details.contact,
+    lastVisit: details.lastVisit,
+    tags: details.chief_complaint?.split(' ').map(s => s.replace(/[()&.,]/g, '').trim()).filter(s => s.length > 2) || [],
+    medicalHistory: details.medicalHistory,
+    summary: details.summary,
+    dob: details.dob,
+    referral: {
+      referredBy: details.referral.referredBy,
+      previousProvider: details.referral.previousProvider,
+      referralDate: details.referral.referralDate
+    },
+    preConsultation: {
+      messageCount: details.preConsultation.messageCount,
+      status: details.preConsultation.status
+    },
+    chief_complaint: details.chief_complaint,
+    fullName: `${patient.firstName} ${patient.middleName || ''} ${patient.lastName}`.trim(),
+    address: details.contact,
+    email: details.contact,
+    nextOfKin: { name: 'N/A', relation: 'N/A', phone: 'N/A' },
+    insurance: { provider: 'NHS', policyNumber: 'N/A', status: 'Active' },
+    clinicalImpression: details.summary,
+    alerts: []
+  };
 };
 
-export default PatientInfo;
+interface PatientInfoProps {
+  patient: Patient;
+}
+
+export const PatientInfo: React.FC<PatientInfoProps> = ({ patient }) => {
+  const details = getPatientDetails(patient);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [activeTab, setActiveTab] = useState<'summary' | 'referral' | 'history' | 'chat' | 'contact'>('summary');
+  const [documents] = useState(patientInfoData.documents);
+  const [zoomedImage, setZoomedImage] = useState<string | null>(null);
+  const scrollContainerRef = React.useRef<HTMLDivElement>(null);
+  
+  const selectedDoc = selectedIndex !== null ? documents[selectedIndex] : null;
+  
+  // Use chat data from patient or fallback to pre_consultation_chat.json
+  const chatHistory = patient.pre_consultation?.chat || [];
+
+  // Reset scroll position when tab changes
+  React.useEffect(() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTop = 0;
+    }
+  }, [activeTab]);
+
+  const handleNext = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    if (selectedIndex !== null && selectedIndex < documents.length - 1) {
+      setSelectedIndex(selectedIndex + 1);
+    }
+  };
+
+  const handlePrev = (e?: React.MouseEvent) => {
+    e?.stopPropagation();
+    if (selectedIndex !== null && selectedIndex > 0) {
+      setSelectedIndex(selectedIndex - 1);
+    }
+  };
+
+  const closeLightbox = () => setSelectedIndex(null);
+
+  const tabs = [
+    { id: 'summary' as const, label: 'Patient summary' },
+    { id: 'referral' as const, label: 'Referral letter' },
+    { id: 'history' as const, label: 'Medical history' },
+    { id: 'chat' as const, label: 'Pre consultation chat' },
+    { id: 'contact' as const, label: 'Patient contact' }
+  ];
+
+  return (
+    <>
+      {/* Lightbox Modal for Documents */}
+      {selectedDoc && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm animate-in fade-in duration-200" 
+          onClick={closeLightbox}
+        >
+          {selectedIndex !== null && selectedIndex > 0 && (
+             <button 
+                onClick={handlePrev}
+                className="absolute left-4 top-1/2 -translate-y-1/2 p-3 text-white/50 hover:text-white hover:bg-white/10 rounded-full transition-all z-50"
+             >
+                <ChevronLeft size={48} strokeWidth={1} />
+             </button>
+          )}
+          {selectedIndex !== null && selectedIndex < documents.length - 1 && (
+             <button 
+                onClick={handleNext}
+                className="absolute right-4 top-1/2 -translate-y-1/2 p-3 text-white/50 hover:text-white hover:bg-white/10 rounded-full transition-all z-50"
+             >
+                <ChevronRight size={48} strokeWidth={1} />
+             </button>
+          )}
+
+          <div className="w-full h-full flex flex-col relative">
+            <div className="flex items-center justify-between px-6 py-4 bg-transparent absolute top-0 left-0 right-0 z-50 pointer-events-none">
+               <div onClick={e => e.stopPropagation()} className="flex items-center gap-4 pointer-events-auto bg-black/50 backdrop-blur-md p-2 pl-3 pr-4 rounded-full border border-white/10">
+                  <div className={`p-2 rounded-full ${
+                     selectedDoc.type === 'image' || selectedDoc.type === 'app' ? 'bg-blue-500/20 text-blue-400' : 'bg-white/20 text-white'
+                  }`}>
+                    <FileText size={18} />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-sm text-white">{selectedDoc.title}</h3>
+                    <p className="text-xs text-white/60">{selectedDoc.date} • {selectedDoc.source}</p>
+                  </div>
+               </div>
+               
+               <div onClick={e => e.stopPropagation()} className="flex gap-2 pointer-events-auto">
+                  <button className="flex items-center gap-2 px-4 py-2 hover:bg-white/10 rounded-full text-white/80 font-medium transition-colors text-sm border border-white/10 bg-black/50 backdrop-blur-md">
+                     <Download size={16} /> <span className="hidden sm:inline">Download</span>
+                  </button>
+                  <button 
+                    onClick={closeLightbox}
+                    className="p-2 hover:bg-red-500/20 hover:text-red-400 rounded-full text-white/60 transition-colors border border-white/10 bg-black/50 backdrop-blur-md"
+                  >
+                     <X size={24} />
+                  </button>
+               </div>
+            </div>
+
+            <div className="flex-1 overflow-hidden flex items-center justify-center p-0 sm:p-4 md:p-12">
+               <FullDocumentView doc={selectedDoc} />
+            </div>
+            
+            <div className="absolute bottom-6 left-0 right-0 flex justify-center gap-2 pointer-events-none">
+               {documents.map((_, idx) => (
+                  <div 
+                    key={idx} 
+                    className={`w-2 h-2 rounded-full transition-all ${idx === selectedIndex ? 'bg-white scale-110' : 'bg-white/20'}`} 
+                  />
+               ))}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Main Content */}
+      <div className="flex flex-col h-full">
+        {/* Tab Navigation */}
+        <div className="bg-white border-b border-neutral-200 mb-5 rounded-md">
+          <div className="flex gap-1 px-2 overflow-x-auto scrollbar-hide">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`px-6 py-3 text-sm font-medium whitespace-nowrap transition-all relative rounded-t-lg ${
+                  activeTab === tab.id
+                    ? 'text-neutral-900 bg-neutral-50'
+                    : 'text-neutral-500 hover:text-neutral-700 hover:bg-neutral-50/50'
+                }`}
+              >
+                {tab.label}
+                {activeTab === tab.id && (
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-t-full" />
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Tab Content */}
+        <div ref={scrollContainerRef} className="flex-1 overflow-y-auto px-2">
+          {activeTab === 'summary' && <SummaryTab />}
+          
+          {activeTab === 'referral' && <ReferralTab onDocumentClick={setSelectedIndex} />}
+          
+          {activeTab === 'history' && <HistoryTab onDocumentClick={setSelectedIndex} />}
+          
+          {activeTab === 'chat' && <ChatTab chatHistory={chatHistory} onImageClick={setZoomedImage} />}
+          
+          {activeTab === 'contact' && <ContactTab patient={patient} details={details} />}
+        </div>
+      </div>
+
+      {/* Zoom Modal for Chat Images */}
+      {zoomedImage && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-sm animate-in fade-in duration-200 p-4">
+          <button
+            onClick={() => setZoomedImage(null)}
+            className="absolute top-6 right-6 p-3 bg-white/10 hover:bg-white/20 text-white rounded-full transition-colors z-50"
+          >
+            <X size={28} />
+          </button>
+          <div className="relative w-full h-full flex items-center justify-center p-4" onClick={() => setZoomedImage(null)}>
+            <img
+              src={zoomedImage}
+              alt="Zoomed Detail"
+              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl bg-white"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+        </div>
+      )}
+
+      <style>{`
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
+    </>
+  );
+};

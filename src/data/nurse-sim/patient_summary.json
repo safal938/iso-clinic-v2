@@ -1,0 +1,68 @@
+{
+  "chiefComplaint": {
+    "text": "New-onset Jaundice (eyes/skin) & Severe Pruritus (itching)",
+    "highlights": []
+  },
+  "reasonForVisit": {
+    "text": "Patient presents with acute jaundice and severe itching affecting quality of life and sleep",
+    "highlights": ["acute jaundice", "severe itching"]
+  },
+  "clinicalImpression": {
+    "text": "Acute Liver Injury / Severe Hepatitis of Unknown Etiology",
+    "highlights": []
+  },
+  "workingDiagnosis": {
+    "text": "Drug-Induced Liver Injury (DILI - potentially Augmentin-associated)",
+    "highlights": ["DILI", "Augmentin"]
+  },
+  "presentingSymptoms": [
+    {
+      "text": "Jaundice (yellowing of eyes and skin) - onset 2 days prior",
+      "highlights": ["2 days prior"]
+    },
+    {
+      "text": "Severe generalized itching affecting sleep",
+      "highlights": []
+    },
+    {
+      "text": "Visible scratch marks on extremities",
+      "highlights": []
+    }
+  ],
+  "keyFindings": [
+    {
+      "text": "Significant Transaminitis (ALT 620 U/L, AST 450 U/L - >10x normal)",
+      "highlights": ["620 U/L", "450 U/L", ">10x normal"]
+    },
+    {
+      "text": "Elevated Bilirubin (Total 5.2 mg/dL, Direct 3.8 mg/dL)",
+      "highlights": ["5.2 mg/dL", "3.8 mg/dL"]
+    },
+    {
+      "text": "Eosinophilia detected (8.5% - hypersensitivity marker)",
+      "highlights": ["8.5%"]
+    },
+    {
+      "text": "Moderate hepatic steatosis on ultrasound",
+      "highlights": []
+    }
+  ],
+  "timeline": {
+    "3_weeks_ago": {
+      "text": "Dental abscess treated with Amoxicillin-Clavulanate (Augmentin) 875mg BID for 10 days",
+      "highlights": ["Augmentin"]
+    },
+    "1_week_ago": {
+      "text": "Completed antibiotic course, continued Tylenol PM/Extra Strength for jaw pain",
+      "highlights": ["Tylenol PM"]
+    },
+    "2_days_ago": {
+      "text": "Onset of jaundice and severe itching",
+      "highlights": []
+    },
+    "referral_date": {
+      "text": "2025-11-20 - Referred by Dr. Jenkins from Midtown Primary Care",
+      "highlights": []
+    }
+  }
+}

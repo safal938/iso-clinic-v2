@@ -1,0 +1,57 @@
+[
+  {
+    "id": "1",
+    "title": "Drug Allergy Verification",
+    "description": "The nurse recommended over-the-counter medication (Ibuprofen) without first asking the patient if they have any known drug allergies.",
+    "reasoning": "Verification of allergies prior to suggesting treatment is a fundamental 'Standard of Care.' Failure to do so constitutes clinical negligence under the principle of 'Duty of Care' and exposes the clinic to liability for anaphylactic reactions.",
+    "category": "Legal/Safety",
+    "completed": false,
+    "priority": "high",
+    "status": "asked"
+
+  },
+  {
+    "id": "2",
+    "title": "Dehydration Risk Assessment",
+    "description": "Nurse explicitly asked: 'Have you been able to keep any fluids down in the last 4 hours, and are you urinating normally?'",
+    "reasoning": "Under Clinical Practice Guidelines (CPG) for Gastroenteritis, assessing hydration status is mandatory. This fulfills the 'Duty of Care' to prevent the life-threatening complication of hypovolemic shock.",
+    "category": "Diagnostic Accuracy",
+    "completed": true,
+    "priority": "high",
+    "status": "asked"
+
+  },
+  {
+    "id": "3",
+    "title": "Safety Netting (Red Flags)",
+    "description": "Nurse provided specific instructions: 'If you see blood in your stool or develop a high fever, you must go to the Emergency Room immediately.'",
+    "reasoning": "This fulfills the 'Failure to Warn' legal requirement. By documenting specific emergency triggers, the nurse satisfies the 'Informed Consent Doctrine' regarding the risks of home-management.",
+    "category": "Informed Consent",
+    "completed": true,
+    "priority": "high",
+        "status": "asked"
+
+  },
+  {
+    "id": "4",
+    "title": "Active Listening & Narrative Flow",
+    "description": "High interruption count (8) detected in analytics. The nurse repeatedly interrupted the patient while they were describing the onset of their stomach pain.",
+    "reasoning": "Medical-legal research indicates that frequent interruptions lead to 'Failure to Diagnose' by suppressing vital patient history. This breach of communication standards is a primary driver in 'Negligence' litigation.",
+    "category": "Communication",
+    "completed": false,
+    "priority": "medium",
+        "status": null
+
+  },
+  {
+    "id": "5",
+    "title": "Diagnostic Limitation Disclosure",
+    "description": "Nurse informed the patient: 'Because this is a remote assessment, we cannot perform a physical exam. If pain localizes to the lower right side, you must be seen in person.'",
+    "reasoning": "This establishes a 'Legal Safeguard' for telehealth. It explicitly states the limitations of the current assessment, protecting the provider against 'Failure to Diagnose' claims related to appendicitis.",
+    "category": "Legal/Safety",
+    "completed": true,
+    "priority": "high",
+        "status": null
+
+  }
+]

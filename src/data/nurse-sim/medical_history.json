@@ -1,0 +1,252 @@
+{
+  "patientBackground": {
+    "age": 46,
+    "occupation": "Site Foreman (Construction)",
+    "lifestyle": {
+      "alcohol": "Social use (occasional)",
+      "smoking": "Not documented",
+      "exercise": "Physically active job"
+    }
+  },
+  "pastMedicalHistory": [
+    {
+      "condition": "Dental Abscess",
+      "date": "3 weeks ago (October 2025)",
+      "treatment": {
+        "text": "Amoxicillin-Clavulanate (Augmentin) 875mg BID for 10 days",
+        "highlights": ["Augmentin"]
+      },
+      "outcome": "Resolved",
+      "relevance": {
+        "text": "Potential trigger for current liver injury",
+        "highlights": []
+      }
+    },
+    {
+      "condition": "Obesity Class I",
+      "status": "Ongoing",
+      "details": {
+        "text": "BMI 31.5 (Weight: 102kg, Height: 180cm)",
+        "highlights": []
+      },
+      "relevance": {
+        "text": "Associated with hepatic steatosis seen on imaging",
+        "highlights": []
+      }
+    }
+  ],
+  "riskFactors": [
+    {
+      "text": "BMI 31.5 (Obese Class I)",
+      "highlights": []
+    },
+    {
+      "text": "Social Alcohol Use",
+      "highlights": []
+    },
+    {
+      "text": "Recent Antibiotic Use (Amoxicillin-Clavulanate)",
+      "highlights": ["Amoxicillin-Clavulanate"]
+    },
+    {
+      "text": "Recent High-dose Acetaminophen Use",
+      "highlights": ["Acetaminophen"]
+    }
+  ],
+  "laboratoryFindings": {
+    "hematology": {
+      "date": "2025-11-19",
+      "source": "Metro Detroit Urgent Care",
+      "keyResults": [
+        {
+          "text": "WBC: 11.2 K/uL (elevated)",
+          "highlights": []
+        },
+        {
+          "text": "Eosinophils: 8.5% (significantly elevated - suggests hypersensitivity)",
+          "highlights": ["8.5%"]
+        },
+        {
+          "text": "Absolute Eosinophils: 0.95 K/uL (elevated)",
+          "highlights": []
+        }
+      ],
+      "interpretation": {
+        "text": "Eosinophilia strongly suggests drug hypersensitivity reaction",
+        "highlights": []
+      },
+      "document": {
+        "id": 1,
+        "title": "Hematology (CBC)",
+        "image": "/images/lab1.png"
+      }
+    },
+    "liverFunction": {
+      "date": "2025-11-19",
+      "source": "Central Lab",
+      "keyResults": [
+        {
+          "text": "ALT: 620 U/L (critical - >15x normal)",
+          "highlights": ["620 U/L", ">15x"]
+        },
+        {
+          "text": "AST: 450 U/L (critical - >10x normal)",
+          "highlights": ["450 U/L", ">10x"]
+        },
+        {
+          "text": "Alkaline Phosphatase: 188 U/L (elevated)",
+          "highlights": []
+        },
+        {
+          "text": "Total Bilirubin: 5.2 mg/dL (elevated)",
+          "highlights": ["5.2 mg/dL"]
+        },
+        {
+          "text": "Direct Bilirubin: 3.8 mg/dL (elevated)",
+          "highlights": []
+        },
+        {
+          "text": "INR: 1.2 (borderline)",
+          "highlights": []
+        }
+      ],
+      "interpretation": {
+        "text": "Severe hepatocellular injury with cholestatic features. Mixed pattern suggests drug-induced liver injury.",
+        "highlights": []
+      },
+      "document": {
+        "id": 2,
+        "title": "Blood Panel Results",
+        "image": "/images/lab2.png"
+      }
+    },
+    "toxicology": {
+      "date": "2025-11-19",
+      "results": [
+        {
+          "text": "Acetaminophen level: <10 ug/mL (therapeutic/negative)",
+          "highlights": []
+        },
+        {
+          "text": "Ethanol: Negative",
+          "highlights": []
+        }
+      ],
+      "interpretation": {
+        "text": "No acute acetaminophen toxicity, but chronic use may have contributed",
+        "highlights": []
+      }
+    }
+  },
+  "imagingStudies": {
+    "abdominalUltrasound": {
+      "date": "2025-11-21",
+      "source": "Radiology Department",
+      "findings": [
+        {
+          "text": "Liver: Slightly enlarged (17.2cm), increased echotexture",
+          "highlights": []
+        },
+        {
+          "text": "Moderate hepatic steatosis (fatty liver)",
+          "highlights": ["hepatic steatosis"]
+        },
+        {
+          "text": "Common bile duct: Normal caliber (4mm)",
+          "highlights": []
+        },
+        {
+          "text": "No biliary dilation or obstruction",
+          "highlights": []
+        },
+        {
+          "text": "Gallbladder: No stones or inflammation",
+          "highlights": []
+        }
+      ],
+      "impression": {
+        "text": "Moderate hepatic steatosis. No biliary obstruction. Findings do not fully explain the degree of cholestasis.",
+        "highlights": []
+      },
+      "document": {
+        "id": 5,
+        "title": "Abdominal Ultrasound",
+        "image": "/images/radiology.png"
+      }
+    }
+  },
+  "previousEncounters": [
+    {
+      "date": "2025-10-18",
+      "location": "Midtown Primary Care",
+      "reason": "Dental abscess follow-up",
+      "provider": "Dr. Richard Jenkins",
+      "summary": {
+        "text": "Patient recovering from dental abscess. Antibiotic course completed. Mild residual jaw discomfort managed with OTC analgesics.",
+        "highlights": []
+      },
+      "document": {
+        "id": 6,
+        "title": "Clinical History",
+        "image": "/images/clinicnote1.png"
+      }
+    },
+    {
+      "date": "2025-10-15",
+      "location": "Midtown Primary Care",
+      "reason": "Initial dental abscess presentation",
+      "provider": "Dr. Richard Jenkins",
+      "summary": {
+        "text": "Acute dental abscess. Started on Augmentin 875mg BID. Advised dental referral and pain management with acetaminophen.",
+        "highlights": ["Augmentin"]
+      },
+      "document": {
+        "id": 7,
+        "title": "Follow-up Notes",
+        "image": "/images/clinicnote2.png"
+      }
+    }
+  ],
+  "allDocuments": [
+    {
+      "id": 1,
+      "title": "Hematology (CBC)",
+      "type": "lab_report",
+      "date": "2025-11-19",
+      "source": "Metro Detroit Urgent Care",
+      "image": "/images/lab1.png"
+    },
+    {
+      "id": 2,
+      "title": "Blood Panel Results",
+      "type": "lab_report",
+      "date": "2025-11-19",
+      "source": "Central Lab",
+      "image": "/images/lab2.png"
+    },
+    {
+      "id": 5,
+      "title": "Abdominal Ultrasound",
+      "type": "imaging",
+      "date": "2025-11-21",
+      "source": "Radiology Department",
+      "image": "/images/radiology.png"
+    },
+    {
+      "id": 6,
+      "title": "Clinical History",
+      "type": "clinical_note",
+      "date": "2025-10-18",
+      "source": "Midtown Primary Care",
+      "image": "/images/clinicnote1.png"
+    },
+    {
+      "id": 7,
+      "title": "Follow-up Notes",
+      "type": "clinical_note",
+      "date": "2025-10-15",
+      "source": "Midtown Primary Care",
+      "image": "/images/clinicnote2.png"
+    }
+  ]
+}

@@ -11,7 +11,6 @@ import IsometricMap from "./components/isoclinic/IsometricMap";
 import IsometricMap2 from "./components/isoclinic-2/IsometricMap2";
 import NurseSimApp from "./components/nurse-sim/NurseSimApp";
 import NurseSimStatic from "./components/nurse-sim/NurseSimStatic";
-import CompletedAssessment from "./components/nurse-sim/CompletedAssessment";
 import { PreConsultationApp } from "./components/pre-consultation";
 import boardItemsData from "./data/boardItems.json";
 
@@ -34,9 +33,8 @@ function App() {
         <Route path="/canvas4" element={<Canvas4 />} />
         <Route path="/invisible-connector" element={<InvisibleConnectorExample />} />
         <Route path="/board" element={<BoardApp />} />
-        <Route path="/nurse-sim" element={<NurseSimApp />} />
+        <Route path="/nurse-sim/*" element={<NurseSimApp />} />
         <Route path="/nurse-sim-1" element={<NurseSimStatic />} />
-        <Route path="/assessment-review" element={<CompletedAssessment />} />
         <Route path="/pre-consultation" element={<PreConsultationApp />} />
         <Route path="/isoclinic-2" element={<IsometricMap2 />} />
         <Route path="/" element={<IsometricMap />} />
