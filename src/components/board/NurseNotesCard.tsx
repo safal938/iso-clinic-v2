@@ -14,57 +14,74 @@ const NurseNotesCard: React.FC<NurseNotesCardProps> = ({ width = 350, height = 9
       className="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col font-sans"
       style={{ width, height }}
     >
-      <div className="px-5 py-4 border-b border-gray-200 bg-white flex-shrink-0">
+      <div className="px-4 py-3 border-b border-gray-200 bg-white flex-shrink-0">
         <div className="flex items-center justify-between">
-          <h3 className="text-sm font-semibold text-gray-800">Nurse Notes</h3>
-          <span className="text-xs text-gray-400">{assessment.duration}</span>
+          <h3 className="text-xs font-semibold text-gray-800">Clinical Consultation Report</h3>
+          <span className="text-[10px] text-gray-400">1/15/2026</span>
         </div>
       </div>
-      <div className="flex-1 overflow-y-auto p-5">
-        <div className="prose prose-sm max-w-none">
-          <p className="text-sm text-gray-700 leading-relaxed mb-4">
-            47 y/o male presenting with <span className="font-medium text-amber-700">jaundice</span> and <span className="font-medium text-amber-700">severe pruritus</span>. 
-            Sister first noticed yellowing of eyes. Itching described as intense ("like ants crawling under skin"), rated 8-9/10, worse at night, affecting sleep.
-          </p>
-          
-          <p className="text-sm text-gray-700 leading-relaxed mb-4">
-            <span className="font-medium">Medication Hx:</span> Currently on <span className="font-medium text-blue-700">lisinopril</span> for HTN. 
-            Reports Tylenol use (6-8 pills/day x 3 weeks) for dental pain - stopped yesterday. No known drug allergies.
-          </p>
-
-          <p className="text-sm text-gray-700 leading-relaxed mb-4">
-            <span className="font-medium">Associated Sx:</span> Dark urine ("like Coke"), pale/clay-colored stools, nausea, decreased appetite, possible unintentional weight loss (clothes looser). 
-            Dull heavy feeling under right ribs. Denies fever/chills. Social EtOH use ("few beers with the guys").
-          </p>
-
-          <p className="text-sm text-gray-700 leading-relaxed mb-4">
-            <span className="font-medium">PMHx/FHx:</span> HTN on lisinopril. Recent dental abscess. No prior liver disease. No recent travel or sick contacts.
-          </p>
-
-          <div className="border-t border-gray-200 pt-4 mt-4">
-            <p className="text-sm font-medium text-gray-800 mb-2">Impression:</p>
-            <p className="text-sm text-gray-700 leading-relaxed">
-              Clinical picture highly suggestive of <span className="font-medium text-red-700">Drug Induced Liver Injury</span>. 
-              Classic triad of jaundice, pruritus, and acholic stools with choluria. 
-              Differential includes <span className="font-medium text-amber-700">cholangitis</span> and <span className="font-medium text-amber-700">biliary obstruction</span>. 
-              RUQ discomfort supports hepatobiliary etiology.
+      <div className="flex-1 overflow-y-auto p-4">
+        <div className="space-y-3 text-xs">
+          <div>
+            <p className="text-[10px] font-semibold text-gray-500 uppercase tracking-wide mb-1.5">History of Present Illness</p>
+            <p className="text-gray-700 leading-relaxed">
+              The patient presents with a chief complaint of <mark className="bg-orange-100 text-neutral-900 px-0.5 rounded font-medium">yellowing of the skin and eyes</mark>, accompanied by significant fatigue and a heavy sensation in the stomach. They report taking approximately <mark className="bg-orange-100 text-neutral-900 px-0.5 rounded font-medium">six to eight Extra Strength Tylenol pills daily</mark> for jaw pain over the past few weeks. The patient also describes intense itching with a 'pins and needles' sensation, <mark className="bg-orange-100 text-neutral-900 px-0.5 rounded font-medium">dark cola-colored urine</mark> for several days, and recent <mark className="bg-orange-100 text-neutral-900 px-0.5 rounded font-medium">pale, almost white stools</mark>. They endorse a dull, heavy ache under the right ribs, decreased appetite, and nausea, but deny fever, vomiting, confusion, or recent travel. The symptoms began around the time of finishing an Augmentin prescription.
             </p>
           </div>
 
-          <div className="border-t border-gray-200 pt-4 mt-4">
-            <p className="text-sm font-medium text-gray-800 mb-2">Plan:</p>
-            <ul className="text-sm text-gray-700 space-y-1 list-disc list-inside">
-              <li>Hepatology/GI consult - urgent</li>
-              <li>Comprehensive LFTs (AST, ALT, ALP, GGT, Bilirubin)</li>
-              <li>Coagulation studies (PT/INR)</li>
-              <li>Abdominal ultrasound with Doppler to evaluate biliary tree</li>
-              <li>Viral hepatitis panel</li>
-              <li>Symptomatic relief for pruritus</li>
+          <div className="border-t border-gray-100 pt-3">
+            <p className="text-[10px] font-semibold text-gray-500 uppercase tracking-wide mb-1.5">Key Biomarkers</p>
+            <div className="grid grid-cols-2 gap-1.5 text-[11px]">
+              <div className="bg-red-50 px-2 py-1.5 rounded">
+                <span className="text-gray-600">AST:</span> <span className="text-red-700 font-semibold">450 U/L</span>
+              </div>
+              <div className="bg-red-50 px-2 py-1.5 rounded">
+                <span className="text-gray-600">ALT:</span> <span className="text-red-700 font-semibold">620 U/L</span>
+              </div>
+              <div className="bg-amber-50 px-2 py-1.5 rounded">
+                <span className="text-gray-600">T.Bili:</span> <span className="text-amber-700 font-semibold">5.2 mg/dL</span>
+              </div>
+              <div className="bg-amber-50 px-2 py-1.5 rounded">
+                <span className="text-gray-600">Alk Phos:</span> <span className="text-amber-700 font-semibold">180 U/L</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-100 pt-3">
+            <p className="text-[10px] font-semibold text-gray-500 uppercase tracking-wide mb-1.5">Clinical Impression</p>
+            <p className="text-gray-700 leading-relaxed">
+              The primary concern is <mark className="bg-orange-100 text-neutral-900 px-0.5 rounded font-medium">Drug-Induced Liver Injury (DILI)</mark> secondary to <mark className="bg-orange-100 text-neutral-900 px-0.5 rounded font-medium">acetaminophen overdose</mark>, presenting with acute jaundice and cholestasis. Differential diagnoses include biliary obstruction. Severity is high due to potential liver damage.
+            </p>
+          </div>
+
+          <div className="border-t border-gray-100 pt-3">
+            <p className="text-[10px] font-semibold text-gray-500 uppercase tracking-wide mb-1.5">Suggested Doctor Actions</p>
+            <ul className="text-gray-700 space-y-1.5 list-none">
+              <li className="flex items-start gap-1.5">
+                <span className="text-blue-500 text-[10px] mt-0.5">•</span>
+                <span>Review patient's exact Tylenol and Augmentin dosing history.</span>
+              </li>
+              <li className="flex items-start gap-1.5">
+                <span className="text-blue-500 text-[10px] mt-0.5">•</span>
+                <span>Assess for signs of hepatic encephalopathy.</span>
+              </li>
+              <li className="flex items-start gap-1.5">
+                <span className="text-blue-500 text-[10px] mt-0.5">•</span>
+                <span>Order comprehensive liver function panel, including INR.</span>
+              </li>
+              <li className="flex items-start gap-1.5">
+                <span className="text-blue-500 text-[10px] mt-0.5">•</span>
+                <span>Consider abdominal ultrasound to evaluate for biliary obstruction.</span>
+              </li>
+              <li className="flex items-start gap-1.5">
+                <span className="text-blue-500 text-[10px] mt-0.5">•</span>
+                <span>Assess for signs of pruritus management.</span>
+              </li>
             </ul>
           </div>
 
-          <div className="mt-6 pt-4 border-t border-gray-100">
-            <p className="text-xs text-gray-400">
+          <div className="mt-4 pt-3 border-t border-gray-50">
+            <p className="text-[10px] text-gray-400">
               — {assessment.nurseName}<br/>
               {new Date(assessment.completedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
             </p>
