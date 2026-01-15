@@ -1,40 +1,5 @@
 [
   {
-    "did": "G5H6I",
-    "headline": "Biliary Obstruction",
-    "diagnosis": "Acute Biliary Obstruction secondary to Choledocholithiasis",
-    "indicators_point": [
-      {
-        "criteria": "Patient reports 'pale, almost white stool' (Acholic stools).",
-        "check": true
-      },
-      {
-        "criteria": "Patient reports 'dark, coke-colored urine' (Bilirubinuria).",
-        "check": true
-      },
-      {
-        "criteria": "Overt jaundice (Yellow eyes/skin, Total Bilirubin: 5.2 mg/dL).",
-        "check": true
-      },
-      {
-        "criteria": "Patient reports 'dull ache under my ribs' (RUQ pain).",
-        "check": true
-      },
-      {
-        "criteria": "Patient reports severe pruritus ('ants under my skin').",
-        "check": true
-      },
-      {
-        "criteria": "Patient reports nausea and lack of appetite.",
-        "check": true
-      }
-    ],
-    "reasoning": "The classic presentation of 'painless' or dull jaundice accompanied by acholic (white) stools and dark urine is the hallmark of extrahepatic biliary obstruction (blocking the bile duct). While the medication history suggests DILI, a mechanical obstruction such as a stone in the common bile duct (choledocholithiasis) cannot be ruled out without imaging. This condition is high severity because persistent obstruction can lead to ascending cholangitis and severe infection.",
-    "followup_question": "Have you ever been told you have gallstones, or have you experienced sharp pain in your upper right abdomen or back shoulder blade in the past?",
-    "rank": 4,
-    "severity": "Low"
-  },
-  {
     "did": "A1B2C",
     "headline": "Drug-Induced Liver Injury (DILI)",
     "diagnosis": "Drug-Induced Liver Injury secondary to Acetaminophen Overdose, Acute",
@@ -77,6 +42,42 @@
     "rank": 1,
     "severity": "High"
   },
+  {
+    "did": "G5H6I",
+    "headline": "Biliary Obstruction",
+    "diagnosis": "Acute Biliary Obstruction secondary to Choledocholithiasis",
+    "indicators_point": [
+      {
+        "criteria": "Patient reports 'pale, almost white stool' (Acholic stools).",
+        "check": true
+      },
+      {
+        "criteria": "Patient reports 'dark, coke-colored urine' (Bilirubinuria).",
+        "check": true
+      },
+      {
+        "criteria": "Overt jaundice (Yellow eyes/skin, Total Bilirubin: 5.2 mg/dL).",
+        "check": true
+      },
+      {
+        "criteria": "Patient reports 'dull ache under my ribs' (RUQ pain).",
+        "check": true
+      },
+      {
+        "criteria": "Patient reports severe pruritus ('ants under my skin').",
+        "check": true
+      },
+      {
+        "criteria": "Patient reports nausea and lack of appetite.",
+        "check": true
+      }
+    ],
+    "reasoning": "The classic presentation of 'painless' or dull jaundice accompanied by acholic (white) stools and dark urine is the hallmark of extrahepatic biliary obstruction (blocking the bile duct). While the medication history suggests DILI, a mechanical obstruction such as a stone in the common bile duct (choledocholithiasis) cannot be ruled out without imaging. This condition is high severity because persistent obstruction can lead to ascending cholangitis and severe infection.",
+    "followup_question": "Have you ever been told you have gallstones, or have you experienced sharp pain in your upper right abdomen or back shoulder blade in the past?",
+    "rank": 4,
+    "severity": "Low"
+  },
+  
   {
     "did": "D3E4F",
     "headline": "Cholestasis",
