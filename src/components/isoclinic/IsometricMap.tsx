@@ -12,6 +12,7 @@ import { IsoCharacter, IsoRoundedZone } from './IsoComponents';
 // Use public folder URLs for SVGs with namespace tags
 const restSvg = '/rest.svg';
 const doorSvg = '/door.svg';
+const triageSvg = '/tirage.svg';
 
 const GAME_MINUTES_PER_TICK = 0.05;
 const START_HOUR = 9;
@@ -279,12 +280,18 @@ const IsometricMap: React.FC = () => {
 
   const handleRoomClick = (room: RoomDef) => {
     console.log('Room clicked:', room.id, room.type, room.name);
-    if (room.id === 'pre_consult') {
+    if (room.id === 'triage') {
+      console.log('Navigating to /clinic-triage');
+      navigate('/clinic-triage');
+    } else if (room.id === 'pre_consult') {
       console.log('Navigating to /pre-consultation');
       navigate('/pre-consultation');
+    } else if (room.id === 'monitoring') {
+      console.log('Navigating to /monitoring');
+      navigate('/monitoring');
     } else if (room.type === RoomType.HEPATOLOGIST) {
-      console.log('Navigating to /board');
-      navigate('/board');
+      console.log('Navigating to /board/select');
+      navigate('/board/select');
     } else if (room.type === RoomType.NURSE && room.id.startsWith('nurse')) {
       // Only navigate for expert nurse rooms (nurse1, nurse2, nurse3), not tele nurse
       if (room.id === 'nurse1') {
@@ -343,8 +350,8 @@ const IsometricMap: React.FC = () => {
       const screenWidth = room.width * 32;
       const screenHeight = room.height * 32;
 
-      const isClickableRoom = room.id === 'pre_consult' || room.type === RoomType.HEPATOLOGIST || (room.type === RoomType.NURSE && room.id.startsWith('nurse'));
-      const showHighlight = room.type === RoomType.HEPATOLOGIST || (room.type === RoomType.NURSE && room.id.startsWith('nurse'));
+      const isClickableRoom = room.id === 'triage' || room.id === 'pre_consult' || room.id === 'monitoring' || room.type === RoomType.HEPATOLOGIST || (room.type === RoomType.NURSE && room.id.startsWith('nurse'));
+      const showHighlight = room.id === 'triage' || room.id === 'monitoring' || room.type === RoomType.HEPATOLOGIST || (room.type === RoomType.NURSE && room.id.startsWith('nurse'));
       
       clickableAreas.push(
         <g 
@@ -362,7 +369,7 @@ const IsometricMap: React.FC = () => {
             width={screenWidth} 
             height={screenHeight} 
             color={room.floorColor || '#888'} 
-            opacity={showHighlight ? 0.15 : 0.01} 
+            opacity={0} 
             borderRadius={25} 
           />
         </g>
@@ -519,6 +526,7 @@ const IsometricMap: React.FC = () => {
         <g transform={`translate(${window.innerWidth / 2 + viewState.x - 100}, ${window.innerHeight / 2 + viewState.y}) scale(${viewState.zoom})`}>
           <image href={restSvg} x={-825} y={-300} width={4626} height={3324} preserveAspectRatio="xMidYMid meet" />
           {renderList.charactersBehindDoor.map(o => o.node)}
+          <image href={triageSvg} x={-2225} y={-300} width={3557} height={1200} preserveAspectRatio="xMidYMid meet" />
           <image href={doorSvg} x={165} y={600} width={1557} height={1869} preserveAspectRatio="xMidYMid meet" />
           {renderList.charactersInFront.map(o => o.node)}
           {renderList.clickableAreas}

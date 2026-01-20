@@ -24,6 +24,7 @@ const COL_NURSE = '#67e8f9';
 const COL_HEPA = '#fca5a5';
 const COL_TELE_NURSE = '#cffafe';
 const COL_MONITORING = '#fca5a5';
+const COL_TRIAGE = '#a5f3fc';
 
 export const MAIN_ROOM = { x: 24, y: 24, w: 45, h: 45 };
 
@@ -33,6 +34,13 @@ export const HEPA_POINT = { x: 93, y: 29 };
 export const EXIT_DOOR_POS = { x: 55, y: 10 };
 
 export const ROOMS: ExtendedRoomDef[] = [
+  {
+    id: 'triage',
+    name: 'Triage',
+    type: RoomType.ENTRANCE,
+    gridX: -35, gridY: 4, width: 75, height: 25,
+    color: '#fff', floorColor: COL_TRIAGE, wallColor: '#fff',
+  },
   {
     id: 'pre_consult',
     name: 'Pre consultation',

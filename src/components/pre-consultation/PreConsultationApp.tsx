@@ -97,7 +97,6 @@ export default function PreConsultationApp() {
         <span className="font-bold text-lg text-slate-900">Pre-Consultation</span>
       </header>
 
-      {/* Main Container */}
       <main className="flex-1 overflow-y-auto w-[85%] mx-auto px-4 md:px-6">
         <div className="py-6 pb-12">
           <h1 className="text-2xl font-bold text-slate-800 mb-1">Patient List</h1>

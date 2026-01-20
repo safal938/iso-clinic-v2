@@ -1,23 +1,18 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { Routes, Route, useNavigate, useParams } from 'react-router-dom';
-import { Search, MoveLeftIcon, Calendar } from 'lucide-react';
-import { Header } from './Header';
-import { PatientCard } from './PatientCard';
-import { Pagination } from './Pagination';
-import { ConsultationPage } from './ConsultationPage';
-import { ConsultationPageShowcase } from './ConsultationPageShowcase';
+import { useNavigate } from 'react-router-dom';
+import { Search, MoveLeftIcon } from 'lucide-react';
+import { Header } from '../nurse-sim/Header';
+import { PatientCard } from '../nurse-sim/PatientCard';
+import { Pagination } from '../nurse-sim/Pagination';
 import { MOCK_PATIENTS } from '../../constants/nurse-sim';
 import { Patient } from '../../types/nurse-sim';
-import { SchedulingCalendarModal } from '../scheduling/SchedulingCalendarModal';
 
 const ITEMS_PER_PAGE = 12;
 
-// Patient List Page Component
-const PatientListPage: React.FC = () => {
+const BoardPatientSelect: React.FC = () => {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
   const filteredPatients = useMemo(() => {
     const query = searchQuery.toLowerCase();
@@ -43,7 +38,8 @@ const PatientListPage: React.FC = () => {
   }, [searchQuery]);
 
   const handlePatientSelect = (patient: Patient) => {
-    navigate(`consultation/${patient.id}`);
+    // Navigate to board with patient context
+    navigate('/board', { state: { selectedPatient: patient } });
   };
 
   const handlePageChange = (page: number) => {
@@ -56,24 +52,15 @@ const PatientListPage: React.FC = () => {
       <Header />
       <main className="w-[90%] max-w-[1920px] mx-auto py-8">
         <div className="mb-8">
-          <div className="flex items-center justify-between mb-4">
-            <button
-              onClick={() => navigate('/')}
-              className="flex items-center gap-2 text-neutral-600 hover:text-neutral-900 transition-colors"
-            >
-              <MoveLeftIcon size={20} />
-              <span className="text-sm font-medium">Back to Home</span>
-            </button>
-            <button
-              onClick={() => setIsCalendarOpen(true)}
-              className="flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 text-slate-700 rounded-lg hover:bg-slate-50 hover:border-slate-300 transition-all shadow-sm"
-            >
-              <Calendar size={18} />
-              <span className="text-sm font-medium">Schedule</span>
-            </button>
-          </div>
-          <h1 className="text-2xl font-normal text-neutral-900 mb-1">Patient List</h1>
-          <p className="text-neutral-600">Manage and view patient status updates.</p>
+          <button
+            onClick={() => navigate('/')}
+            className="flex items-center gap-2 text-neutral-600 hover:text-neutral-900 mb-4 transition-colors"
+          >
+            <MoveLeftIcon size={20} />
+            <span className="text-sm font-medium">Back to Home</span>
+          </button>
+          <h1 className="text-2xl font-normal text-neutral-900 mb-1">Select Patient</h1>
+          <p className="text-neutral-600">Choose a patient to view on the board.</p>
         </div>
 
         <div className="relative mb-10 group">
@@ -124,58 +111,8 @@ const PatientListPage: React.FC = () => {
           </div>
         )}
       </main>
-      
-      <SchedulingCalendarModal 
-        isOpen={isCalendarOpen} 
-        onClose={() => setIsCalendarOpen(false)}
-        patients={MOCK_PATIENTS}
-      />
     </div>
   );
 };
 
-// Consultation Page Wrapper
-const ConsultationPageWrapper: React.FC = () => {
-  const { patientId } = useParams<{ patientId: string }>();
-  const navigate = useNavigate();
-
-  const patient = MOCK_PATIENTS.find((p) => p.id === patientId);
-
-  if (!patient) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-neutral-100">
-        <div className="text-center">
-          <p className="text-neutral-600 mb-4">Patient not found</p>
-          <button
-            onClick={() => navigate('/nurse-sim')}
-            className="px-4 py-2 bg-neutral-800 text-white rounded-lg hover:bg-neutral-700 transition-colors"
-          >
-            Back to Patient List
-          </button>
-        </div>
-      </div>
-    );
-  }
-
-  return <ConsultationPage patient={patient} onBack={() => navigate('/nurse-sim')} />;
-};
-
-// Consultation Showcase Wrapper (Static Demo)
-const ConsultationShowcaseWrapper: React.FC = () => {
-  const navigate = useNavigate();
-  return <ConsultationPageShowcase onBack={() => navigate('/nurse-sim')} />;
-};
-
-const App: React.FC = () => {
-  return (
-    <>
-      <Routes>
-        <Route path="/" element={<PatientListPage />} />
-        <Route path="/consultation/:patientId" element={<ConsultationPageWrapper />} />
-        <Route path="/consultation-showcase" element={<ConsultationShowcaseWrapper />} />
-      </Routes>
-    </>
-  );
-};
-
-export default App;
+export default BoardPatientSelect;
