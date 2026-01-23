@@ -5,9 +5,26 @@ import { PIXELS_PER_HOUR, APPOINTMENT_COLORS, START_HOUR } from './constants';
 interface AppointmentCardProps {
   appointment: Appointment;
   onClick: (apt: Appointment) => void;
+  onDragStart?: (apt: Appointment) => void;
+  onDragEnd?: () => void;
+  onDropOnCard?: (targetApt: Appointment) => void;
+  onDragOverCard?: (targetApt: Appointment) => void;
+  onDragLeaveCard?: () => void;
+  isDragging?: boolean;
+  isDropTarget?: boolean;
 }
 
-export const AppointmentCard: React.FC<AppointmentCardProps> = ({ appointment, onClick }) => {
+export const AppointmentCard: React.FC<AppointmentCardProps> = ({ 
+  appointment, 
+  onClick, 
+  onDragStart, 
+  onDragEnd,
+  onDropOnCard,
+  onDragOverCard,
+  onDragLeaveCard,
+  isDragging = false,
+  isDropTarget = false
+}) => {
   const startHour = appointment.startTime.getHours();
   const startMinute = appointment.startTime.getMinutes();
   
@@ -31,11 +48,53 @@ export const AppointmentCard: React.FC<AppointmentCardProps> = ({ appointment, o
 
   return (
     <div
+      draggable
+      onDragStart={(e) => {
+        e.stopPropagation();
+        if (onDragStart) {
+          onDragStart(appointment);
+        }
+        // Set drag data
+        e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.setData('text/plain', appointment.id);
+      }}
+      onDragEnd={(e) => {
+        e.stopPropagation();
+        if (onDragEnd) {
+          onDragEnd();
+        }
+      }}
+      onDragOver={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        // Allow dropping on this card
+        if (onDragOverCard) {
+          onDragOverCard(appointment);
+        }
+      }}
+      onDragLeave={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (onDragLeaveCard) {
+          onDragLeaveCard();
+        }
+      }}
+      onDrop={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (onDropOnCard) {
+          onDropOnCard(appointment);
+        }
+      }}
       onClick={(e) => {
         e.stopPropagation();
         onClick(appointment);
       }}
-      className={`absolute left-4 right-4  border-l-4 px-4 py-3 cursor-pointer shadow-sm hover:shadow-md transition-all z-10 overflow-hidden ${colorClass} border border-slate-200`}
+      className={`absolute left-4 right-4 border-l-4 px-4 py-3 cursor-move shadow-sm hover:shadow-md transition-all z-10 overflow-hidden ${colorClass} border border-slate-200 ${
+        isDragging ? 'opacity-50' : ''
+      } ${
+        isDropTarget ? 'ring-2 ring-blue-400 ring-offset-2' : ''
+      }`}
       style={{
         top: `${topPosition}px`,
         height: `${height}px`,

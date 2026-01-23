@@ -1,39 +1,38 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
+import MonitoringSummaryCard from './MonitoringSummaryCard';
+import ActionCard from './ActionCard';
+import PatientChat from './PatientChat';
 
 export const MonitoringPage: React.FC = () => {
-  const navigate = useNavigate();
-
   return (
-    <div className="h-screen bg-slate-50 flex flex-col font-sans">
-      {/* Header */}
-      <div className="bg-white border-b border-slate-200 px-6 py-5 flex-shrink-0">
-        <div className="max-w-7xl mx-auto flex items-center gap-4">
-          <button
-            onClick={() => navigate('/')}
-            className="p-2 hover:bg-slate-100 rounded-full text-slate-500 hover:text-slate-700 transition-colors"
-          >
-            <ArrowLeft size={20} />
-          </button>
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-800 font-sans selection:bg-blue-100">
+      <div className="max-w-6xl mx-auto px-4 py-8 lg:py-12 h-screen flex flex-col">
+        
+        <header className="flex items-center justify-between mb-8 flex-shrink-0">
           <div>
-            <h1 className="text-lg font-semibold text-slate-900">Monitoring</h1>
-            <p className="text-xs text-slate-500">Patient monitoring dashboard</p>
+            <h1 className="text-2xl font-semibold tracking-tight text-slate-900">
+              Medi<span className="text-blue-500">Monitor</span>
+            </h1>
+            <p className="text-slate-500 text-sm">AI Risk Assessment Dashboard</p>
           </div>
-        </div>
-      </div>
+          <div className="flex items-center gap-3">
+             <div className="h-2 w-2 rounded-full bg-blue-500 animate-pulse"></div>
+             <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">System Active</span>
+          </div>
+        </header>
 
-      {/* Content */}
-      <div className="flex-1 flex items-center justify-center">
-        <div className="text-center">
-          <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg className="w-8 h-8 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-            </svg>
+        <main className="grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1 min-h-0">
+          {/* Left Column - Information */}
+          <div className="lg:col-span-7 flex flex-col gap-6 overflow-y-auto pr-2 scrollbar-hide">
+            <MonitoringSummaryCard />
+            <ActionCard />
           </div>
-          <h2 className="text-xl font-semibold text-slate-900 mb-2">Monitoring Dashboard</h2>
-          <p className="text-sm text-slate-500">Preparing...</p>
-        </div>
+
+          {/* Right Column - Chat */}
+          <div className="lg:col-span-5 h-full min-h-[500px]">
+            <PatientChat />
+          </div>
+        </main>
       </div>
     </div>
   );
