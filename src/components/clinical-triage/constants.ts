@@ -105,7 +105,7 @@ function generateMockPatients(targetTotal: number): Patient[] {
 
     const condition = CONDITIONS[Math.floor(Math.random() * CONDITIONS.length)];
     
-    const isIntakeOrLater = gridId === 'intake' || gridId !== 'direct-referral' && !gridId.includes('input');
+    const isIntakeOrLater = gridId === 'intake' || (gridId !== 'direct-referral' && !gridId.includes('input'));
     const isTriageOrLater = ['clinical-triage', 'urgent-hep', 'routine-tier1', 'complex-tier2', 'external', 'diag-1', 'diag-2', 'diag-3', 'diag-4'].includes(gridId);
     const isClinicOrLater = ['urgent-hep', 'routine-tier1', 'complex-tier2', 'external', 'diag-1', 'diag-2', 'diag-3', 'diag-4'].includes(gridId);
     const isDiag = gridId.includes('diag');
